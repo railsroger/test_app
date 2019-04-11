@@ -1,0 +1,9 @@
+- if (!product.disclaimer.blank?)
+  .html-block.product__block(
+    data-ui-white
+    class="html-block_ui_white"
+    style="color: #fff; background-color: #141414;"
+  )
+    .html-block__container.html-block__container_size_large
+      .html-block__text.qwer
+        == simple_format product.disclaimer

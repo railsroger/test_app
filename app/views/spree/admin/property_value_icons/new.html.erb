@@ -1,0 +1,15 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @property_value_icon } %>
+
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:property_value_icons), admin_property_value_icons_url %> /
+  <%= Spree.t(:new_property_value_icon) %>
+<% end %>
+
+<%= form_for [:admin, @property_value_icon] do |f| %>
+  <fieldset data-hook="new_property_value_icon">
+    <%= render partial: 'form', locals: { f: f } %>
+    <div class="form-actions">
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
+    </div>
+  </fieldset>
+<% end %>

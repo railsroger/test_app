@@ -1,0 +1,42 @@
+.error-page
+  &__title
+    font-avalon()
+    font-size 200px
+    line-height 1
+    margin-bottom 46px
+
+    +mobile()
+      font-size 120px
+
+  &__description
+    font-size 16px
+    line-height (24 / 16)
+    margin-bottom 48px
+
+  &__buttons
+    display flex
+    align-items center
+    justify-content center
+
+    +mobile()
+      margin-left -10px
+      margin-right -10px
+
+  &__button
+    text-smaller()
+    display inline-block
+    vertical-align top
+    text-decoration none
+    padding 15px 20px
+    background #252525
+    color $white
+    text-transform uppercase
+    margin 0 24px
+    transition background .3s ease
+    transform translateZ(0)
+
+    +mobile()
+      margin 0 10px
+
+    &:hover
+      background $blue

@@ -1,0 +1,35 @@
+.promo-block
+  height 50vh
+  min-height 400px
+  position relative
+  background-size cover
+  background-position 50%
+  background-color $blackLight
+  color $white
+
+  &:before
+    abs()
+    content ''
+    opacity .1
+    background $blackLight
+    z-index 1
+
+  &__content
+    container()
+    position relative
+    z-index 2
+
+  &__content-inner
+    container-inner()
+    display flex
+    justify-content space-between
+    height 100%
+    padding-top 80px
+    padding-bottom 80px
+    position relative
+    z-index 2
+
+  &__title
+    text-small()
+    text-transform uppercase
+    margin-top em(-5, 12)

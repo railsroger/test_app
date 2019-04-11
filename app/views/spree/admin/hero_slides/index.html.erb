@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:hero_slider) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_slide), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_hero_slide_link' } %>
+  </span>
+<% end if can?(:create, Spree::HeroSlide) && Spree::HeroSlide::MAX_COUNT > Spree::HeroSlide.count %>
+
+<div id="new_hero_slide"></div>
+
+<% if @hero_slides.any? %>
+<table class="table sortable" id="listing_hero_slides" data-hook data-sortable-link="<%= update_positions_admin_hero_slides_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%= Spree.t(:title) %></th>
+      <th><%= Spree.t(:link) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hero_slides.each do |hero_slide| %>
+      <tr class="spree_hero_slide <%= cycle('odd', 'even')%>" id="<%= spree_dom_id hero_slide %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= hero_slide.title %></td>
+        <td class="presentation"><%= hero_slide.link %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(hero_slide, class: 'admin_edit_hero_slide', no_text: true) if can?(:edit, hero_slide) %>
+          <%= link_to_delete(hero_slide, no_text: true) if can?(:delete, hero_slide) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::HeroSlide)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::HeroSlide) && Spree::HeroSlide::MAX_COUNT > Spree::HeroSlide.count %>!
+  </div>
+<% end %>

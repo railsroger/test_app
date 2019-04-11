@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:career_slider) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_slide), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_career_link' } %>
+  </span>
+<% end if can?(:create, Spree::Career) && Spree::Career::MAX_COUNT > Spree::Career.count %>
+
+<div id="new_career"></div>
+
+<% if @careers.any? %>
+<table class="table sortable" id="listing_careers" data-hook data-sortable-link="<%= update_positions_admin_careers_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%= Spree.t(:title) %></th>
+      <th><%= Spree.t(:link) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @careers.each do |career| %>
+      <tr class="spree_career <%= cycle('odd', 'even')%>" id="<%= spree_dom_id career %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= career.title %></td>
+        <td class="presentation"><%= career.link %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(career, class: 'admin_edit_career', no_text: true) if can?(:edit, career) %>
+          <%= link_to_delete(career, no_text: true) if can?(:delete, career) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Career)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::Career) && Spree::Career::MAX_COUNT > Spree::Career.count %>!
+  </div>
+<% end %>

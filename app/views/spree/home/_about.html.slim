@@ -1,0 +1,10 @@
+- if company_block.try(:is_active?)
+  section.about
+    .about__inner
+      h2.about__title
+        == simple_format company_block.main_statement
+
+      ul.menu-line.menu-line_centered.about__menu
+        - for section in company_block.sections
+          li.menu-line__item
+            a.menu-line__link(href=section.link) = section.name

@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%== t('.company_pages') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_page), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_company_page_link' } %>
+  </span>
+<% end if can?(:create, Spree::CompanyPage) %>
+
+<div id="new_company_page"></div>
+
+<% if @company_pages.any? %>
+<table class="table sortable" id="listing_company_pages" data-hook data-sortable-link="<%= update_positions_admin_company_pages_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%== t('.title') %></th>
+      <th><%== t('.page_type') %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @company_pages.each do |company_page| %>
+      <tr class="spree_company_page <%= cycle('odd', 'even')%>" id="<%= spree_dom_id company_page %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= company_page.title %></td>
+        <td class="presentation"><%= company_page.page_type.humanize %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(company_page, class: 'admin_edit_company_page', no_text: true) if can?(:edit, company_page) %>
+          <%= link_to_delete(company_page, no_text: true) if can?(:delete, company_page) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::CompanyPage)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::CompanyPage) %>!
+  </div>
+<% end %>

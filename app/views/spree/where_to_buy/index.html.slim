@@ -1,0 +1,36 @@
+javascript:
+  var markersListData = #{ raw @offline_stores.map { |s| {color: s.pin_color, coordinates: s.coordinates_arr, title: s.title} }.to_json };
+
+section.where-to-buy
+  .where-to-buy__map-wrapper
+    .where-to-buy__map
+
+  .where-to-buy__content
+    .where-to-buy__head
+      .where-to-buy__title
+        == t('.where_to_buy')
+
+    .where-to-buy__mobile-controls
+      .where-to-buy__mobile-control-wrapper
+        button.where-to-buy__mobile-control.active(
+          data-value="buy"
+          type="button"
+        ) == t('.buy_now')
+
+      .where-to-buy__mobile-control-wrapper
+        button.where-to-buy__mobile-control(
+          data-value="stores"
+          type="button"
+        ) == t('.stores')
+
+    .where-to-buy__list
+      .where-to-buy__subtitle.where-to-buy__list-title == t('.buy_now')
+
+      - @online_stores.each do |store|
+        .where-to-buy__item
+          a.where-to-buy__link(
+            target="_blank"
+            href=store.url
+          )
+            = image_tag store.favicon_url, class: 'where-to-buy__item-icon' if store.favicon_url.present?
+            = store.name

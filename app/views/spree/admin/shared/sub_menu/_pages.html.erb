@@ -1,0 +1,6 @@
+<ul data-hook="admin_configurations_sidebar_menu" class="collapse nav nav-pills nav-stacked" id="sidebar-pages">
+  <%= configurations_sidebar_menu_item(t('.company_pages'), spree.admin_company_pages_path) if can? :manage, Spree::CompanyPage %>
+  <%= configurations_sidebar_menu_item(t('.sponsorships'), spree.admin_sponsorships_path) if can? :manage, Spree::Sponsorship %>
+  <%= configurations_sidebar_menu_item(t('.career_slider'), spree.admin_careers_path) if can? :manage, Spree::Career %>
+  <%= configurations_sidebar_menu_item(t('.legal_pages'), spree.admin_legal_pages_path) if can? :manage, Spree::LegalPage %>
+</ul>

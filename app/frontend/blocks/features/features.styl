@@ -1,0 +1,37 @@
+.features
+  height 100vh
+  display flex
+
+  +mobile()
+    flex-wrap wrap
+    height auto
+
+  &__item
+    width 25%
+    height 100%
+    width "calc((100% - %s) / 4)" % ($baseOffset * 2)
+    position relative
+
+    +mobile()
+      width 50%
+
+    &:not(:last-child)
+      &:after
+        content ''
+        display block
+        position absolute
+        right 0
+        top 50%
+        height 60%
+        max-height 400px
+        width 1px
+        background $grayLighter
+        transform translateY(-50%)
+        background linear-gradient(to bottom, alpha($grayLighter,0) 0%,alpha($grayLighter,1) 15%,alpha($grayLighter,1) 85%,alpha($grayLighter,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    &:first-of-type
+    &:last-of-type
+      width "calc((100% - %s) / 4 + %s)" % ($baseOffset * 2 $baseOffset)
+
+      +mobile()
+        width 50%

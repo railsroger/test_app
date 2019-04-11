@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <%= link_to t('.offline_stores'), admin_offline_stores_url %> /
+  <%= @offline_store.name %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @offline_store } %>
+
+<%= form_for [:admin, @offline_store] do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

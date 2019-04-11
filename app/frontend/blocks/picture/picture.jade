@@ -1,0 +1,26 @@
+mixin picture(props)
+  - var props = typeof props != 'undefined' ? props : {}
+
+  - var data  = props.data  || {}
+  - var attrs = props.attrs || {}
+
+  - var image  = data.image  || false
+  - var images = data.images || false
+
+  - var mix = props.mix ? {'class': props.mix} : {}
+
+  if images
+    - var srcset = images.map(function(item, index) {
+    -   return item + ' ' + (index + 1) + 'x';
+    - }).join(',')
+
+    img(
+      src= images[0],
+      srcset= srcset
+      alt= alt
+    )&attributes(attrs, mix)
+  else
+    img(
+      src= image,
+      alt= alt
+    )&attributes(attrs, mix)

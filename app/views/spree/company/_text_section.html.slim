@@ -1,0 +1,9 @@
+.page__section.page__section_size_full
+  .page__container
+    h1.page__title
+      == simple_format page.header
+
+    .page__text
+      == page.text
+
+  = render partial: 'menu', locals: { menu: menu }

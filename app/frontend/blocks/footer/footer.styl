@@ -1,0 +1,134 @@
+.footer
+  .page_where_to_buy_index &
+    +mobile()
+      display none
+
+  &__body
+    container()
+    padding-bottom $baseOffset
+    padding-top 80px
+    background $blackDark
+    color $gray
+    display flex
+    flex-wrap wrap
+    min-height 50%
+
+    +mobile()
+      padding-top $baseOffset
+      padding-bottom $baseOffsetMobile
+      display block
+
+  &__logo
+    font-size 14px
+    color currentColor
+
+  &__menu-groups
+    display flex
+    margin-bottom 100px
+    width 100%
+    flex-wrap wrap
+    align-items flex-start
+
+    +tablet()
+      display block
+
+    +mobile()
+      margin-bottom 0
+
+  &__menu-group
+    display flex
+    width 50%
+    flex-wrap wrap
+
+    +tablet()
+      width 100%
+      margin-bottom $baseOffset
+
+    +mobile()
+      margin-bottom $baseOffsetMobile
+
+  &__menu
+    font-avalon()
+    width (100% / 4)
+    padding-right $baseOffset
+
+    +mobile()
+      width 50%
+      padding-right $baseOffsetMobile
+      margin-bottom $baseOffsetMobile
+
+    &:empty
+      +tablet()
+        display none
+
+    &_side_right
+      text-align right
+      padding-right 0
+      padding-left $baseOffset
+
+      +tablet()
+        text-align left
+        padding-left 0
+
+  &__global-site-link
+    .footer &
+      underline-link-style()
+      color #5e5e5e
+
+  &__submenu
+    display flex
+    align-items flex-start
+
+    +mobile()
+      display block
+      margin-bottom $baseOffset
+
+  &__submenu-item
+    font-avalon()
+    color alpha($white, .2)
+    margin-right 34px
+
+    +mobile()
+      margin-bottom 10px
+
+  &__submenu-link
+    underline-link-style()
+
+  &__socials-title
+    color alpha($white, .2)
+    margin-bottom 18px
+
+  &__socials
+    display flex
+    align-items flex-end
+    font-size 15px
+    color alpha($white, .8)
+    width 25%
+    margin-bottom 16px
+
+    +mobile()
+      width 100%
+
+  &__social-link
+    link-style()
+    text-align center
+    display block
+    min-width 1em
+    margin-right 18px
+    flex-shrink 0
+
+    +mobile()
+      margin-left 0
+
+  &__twitter-widget
+    margin-left 50%
+    width 50%
+
+    +tablet()
+      margin-left 0
+
+    +mobile()
+      width 100%
+
+    a
+      underline-link-style()

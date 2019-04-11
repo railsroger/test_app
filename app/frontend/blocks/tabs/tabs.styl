@@ -1,0 +1,39 @@
+.tabs
+  position relative
+
+  &__head
+    display flex
+    margin-bottom 24px
+
+    &_centered
+      justify-content center
+
+  &__button
+    text-smaller()
+    underline-link-style($black)
+    line-height 1
+
+    &:not(:last-child)
+      margin-right 40px
+
+    &_big
+      text-small()
+      line-height 1
+
+      +mobile()
+        text-smaller()
+        line-height 1
+
+      &:not(:last-child)
+        margin-right 56px
+
+        +mobile()
+          margin-right 40px
+
+  &__body
+    position relative
+
+  &__content
+    left 0
+    top 0
+    width 100%

@@ -1,0 +1,30 @@
+- if Rails.application.secrets.footer_subscription_enabled
+  .subscribe-block(data-ui-white)
+    .subscribe-block__inner
+      h3.subscribe-block__title
+        == t('.paragraph')
+
+      .subscribe-block__form-wrapper
+        transition(
+          @enter="fadeIn"
+          @leave="fadeOut"
+          mode="out-in"
+        )
+          template(v-if="formIsSuccess")
+            .subscribe-block__message
+              = t('.successfully_subscribed')
+          = form_tag '/subscribers', method: :post, class: 'subscribe-block__form form', '@submit.prevent' => 'validateBeforeSubmit', 'v-else' => true
+            .form__input.subscribe-block__input-wrapper
+              input.subscribe-block__input(
+                name="email"
+                type="text"
+                placeholder= t('.placeholder')
+                v-validate="'required|email'"
+              )
+              template(v-if="errors.has('email')")
+                .form__input-error.subscribe-block__input-error
+                  = t('.email_invalid')
+
+            button.subscribe-block__submit(
+              type="submit"
+            ) = t('.subscribe')

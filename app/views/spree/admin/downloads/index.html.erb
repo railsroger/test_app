@@ -1,0 +1,53 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::Download) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span>
+    <%= button_link_to t('.categories'), spree.admin_downloads_categories_path, { class: 'btn-primary', icon: 'cog' } %>
+  </span>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_download), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_download_link' } %>
+  </span>
+<% end if can?(:create, Spree::Download) %>
+
+<div id="new_download"></div>
+
+<% if @collection.any? %>
+  <table class="table" id="listing_downloads">
+    <thead>
+    <tr data-hook="admin_downloads_index_headers">
+      <th><%= Spree.t(:product) %></th>
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:type) %></th>
+      <th><%= Spree.t(:description) %></th>
+      <th><%= Spree.t(:version) %></th>
+      <th><%= Spree.t(:date) %></th>
+      <th data-hook="admin_downloads_index_header_actions" class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @collection.each do |download| %>
+      <tr id="<%= spree_dom_id download %>" data-hook="admin_downloads_index_rows" class="<%= cycle('odd', 'even') %>">
+        <td><%= download.product ? download.product.name : '—' %></td>
+        <td><%= download.name %></td>
+        <td><%= download.category.try(:name) || '—' %></td>
+        <td><%= download.description %></td>
+        <td><%= download.version %></td>
+        <td><%= download.date %></td>
+        <td class="actions actions-3 text-right" data-hook="admin_downloads_index_row_actions">
+          <%= link_to_edit download, class: 'admin_edit_content_block', no_text: true if can?(:edit, download) %>
+          <%= link_to_delete download, no_text: true if can?(:delete, download) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Download)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::Download) %>!
+  </div>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>

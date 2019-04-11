@@ -1,0 +1,194 @@
+[data-gallery]
+  cursor pointer
+
+.vue-gallery
+  height 100%
+  width 100%
+  position fixed
+  display flex
+  top 0
+  left 0
+  overflow hidden
+  background-color $white
+  touch-action none
+  z-index 20
+  color $black
+  padding rem($baseOffset * 2)
+  padding-bottom rem($baseOffset * 3)
+  transition color, background .3s ease
+
+  +mobile()
+    padding $baseOffsetMobile
+
+  &_template
+    &_full
+      padding 0
+
+  &_ui
+    &_white
+      background $black
+      color $white
+
+    &_black
+      background $white
+      color $black
+
+  &__logo
+    font-size 22px
+    position absolute
+    top $baseOffset
+    left $baseOffset
+    z-index 3
+
+    +mobile()
+      top $baseOffsetMobile
+      left $baseOffsetMobile
+
+  &__close
+    position fixed
+    top $baseOffset
+    right $baseOffset
+    z-index 30
+
+    +mobile()
+      top $baseOffsetMobile
+      right $baseOffsetMobile
+
+  &__nav
+    position absolute
+    top 0
+    bottom 0
+    cursor pointer
+    z-index 10
+    color currentColor
+    opacity 1
+    transition opacity .2s ease, transform .3s ease
+    padding $baseOffset
+
+    &:disabled
+      opacity .6
+      cursor default
+
+    &_left
+      left 0
+      width (100% / 3)
+
+    &_right
+      width (100% / 3 * 2)
+      right 0
+
+  &__nav-text
+    underline-link-style($black)
+    text-transform uppercase
+    position absolute
+    bottom $baseOffset
+
+    +mobile()
+      bottom $baseOffsetMobile
+
+    &_left
+      left $baseOffset
+
+      +mobile()
+        left $baseOffsetMobile
+
+    &_right
+      right $baseOffset
+
+      +mobile()
+        right $baseOffsetMobile
+
+    .vue-gallery_ui_white &
+      &:hover
+        color $white
+
+  &__image-wrapper
+    width 100%
+    position relative
+
+  &__slide-cover
+    abs()
+    background-size cover
+    background-position 50%
+
+  &__description
+    text-small()
+    text-transform uppercase
+    position absolute
+    left 25%
+    max-width 50%
+    top 180px
+    z-index 3
+
+    +mobile()
+      container()
+      left 0
+      max-width 100%
+
+  &__image
+    width auto
+    height auto
+    max-width 100%
+    max-height 100%
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    margin auto
+    user-select none
+    z-index 5
+    transform translateZ(0)
+
+  &__title
+    text-bigger()
+    position absolute
+    left 0
+    right 0
+    top 50%
+    height 1em
+    margin-top -.5em
+    white-space nowrap
+    text-align center
+    z-index 10
+    display none
+
+    &_size_big
+      text-biggest()
+
+  &__bottom-bar
+    add-area(0, 20)
+    position fixed
+    top 100%
+    left 0
+    right 0
+    z-index 25
+    text-align center
+
+  &__thumbnails
+    position relative
+    overflow hidden
+    display inline-block
+    vertical-align top
+    margin auto
+    max-width 100%
+    transform translateY(-10%) translateZ(0)
+    z-index 5
+
+  &__thumbnails-inner
+    display flex
+
+  &__thumbnail
+    opacity .2
+    transition opacity .2s ease
+    cursor pointer
+    position relative
+
+    &_active
+    &:hover
+      opacity 1
+
+  &__thumbnail-image
+    width auto
+    height 120px
+    display block

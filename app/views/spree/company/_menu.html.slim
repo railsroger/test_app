@@ -1,0 +1,12 @@
+transition(
+  @enter="fadeIn"
+  @leave="fadeOut"
+)
+  ul.company-page__menu(v-if="menuIsVisible")
+    - for page in menu
+      li.company-page__menu-item
+        a.company-page__menu-link(
+          href="##{page.title.parameterize}"
+          @click="setActiveSectionId('#{page.title.parameterize}')"
+          :class="{'active': activeSectionId === '#{page.title.parameterize}'}"
+        ) = page.title

@@ -1,0 +1,21 @@
+- @virtual_path = "spree.error.not_found"
+section.page.error-page
+  .page__cover.page__section.page__section_centered.page__section_size_full(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('/images/404/bg.jpg')"
+    )
+
+    .page__container
+      h1.error-page__title 404
+
+      .error-page__description
+        == t('.not_found_text')
+
+      .error-page__buttons
+        = link_to t('.return_to_homepage'), root_url, class: 'error-page__button'
+
+        == t('.or')
+
+        = link_to t('.report_an_error'), contact_index_url, class: 'error-page__button'

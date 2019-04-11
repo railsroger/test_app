@@ -1,0 +1,16 @@
+.menu-line
+  display flex
+  flex-wrap wrap
+
+  &_centered
+    justify-content center
+
+  &__item
+    text-transform uppercase
+    margin-bottom 20px
+
+    &:not(:last-child)
+      margin-right 28px
+
+  &__link
+    underline-link-style($black)

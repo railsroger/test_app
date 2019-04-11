@@ -1,0 +1,87 @@
+include ../../../../node_modules/bemto.pug/bemto
+
+transition(
+  appear,
+  @enter="hookEnter",
+  @leave="hookLeave",
+  name="button-cross"
+)
+  +b.vue-gallery(
+    v-if="!closed",
+    :class="{" +
+    "'vue-gallery_template_full': template === 'full'," +
+    "'vue-gallery_ui_black': currentImage.uiColor === 'black'," +
+    "'vue-gallery_ui_white': currentImage.uiColor === 'white'" +
+    "}"
+  )
+    +e.ICON.logo(id="logo")
+
+    +e.image-wrapper
+      transition(
+        @enter="hookImageEnter",
+        @leave="hookImageLeave",
+        mode="out-in"
+      )
+        +e.slide-cover(
+          v-if="template === 'full'",
+          :key="currentImageIndex",
+          :style="{'backgroundImage': `url(${currentImage.src})`}"
+        )
+          +e.description(
+            v-html="currentImage.description"
+          )
+
+        img.vue-gallery__image(
+          v-else,
+          :key="currentImageIndex",
+          :src="currentImage.src",
+          :alt="currentImage.alt",
+          @click="next"
+        )
+
+    //- +e.H3.title(:class="{'vue-gallery__title_size_big': title.length < 10}") {{ title }}
+
+    +b.BUTTON.button-cross._state_cross.__close(
+      type="button",
+      @click="close"
+    )
+      +e.inner
+      .visibility-hidden Close
+
+    +e.BUTTON.nav._left(
+      v-show="visibleUI",
+      type="button",
+      :disabled="currentImageIndex === 0",
+      @click="prev"
+    )
+      +e.nav-text._left(
+        :disabled="currentImageIndex === 0",
+      ) Prev photo
+
+    +e.BUTTON.nav._right(
+      v-show="visibleUI",
+      type="button",
+      :disabled="currentImageIndex === images.length - 1",
+      @click="next"
+    )
+      +e.nav-text._right(
+        :disabled="currentImageIndex === images.length - 1",
+      ) Next photo
+
+    +e.bottom-bar(
+      v-if="thumbnailsIsEnabled",
+      @mouseenter="onBottomMouseEnter",
+      @mouseleave="onBottomMouseLeave",
+    )
+      +e.thumbnails
+        +e.thumbnails-inner
+          +e.BUTTON.thumbnail(
+            v-for="(item, index) in images",
+            type="button",
+            :key="index",
+            :class="{'vue-gallery__thumbnail_active': index === currentImageIndex}",
+            @click="onThumbnailClick(index)"
+          )
+            img.vue-gallery__thumbnail-image(
+              :src="item.src"
+            )

@@ -1,0 +1,51 @@
+.product__block#support
+  .html-block(
+    class="html-block_ui_black"
+  )
+    .html-block__container.html-block__container_align_center
+      .html-block__title
+        == t('.support_title')
+        |
+
+      .html-block__text
+        == t('.support_paragraph')
+
+  .product__support-list
+    .product__support-item
+      a.product__support-item-link(
+        href="#{current_store.country.iso == 'RU' ? '/support' : '/downloads'}"
+      )
+        .product__support-icon-wrapper
+          = render partial: 'shared/icon', locals: {iconName: 'icon-manuals'}
+
+        .product__support-title
+          == t('.manuals_title')
+
+      .product__support-text
+        == t('.manuals_paragraph')
+
+    .product__support-item
+      a.product__support-item-link(
+        href=register_product_index_url
+      )
+        .product__support-icon-wrapper
+          = render partial: 'shared/icon', locals: {iconName: 'icon-register'}
+
+        .product__support-title
+          == t('.register_title')
+
+      .product__support-text
+        == t('.register_paragraph')
+
+    .product__support-item
+      a.product__support-item-link(
+        href="/contact"
+      )
+        .product__support-icon-wrapper
+          = render partial: 'shared/icon', locals: {iconName: 'icon-contact'}
+
+        .product__support-title
+          == t('.contact_title')
+
+      .product__support-text
+        == t('.contact_paragraph')

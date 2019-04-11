@@ -1,0 +1,12 @@
+export default {
+  name: 'icon',
+
+  props: ['id'],
+
+  data() {
+    return {
+      iconId: `#icon-${this.id}`,
+      iconClass: `icon_${this.id}`
+    };
+  }
+};

@@ -1,0 +1,96 @@
+section.page.support
+  .page__cover.page__section.page__section_centered(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('/images/support/bg.jpg')"
+    )
+
+    .page__container
+      h1.page__title
+        == t('.support_title')
+
+      .page__title-description
+        == t('.support_text')
+
+  .support__body
+    h2.support__subtitle
+      == t('.support_subtitle')
+
+    = form_tag support_url, method: :post, rel: :form
+      .support__buttons#categories(
+        data-value="#{@product ? @product&.category_taxon.id : ''}"
+      )
+        - categories.each do |category|
+          input.support__button-input(
+            type="radio"
+            id=category.id
+            value=category.id
+            name="category_id"
+            v-model="categoryValue"
+          )
+          label.support__button-label(
+            for=category.id
+          )
+            img.support__button-icon(
+              src=category.support_icon.url()
+            )
+            = category.name
+
+      .support__select-wrapper
+        .input-select
+          .input-select__input-wrapper
+            - categories.each do |category|
+              select.input-select__input.support__select(
+                v-if="categoryValue === '#{category.id}'"
+                name="model_name"
+                @change="onSelectChange"
+              )
+                option(value="" selected=(@product&.category_taxon != category)) == t('.select_product')
+                - category.products.each do |product|
+                  option(value=product.model_number selected=(product.model_number == params[:model_number])) = product.model_number
+  - if @product
+    .support__product
+      .support__product-inner
+        .support__preview-wrapper
+          .support__preview-inner
+            .support__product-name = @product.name
+
+            = image_tag @product.preview_image.url, class: 'support__product-image'
+
+        .support__product-content
+          .tabs
+            .tabs__head
+              - num = 0
+              - Spree::DownloadsCategory.all.each do |category|
+                - downloads = Spree::Download.where(product: @product, category_id: category.id)
+                - next unless downloads.any?
+                - num += 1
+                button.tabs__button.support__tab-button(
+                  type="button"
+                  @click="activeTabIndex = #{num}"
+                  :class="{'active': activeTabIndex === #{num}}"
+                ) = category.name
+
+            transition-group.tabs__body(
+              @enter="hookTabEnter"
+              @leave="hookTabLeave"
+              tag="div"
+            )
+              - num = 0
+              - Spree::DownloadsCategory.all.each do |category|
+                - downloads = Spree::Download.where(product: @product, category_id: category.id)
+                - next unless downloads.any?
+                - num += 1
+                .tabs__content(
+                  v-show="activeTabIndex === #{num}"
+                  key="#{category.id}"
+                )
+                  - downloads.each do |download|
+                    .support__document
+                      .support__document-title
+                        = render partial: 'shared/icon', locals: {iconName: 'icon-document'}
+                        = download.name
+                      = link_to 'Download', download.file.url, class: 'button button_color_gray support__document-button'
+
+  = render partial: 'need_more_help'

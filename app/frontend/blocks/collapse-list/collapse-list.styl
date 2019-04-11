@@ -1,0 +1,58 @@
+.collapse-list
+  container()
+  width 100%
+  max-width 500px
+  margin-left auto
+  margin-right auto
+  padding-top 80px
+  padding-bottom 130px
+
+  +mobile()
+    padding-top 60px
+    padding-bottom 60px
+
+  &__item
+    &:not(:last-child)
+      border-bottom 1px solid #d6d6d6
+
+  &__head
+    text-smaller()
+    text-transform uppercase
+    text-align left
+    padding-left 35px
+    padding-top 20px
+    padding-bottom 20px
+    position relative
+
+    &:before
+    &:after
+      content ''
+      background currentColor
+      position absolute
+
+    &:before
+      width 14px
+      height 2px
+      left 0
+      top 30px
+
+    &:after
+      height 14px
+      width 2px
+      left 6px
+      top 24px
+      transform scale(1, 1)
+      transition transform .3s ease
+
+      .collapse-list__item_opened &
+        transform scale(1, 0)
+
+  &__body
+    text-transform uppercase
+    padding-left 35px
+    line-height (21 / 12)
+    color $grayDarker
+    display none
+
+  &__body-inner
+    padding-bottom 20px

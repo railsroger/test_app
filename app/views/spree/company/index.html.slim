@@ -1,0 +1,10 @@
+section.page.company-page#company-page
+  - for page in @company_pages
+    transition(
+      @enter="hookEnter"
+      @leave="hookLeave"
+    )
+      .company-page__screen(id="#{page.title.parameterize}" v-show="activeSectionId === '#{page.title.parameterize}'")
+        = render partial: page.page_type, locals: { page: page, menu: @company_pages }
+
+  .company-page__scroll-indicator(:style="scrollIndicatorStyles")

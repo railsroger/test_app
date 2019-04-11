@@ -1,0 +1,35 @@
+.cookies-popup
+  display none
+  position fixed
+  left 0
+  right 0
+  bottom 0
+  background $white
+  z-index 100
+  padding 15px 0
+
+  &__content
+    container()
+    display flex
+    align-items center
+
+    +mobile()
+      display block
+
+  &__info
+    flex-grow 1
+    margin-bottom 5px
+    padding-right 20px
+
+    +mobile()
+      margin-bottom 15px
+
+  &__title
+    font-avalon()
+    text-small()
+
+  &__text
+    text-smaller()
+
+  &__button
+    margin-left auto

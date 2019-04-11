@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::FooterItem) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_footer_item), new_object_url, { class: "btn-success", icon: 'add', id: 'new_footer_item_url' } %>
+  </span>
+<% end if can?(:create, Spree::FooterItem) %>
+
+<div id="new_footer_item"></div>
+
+<% if @footer_items.any? %>
+<table class="table sortable" id="listing_footer_items" data-hook data-sortable-link="<%= update_positions_admin_footer_items_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:url) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @footer_items.each do |footer_item| %>
+      <tr class="spree_footer_item <%= cycle('odd', 'even')%>" id="<%= spree_dom_id footer_item %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= footer_item.name %></td>
+        <td class="presentation"><%= footer_item.url %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(footer_item, class: 'admin_edit_footer_item', no_text: true) if can?(:edit, footer_item) %>
+          <%= link_to_delete(footer_item, no_text: true) if can?(:delete, footer_item) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::FooterItem)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::FooterItem) %>!
+  </div>
+<% end %>

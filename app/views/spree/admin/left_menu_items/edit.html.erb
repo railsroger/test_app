@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:left_menu_items), admin_left_menu_items_url %> /
+  <%= @left_menu_item.name %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @left_menu_item } %>
+
+<%= form_for [:admin, @left_menu_item] do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

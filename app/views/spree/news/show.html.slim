@@ -1,0 +1,19 @@
+section.page.news-page
+  .page__cover.page__section.news-page__head(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('#{@news.main_image.url}')"
+    )
+
+    .page__container
+      .news-page__date = l @news.published_on, format: :long
+
+      h1.page__title.news-page__title = @news.title
+
+      .news-page__tags = @news.category&.name
+
+  .page__section
+    .page__container
+      .page__text
+        == @news.text

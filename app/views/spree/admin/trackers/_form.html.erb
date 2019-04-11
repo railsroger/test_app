@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.error_message_on :name %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :active, class: ['form-group'] do %>
+      <%= f.label :active do %>
+        <%= f.check_box :active %>
+        <%= Spree.t(:active) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <%= f.field_container :header, class: ['form-group'] do %>
+      <%= f.label :header, Spree.t(:header) %>
+      <%= f.text_area :header, class: 'form-control' %>
+      <%= f.error_message_on :header %>
+    <% end %>
+    <%= f.field_container :body_starts, class: ['form-group'] do %>
+      <%= f.label :body_starts, Spree.t(:body_starts) %>
+      <%= f.text_area :body_starts, class: 'form-control' %>
+      <%= f.error_message_on :body_starts %>
+    <% end %>
+    <%= f.field_container :body_ends, class: ['form-group'] do %>
+      <%= f.label :body_ends, Spree.t(:body_ends) %>
+      <%= f.text_area :body_ends, class: 'form-control' %>
+      <%= f.error_message_on :body_ends %>
+    <% end %>
+  </div>
+</div>

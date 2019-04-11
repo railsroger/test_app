@@ -1,0 +1,203 @@
+.register-product.form
+  .register-product__inner.form__inner
+    h1.form__title
+      == t('.register_product')
+
+    transition(
+      @enter="fadeIn"
+      @leave="fadeOut"
+    )
+      template(
+        v-if="formIsSuccess"
+      )
+        div
+          .form__message
+            p
+              == t('.success_title')
+
+            p
+              == t('.success_text')
+
+          .form__footer
+            a.form__button(
+              href=root_url
+            ) == t('.return_to_homepage')
+
+      form.register-product__form(
+        v-else
+        @submit.prevent="validateBeforeSubmit"
+        target="#"
+        method="POST"
+      )
+        = token_tag
+        .form__input.input-text
+          input.input-text__input(
+            name="name"
+            placeholder=t('.name_placeholder')
+            type="text"
+            v-validate="'required'"
+          )
+          template(v-if="errors.has('name')")
+            .form__input-error
+              | PLEASE, ENTER YOUR FULL NAME
+
+        .form__row
+          .form__column
+            .form__input.input-text
+              input.input-text__input(
+                name="email"
+                placeholder=t('.email_placeholder')
+                type="text"
+                v-validate="'required|email'"
+              )
+              template(v-if="errors.has('email')")
+                .form__input-error
+                  == t('.email_error')
+
+          .form__column
+            .form__input.input-text
+              input.input-text__input(
+                name="phone"
+                placeholder=t('.phone_placeholder')
+                type="text"
+                v-validate="{required: true, max: 40, regex: /^([+—()0-9- ]+)$/}"
+              )
+              template(v-if="errors.has('phone')")
+                .form__input-error
+                  == t('.phone_error')
+
+        .form__row
+          .form__column
+            .form__row
+              .form__column
+                .form__input.input-text
+                  input.input-text__input(
+                    name="country"
+                    placeholder=t('.country_placeholder')
+                    type="text"
+                    v-validate="'required'"
+                  )
+                  template(v-if="errors.has('country')")
+                    .form__input-error
+                      == t('.country_error')
+
+              .form__column
+                .form__input.input-text
+                  input.input-text__input(
+                    name="region"
+                    placeholder=t('.region_placeholder')
+                    type="text"
+                    v-validate="'required'"
+                  )
+                  template(v-if="errors.has('region')")
+                    .form__input-error
+                      == t('.region_error')
+
+          .form__column
+            .form__row
+              .form__column
+                .form__input.input-text
+                  input.input-text__input(
+                    name="city"
+                    placeholder=t('.city_placeholder')
+                    type="text"
+                    v-validate="'required'"
+                  )
+                  template(v-if="errors.has('city')")
+                    .form__input-error
+                      == t('.city_error')
+
+              .form__column
+                .form__input.input-text
+                  input.input-text__input(
+                    name="post_code"
+                    type="text"
+                    placeholder=t('.post_code_placeholder')
+                    v-validate="'required'"
+                  )
+                  template(v-if="errors.has('post_code')")
+                    .form__input-error
+                      == t('.post_code_error')
+
+        .form__input.input-select
+          .input-select__input-wrapper
+            select.input-select__input(
+              name="product_type"
+              type="text"
+              v-validate="'required'"
+            )
+              option(value=""disabled selected) Product type
+
+              - categories.each do |category|
+                option(value="#{category[:name]}") = category[:name]
+
+            template(v-if="errors.has('product_type')")
+              .form__input-error
+                | {{ errors.first('product_type') }}
+
+        .form__row
+          .form__column
+            .form__input.input-text
+              input.input-text__input(
+                name="date_of_purchase"
+                placeholder=t('.purchase_date_placeholder')
+                type="text"
+                v-validate="'required'"
+              )
+              template(v-if="errors.has('date_of_purchase')")
+                .form__input-error
+                  == t('.purchase_date_error')
+
+          .form__column
+            .form__input.input-text
+              input.input-text__input(
+                name="retailer"
+                type="text"
+                placeholder=t('.retailer_placeholder')
+                v-validate="'required'"
+              )
+              template(v-if="errors.has('retailer')")
+                .form__input-error
+                  == t('.retailer_error')
+
+        .form__row
+          .form__column
+            .form__input.input-text
+              input.input-text__input(
+                name="model_number"
+                type="text"
+                placeholder=t('.model_number_placeholder')
+                v-validate="'required'"
+              )
+              template(v-if="errors.has('model_number')")
+                .form__input-error
+                  == t('.model_number_error')
+
+          .form__column
+            .form__input.input-text
+              input.input-text__input(
+                name="serial_number"
+                type="text"
+                placeholder=t('.serial_number_placeholder')
+                v-validate="'required'"
+              )
+              template(v-if="errors.has('serial_number')")
+                .form__input-error
+                  == t('.serial_number_error')
+
+        .form__checkbox.input-checkbox
+          input(
+            id="checkbox"
+            type="checkbox"
+            name="subscribe"
+          )
+
+          label(
+            for="checkbox"
+          ) == t('.sign_up')
+
+        .form__footer
+          button.form__submit(
+            type="submit"
+            :disabled="requestBlocked"
+          ) == t('.register')

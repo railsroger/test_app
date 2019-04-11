@@ -1,0 +1,96 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/ruby:2.4.1-node-browsers
+      environment:
+        RAILS_ENV: test
+        PGHOST: 127.0.0.1
+        DATABASE_URL: "postgres://ubuntu@localhost:5432/hisense_test"
+    - image: circleci/postgres:9.4
+      environment:
+        POSTGRES_USER: ubuntu
+        POSTGRES_DB: hisense_test
+    - image: redis
+    - image: circleci/node:8.11.1-browsers
+
+version: 2
+jobs:
+  ru_deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle --path vendor/bundle
+      - run:
+          command: bundle exec cap ru deploy
+
+  it_deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle --path vendor/bundle
+      - run:
+          command: bundle exec cap it deploy
+
+  fr_deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle --path vendor/bundle
+      - run:
+          command: bundle exec cap fr deploy
+
+  sa_deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle --path vendor/bundle
+      - run:
+          command: bundle exec cap sa deploy
+
+  es_deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle --path vendor/bundle
+      - run:
+          command: bundle exec cap es deploy
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - ru_deploy:
+          filters:
+            branches:
+              only: prod/ru
+      - it_deploy:
+          filters:
+            branches:
+              only: prod/it
+      - fr_deploy:
+          filters:
+            branches:
+              only: prod/fr
+      - sa_deploy:
+          filters:
+            branches:
+              only: prod/sa
+      - es_deploy:
+          filters:
+            branches:
+              only: prod/es

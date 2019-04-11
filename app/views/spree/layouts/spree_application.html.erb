@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="<%= I18n.locale %>">
+  <head data-hook="inside_head">
+    <%= stylesheet_pack_tag 'styles' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <%= render partial: 'spree/shared/head' %>
+    <%= render partial: 'spree/shared/analytic_trackers', locals: { place: 'header' } %>
+  </head>
+  <body id="<%= @body_id || 'default' %>"
+        data-hook="body"
+        class="page_<%=controller_name%>_<%=action_name%>">
+    <%= render partial: 'spree/shared/analytic_trackers', locals: { place: 'body_starts' } %>
+    <%= render partial: 'shared/header' %>
+
+    <%= yield %>
+    <%= yield :templates %>
+
+    <%= render partial: 'shared/footer' %>
+
+    <%= javascript_pack_tag 'application' %>
+    <%= render partial: 'spree/shared/analytic_trackers', locals: { place: 'body_ends' } %>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+a.news-card(
+  href="#{news_url(news.slug)}?back=true"
+  class="news-card_size_#{size}"
+)
+  .news-card__image(
+    style="background-image: url('#{news.list_image.url(size.to_sym)}')"
+  )
+
+  .news-card__content
+    - if news.category
+      //- TODO доступные цветовые модификаторы
+      //-  .news-card__label_color_blue (SPONSORSHIP)
+      //-  .news-card__label_color_orange (CORPORATE)
+      //-  .news-card__label_color_red (PRODUCT)
+      div(class="news-card__label" style="background: #{news.category.color}") = news.category.name
+
+    .news-card__date
+      .news-card__day = news.published_on.strftime('%e')
+      .news-card__month = l(news.published_on, format: :month_short)
+
+    .news-card__title = news.title

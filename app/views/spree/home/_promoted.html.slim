@@ -1,0 +1,22 @@
+section.features
+  - for product in products
+    a.feature.features__item(href= product_url(product))
+      .feature__image-wrapper
+        img.feature__image(
+          src= product.preview_image
+          alt= product.name
+        )
+
+      .feature__title.feature__title_small
+        .feature__title-text = product.name
+
+      .feature__overlay
+      .feature__hover
+        .feature__image-wrapper
+          img.feature__hover-image(
+            src= product.preview_image
+            alt= product.name
+          )
+
+        .feature__title.feature__title_big
+          .feature__hover-title-text = product.name

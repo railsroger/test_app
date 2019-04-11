@@ -1,0 +1,27 @@
+.contact__banner(
+  style="background-image: url('/images/contact/banner-bg.jpg')"
+)
+  .contact__banner-inner
+    .contact__column
+      h3.contact__title
+        == t('.details_and_contacts')
+
+      .contact__subcolumn
+        .contact__text
+          == Spree::ContactContent.first.headoffice_address
+
+      .contact__subcolumn
+        .contact__text
+          h4.contact__subtitle
+            == t('.contact_title_1')
+          == Spree::ContactContent.first.sales_and_roduct
+
+        .contact__text
+          h4.contact__subtitle
+            == t('.contact_title_2')
+          == Spree::ContactContent.first.media
+
+    .contact__column
+      h3.contact__title
+        == t('.points_title')
+      == Spree::ContactContent.first.retailers_benefits

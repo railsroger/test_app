@@ -1,0 +1,94 @@
+section.search-page
+  .search-page__container
+    = form_tag search_url, method: :get, class: 'search-page__form'
+      = search_field_tag 'keywords', params[:keywords], class: 'search-page__input'
+      = submit_tag t('.search'), name: nil, class: 'search-page__submit'
+      = render partial: 'shared/icon', locals: { iconName: 'icon-search' }
+
+    .search-page__result
+      - if params[:keywords].blank?
+        .search-page__search-menu-wrapper
+          ul.search-page__search-menu
+            - for item in popular_searches
+              li.search-page__search-menu-item
+                a.search-page__search-menu-link(href=search_url(keywords: item.text)) = item.text
+
+        .search-message
+          .search-message__message-icon
+            = render partial: 'shared/icon', locals: {iconName: 'layers'}
+          .search-message__message-text
+            == t('.enter_search_request')
+
+      - else
+        - if @products.empty? && @news.empty?
+          .search-page__search-menu-wrapper
+            ul.search-page__search-menu
+              - for item in popular_searches
+                li.search-page__search-menu-item
+                  a.search-page__search-menu-link(href=search_url(keywords: item.text)) = item.text
+
+          .search-message
+            .search-message__message-icon
+              = render partial: 'shared/icon', locals: {iconName: 'search'}
+            .search-message__message-text
+              == t('.no_results')
+
+        - else
+          .search-page__subtitle
+            == t('.products_related_to_keywords', keywords: params[:keywords])
+
+      - if @products.try(:length) && @products.length > 0
+        .product-carousel.search-page__carousel
+          .product-carousel__container.swiper-container
+            .swiper-wrapper
+              - @products&.each do |product|
+                a.product-carousel__item.swiper-slide(
+                  href=product_url(product)
+                )
+                  .product-carousel__item-image-wrapper
+                    img.product-carousel__item-image(
+                      src=product.preview_image.url
+                    )
+                  .product-carousel__item-title = product.name
+
+            .swiper-scrollbar
+
+      .search-page__tabs
+        .tabs
+          .tabs__head
+            - index = 0
+            - if false
+              - doc_index = index =+ 1
+              button.tabs__button(
+                type="button"
+                @click="activeTabIndex = #{doc_index}"
+                :class="{'active': activeTabIndex === #{doc_index}}"
+              )
+                == t('.documentation')
+
+            - if @news&.any?
+              - new_index = index =+ 1
+              button.tabs__button(
+                type="button"
+                @click="activeTabIndex = #{new_index}"
+                :class="{'active': activeTabIndex === #{new_index}}"
+              )
+                == t('.news')
+
+          transition-group.tabs__body(
+            @enter="hookTabEnter"
+            @leave="hookTabLeave"
+            tag="div"
+          )
+
+            - if @news&.any?
+              .tabs__content(
+                v-show="activeTabIndex === #{new_index}"
+                key=new_index
+              )
+                ul.search-page__result-list
+                  - @news.each do |news|
+                    li.search-page__result-list-item
+                      a.search-page__result-list-link(
+                        href=news_url(news)
+                      ) = news.title

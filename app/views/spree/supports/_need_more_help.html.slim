@@ -1,0 +1,36 @@
+.cards-block(
+  style="background-image: url('/images/knowledge-center/help-bg.jpg')"
+  )
+    h2.cards-block__title
+      == t('.need_more_help')
+
+    .cards-block__items
+      .cards-block__item
+        .cards-block__item-title
+          == t('.knowledge_center_title')
+        .cards-block__item-text
+          == t('.knowledge_center_text')
+
+        a.cards-block__item-button.button.button_size_big.button_color_gray(
+          href="/knowledge-center"
+        ) == t('.click_here')
+
+      .cards-block__item
+        .cards-block__item-title
+          == t('.news_title')
+        .cards-block__item-text
+          == t('.news_center_text')
+
+        a.cards-block__item-button.button.button_size_big.button_color_gray(
+          href=news_index_url
+        ) == t('.click_here')
+
+      .cards-block__item
+        .cards-block__item-title
+          == t('.contact_title')
+        .cards-block__item-text
+          == t('.contact_text')
+
+        a.cards-block__item-button.button.button_size_big.button_color_gray(
+          href=contact_index_url
+        ) == t('.click_here')

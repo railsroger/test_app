@@ -1,0 +1,27 @@
+section.page
+  .page__cover.page__section.page__section_size_full(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('#{ @sponsorship.main_image.url }')"
+    )
+
+    = render partial: 'shared/discover_title', locals: {link: '#discover-target', title: @sponsorship.name, verticalAlign: 'bottom', horizontalAlign: 'center'}
+
+  .page__cover.page__section#discover-target(
+    style="background-image: url('#{ @sponsorship.pattern_image.url }')"
+    data-ui-white
+  )
+    .page__container
+      h1.page__title
+        == simple_format @sponsorship.slogan
+
+  .page__section
+    .page__container
+      .page__subtitle
+        == @sponsorship.title
+      .page__text
+        == simple_format @sponsorship.text
+      - if @sponsorship.news.any?
+        a.button href=sponsorship_news_index_url(@sponsorship) style="background-image: url('/images/sponsorship-head-cover.jpg')"
+          == t('.read_the_news')

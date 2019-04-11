@@ -1,0 +1,18 @@
+.product__block.video#video
+  video.video__element.video__element_solid(
+    poster=product.video_cover.url
+    muted
+    loop
+  )
+    source(
+      src=product.video.url(:mp4)
+      type="video/mp4"
+    )
+    source(
+      src=product.video.url(:webm)
+      type="video/webm; codecs=vp8, vorbis"
+    )
+    source(
+      src=product.video.url(:ogg)
+      type="video/ogg; codecs=theora, vorbis"
+    )

@@ -1,0 +1,37 @@
+- if company_block.try(:is_active?)
+  - if company_block.video?
+    section.promo-block(
+      data-ui-white
+    )
+      .video
+        video.video__element(
+          poster= company_block.video_cover.url
+          muted
+          loop
+          autoplay
+        )
+          source(
+            src= company_block.video.url(:mp4)
+            type="video/mp4"
+          )
+          source(
+            src= company_block.video.url(:webm)
+            type="video/webm"
+          )
+          source(
+            src= company_block.video.url(:ogg)
+            type="video/ogg"
+          )
+
+        .promo-block__content(data-video-content)
+          .promo-block__content-inner
+            .promo-block__title == company_block.video_statement
+
+  - else
+    section.promo-block(
+      data-ui-white
+      style="background-image: url('#{company_block.video_cover.url}')"
+    )
+      .promo-block__content
+        .promo-block__content-inner
+          .promo-block__title == company_block.video_statement

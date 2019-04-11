@@ -1,0 +1,40 @@
+<% content_for :page_title do %>
+  <%== t('.offline_stores') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_store), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_offline_store_link' } %>
+  </span>
+<% end if can?(:create, Spree::OfflineStore) %>
+
+<div id="new_offline_store"></div>
+
+<% if @offline_stores.any? %>
+<table class="table" id="listing_offline_stores">
+  <thead>
+    <tr data-hook="option_header">
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:address) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @offline_stores.each do |offline_store| %>
+      <tr class="spree_offline_store <%= cycle('odd', 'even')%>" id="<%= spree_dom_id offline_store %>" data-hook="option_row">
+        <td><%= offline_store.name %></td>
+        <td class="presentation"><%= offline_store.address %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(offline_store, class: 'admin_edit_offline_store', no_text: true) if can?(:edit, offline_store) %>
+          <%= link_to_delete(offline_store, no_text: true) if can?(:delete, offline_store) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::OfflineStore)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::OfflineStore) %>!
+  </div>
+<% end %>

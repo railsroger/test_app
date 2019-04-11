@@ -1,0 +1,23 @@
+header.header
+  .header__container
+    a.header__logo(href=root_url)
+      = render partial: 'shared/icon', locals: { iconName: 'logo' }
+      span.visibility-hidden Hisense
+
+    .header__menu-wrapper
+      -if !params[:back]
+        ul.header__menu
+          - categories.each do |category|
+            li.header__menu-item
+              a.header__menu-link(href=seo_url(category) data-header-menu-item=category.id) = category.name
+
+      - else
+        a.header__back-link(
+          href="/#{params[:controller].split('/').last}"
+        ) = t('.back')
+
+  = render partial: 'shared/main_menu'
+
+  .top-menu
+    - categories.each do |category|
+      = render partial: 'shared/top_menu', locals: { category: category }

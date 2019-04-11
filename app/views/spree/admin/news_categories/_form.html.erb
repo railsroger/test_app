@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.error_message_on :name %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :color, class: ['form-group'] do %>
+      <%= f.label :color, Spree.t(:color) %> <span class="required">*</span>
+      <%= f.collection_select(:color, colors_hash, :last, :first, {}, { class: 'select2' }) %>
+      <%= f.error_message_on :color %>
+    <% end %>
+  </div>
+</div>

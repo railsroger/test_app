@@ -1,0 +1,42 @@
+<%= render 'spree/admin/shared/product_tabs', current: :content_blocks %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_block), new_admin_product_content_block_url, { class: 'btn-success', icon: 'add', id: 'new_admin_product_content_block_link' } %>
+  </span>
+<% end %>
+
+<div id="new_content_block"></div>
+
+<% if @content_blocks.any? %>
+<table class="table sortable" id="listing_content_blocks" data-hook data-sortable-link="<%= update_positions_admin_product_content_blocks_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%= Spree.t(:status) %></th>
+      <th><%= Spree.t(:name) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @content_blocks.each do |content_block| %>
+      <tr class="spree_content_block <%= cycle('odd', 'even')%>" id="<%= spree_dom_id content_block %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= content_block.is_active ? Spree.t(:active) : Spree.t(:hidden) %></td>
+        <td><%= content_block.name %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(content_block, url: edit_admin_product_content_block_url(content_block, product_id: @product.id), class: 'admin_edit_content_block', no_text: true) if content_block.built_in_block.blank? && can?(:edit, content_block) %>
+          <%= link_to_delete(content_block, no_text: true, url: admin_product_content_block_url(content_block, product_id: @product.id)) if content_block.built_in_block.blank? && can?(:delete, content_block) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::ContentBlock)) %>,
+    <%= link_to Spree.t(:add_one), new_admin_product_content_block_url %>!
+  </div>
+<% end %>

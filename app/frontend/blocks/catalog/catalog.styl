@@ -1,0 +1,138 @@
+.catalog
+  position relative
+
+  &__body
+    background $grayLightest
+    position relative
+    z-index 1
+
+    &_ui_white
+      background-image url('../assets/images/noise-dark.jpg')
+      background-color #1f1f1f
+      background-repeat repeat
+
+  &__filter
+    .catalog &
+      position relative
+      z-index 10
+
+  &__list
+    display flex
+    align-items flex-start
+    flex-wrap wrap
+    width 100%
+    position relative
+    z-index 1
+
+  &__line
+    display flex
+    width 100%
+
+    +mobile-large()
+      display block
+
+  &__group
+    display flex
+    flex-wrap wrap
+    width 50%
+    order 2
+
+    &:nth-child(2n)
+      .catalog__line:nth-child(2n) &
+        order 1
+
+        +mobile-large()
+          order 2
+
+    +mobile-large()
+      width 100%
+      display block
+
+  &__item
+    width 50%
+    flex-grow 1
+    background $white
+
+    +mobile-large()
+      width 100%
+
+    &_simple
+      width 25%
+      flex-grow 0
+
+      +mobile-large()
+        width 100%
+
+      &:nth-child(8n + 1)
+      &:nth-child(8n + 3)
+      &:nth-child(8n + 6)
+      &:nth-child(8n + 8)
+        &:not(.catalog__item_ui_white)
+          background $grayLightest
+
+          +mobile-large()
+            background $white
+
+      &:nth-child(2n)
+        +mobile-large()
+          &:not(.catalog__item_ui_white)
+            background $grayLightest !important
+
+    &_grouped
+      &:nth-child(2)
+      &:nth-child(3)
+        &:not(.catalog__item_ui_white)
+          background $grayLightest
+
+    &_bordered
+      &:not(.catalog__item_ui_white)
+        border 1px solid $grayLightest
+
+        +mobile()
+          border-bottom-color alpha($black, .1)
+
+    &_ui_white
+      background-image url('../assets/images/noise-darker.jpg')
+      background-color #171a18
+      background-repeat repeat
+      color $white
+
+      &.catalog__item_simple
+        &:nth-child(8n + 1)
+        &:nth-child(8n + 3)
+        &:nth-child(8n + 6)
+        &:nth-child(8n + 8)
+          background-image url('../assets/images/noise-dark.jpg')
+          background-color #1f1f1f
+
+          +mobile-large()
+            background-image url('../assets/images/noise-darker.jpg')
+            background-color #171a18
+
+      &:nth-child(2n)
+        +mobile-large()
+          background-image url('../assets/images/noise-dark.jpg') !important
+          background-color #1f1f1f !important
+
+      &.catalog__item_grouped
+        &:nth-child(2)
+        &:nth-child(3)
+          background-image url('../assets/images/noise-dark.jpg')
+          background-color #1f1f1f
+
+      &.catalog__item_bordered
+        border 1px solid #1e211d
+
+  &__search-link
+    +mobile()
+      display none !important
+
+  &__search-select
+    display none
+    margin-right auto
+    flex-grow 1
+
+    +mobile()
+      width 130px
+      display inline-block
+      vertical-align top

@@ -1,0 +1,205 @@
+---
+fr:
+  date:
+    formats:
+      month_short: "%b"
+  spree:
+    products:
+      show:
+        overview: AVANTAGES
+        specifications: CARACTÉRISTIQUES
+        support: ASSISTANCE
+        where_to_buy: "OÙ ACHETER"
+        watch_video: "LANCER LA VIDÉO"
+      filter:
+        reset: Reset
+        results:
+          one: "1 result"
+          other: "%{count} results"
+        all: All
+      product_card:
+        model_no: "model NO."
+        rrp: RRP
+        learn_more: "EN SAVOIR +"
+      specs:
+        full_specs: "AFFICHER LES CARACTÉRISTIQUES"
+        hide_specs: "CACHER LES CARACTÉRISTIQUES"
+      support:
+        support_title: ASSISTANCE
+        support_paragraph: "Besoin d'en savoir plus concernant votre TV ? Consultez les informations ci-dessous"
+        manuals_title: "Manuels d'utilisation et téléchargements"
+        manuals_paragraph: "Découvrez les derniers manuels d'utilisation et téléchargements de votre TV Hisense"
+        register_title: "Enregistrer votre produit"
+        register_paragraph: "Register your product in order to get a refund if something went wrong"
+        contact_title: Contact
+        contact_paragraph: "Pour contacter notre Service Clients, cliquez sur le lien ci-dessous"
+    search:
+      index:
+        search: Rechercher
+        enter_search_request: "Indiquez votre recherche<br>dans le champs ci-dessus pour afficher le résultat"
+        no_results: "Désolé,<br>nous ne trouvons<br>pas votre recherche"
+        products_related_to_keywords: "Produits associés à %{keywords}"
+        documentation: Documentation
+        news: Actualités
+    contact:
+      index:
+        contact: Contact
+        send_us_a_message: "ENVOYEZ-NOUS UN MESSAGE"
+        call_us: APPELEZ-NOUS
+      banner:
+        details_and_contacts: "Détails<br>& CONTACTS"
+        contact_title_1: "COMMERCIAL & PRODUIT"
+        contact_title_2: MEDIA
+        points_title: "Why you should become<br>a Hisense retailer"
+      call:
+        back: Retour
+        opening_hours: "HORAIRES D'OUVERTURE"
+        weekdays_line_1: LUNDI-SAMEDI
+        weekdays_line_2: SUNDAY
+      form:
+        return_to_homepage: "Retour à la page principale"
+        success_title: "Merci de nous avoir contacté !"
+        success_message: "Nous vous remercions de nous avoir contacté. Un conseiller va prendre contact avec vous rapidement."
+        select_a_reason: "Choisissez la raison de votre demande"
+        general: Général
+        customer_service: "Service Clients"
+        product_consult: "A propos d'un produit"
+        partnership: Partenariat
+        email_placeholder: Email
+        email_error: "VEUILLEZ ENTRER UNE ADRESSE EMAIL VALIDE"
+        address_error: "VEUILLEZ ENTRER VOTRE ADRESSE"
+        name_error: "VEUILLEZ ENTRER VOTRE NOM"
+        phone_error: "VEUILLEZ ENTRER VOTRE NUMÉRO DE TELEPHONE"
+        phone_placeholder: TÉLÉPHONE
+        address_placeholder: ADRESSE
+        name_placeholder: NOM
+        message_placeholder: "COMMENT POUVONS-NOUS VOUS AIDER ?"
+        message_error: "VEUILLEZ ENTRER VOTRE MESSAGE"
+        send: ENVOYER
+    downloads:
+      index:
+        downloads: TELECHARGEMENTS
+        downloads_paragraph: "Téléchargez manuels d'utilisation, micrologiciels et trouvez des réponses aux questions les plus fréquemment posées"
+        desktop_only: "Désolé, cette page n'est pas disponible sur votre appareil."
+        return_to_homepage: "Retour à la page d'accueil"
+        search: Rechercher
+        no_results: "Désolé,<br>nous ne trouvons<br>pas votre recherche"
+        name: NOM
+        type: TYPE
+        description: DESCRIPTION
+        version: VERSION
+        file_size: "TAILLE DU FICHIER"
+        date: "DATE DE CRÉATION"
+        download: Téléchargement
+        all: TOUT
+    error:
+      not_found:
+        not_found_text: "Désolé, la page demandée n'est pas accessible."
+        return_to_homepage: "RETOUR À LA PAGE D'ACCUEIL"
+        or: OU
+        report_an_error: "NOUS ENVOYER UNE ERREUR"
+    knowledge_centers:
+      need_more_help:
+        need_help: "Besoin d'aide?"
+        block_1_title: ACTUALITÉS
+        block_1_text: "Restez informé des dernières actualités et bons plans de Hisense"
+        click_here: "CLIQUEZ ICI"
+        block_2_title: "CONTACTER HISENSE"
+        block_2_text: "Pour contacter notre Service Clients"
+      show:
+        knowledge_center: "CONSULTER TOUTE L'ASSISTANCE"
+        knowledge_paragraph: "Réponses aux questions les plus fréquentes"
+        search: Rechercher
+        all: Tout
+    news:
+      index:
+        news: Actualités
+        search: search
+        all: Tout
+    regional_websites:
+      index:
+        regional_websites: "Sites internationaux"
+    register_product:
+      index:
+        register_product: "Enregistrer votre produit"
+        success_title: "Merci d'avoir enregistrer votre produit Hisense"
+        success_text: "we want to assure you we will process your request and you will benefit from guarantee services we deliver."
+        return_to_homepage: "Retour à la page principale"
+        name_placeholder: "Nom complet"
+        email_placeholder: Email
+        phone_placeholder: Téléphone
+        country_placeholder: Pays
+        region_placeholder: Département
+        city_placeholder: Ville
+        post_code_placeholder: "Code postal"
+        purchase_date_placeholder: "Date d'achat"
+        retailer_placeholder: "Enseigne d'achat"
+        model_number_placeholder: "Référence du modèle"
+        serial_number_placeholder: "Numéro de série"
+        email_error: "VEUILLEZ ENTRER UNE ADRESSE EMAIL VALIDE"
+        phone_error: "VEUILLEZ ENTRER VOTRE NUMÉRO DE TÉLÉPHONE"
+        country_error: "INFORMATION RELATIVES À VOTRE PAYS"
+        region_error: "VEUILLEZ ENTRER VOTRE DÉPARTEMENT"
+        city_error: "VEUILLEZ ENTRER VOTRE VILLE"
+        post_code_error: "VEUILLEZ ENTRER VOTRE CODE POSTAL"
+        purchase_date_error: "VEUILLEZ ENTRER VOTRE DATE D'ACHAT"
+        retailer_error: "VEUILLEZ ENTRER VOTRE ENSEIGNE D'ACHAT"
+        model_number_error: "VEUILLEZ ENTRER LA RÉFÉRENCE DU MODÈLE (VÉRIFIEZ LA FAQ POUR SAVOIR COMMENT FAIRE)"
+        serial_number_error: "VEUILLEZ ENTRER VOTRE NUMÉRO DE SÉRIE"
+        sign_up: "Restez informé des dernières actualités et bons plans de Hisense"
+        register: "Enregistrer votre produit"
+    sitemaps:
+      show:
+        site_map: "CARTE DU SITE"
+        about: "A PROPOS"
+        products: Produits
+        information: INFORMATION
+    sponsorships:
+      index:
+        sponsorships: partenariat
+      show:
+        read_the_news: "Lire d'actualité"
+    supports:
+      need_more_help:
+        need_more_help: "Besoin d'aide ?"
+        knowledge_center_title: "CONSULTER TOUTE L'ASSISTANCE"
+        knowledge_center_text: "Réponses aux questions les plus fréquentes"
+        click_here: "CLIQUEZ ICI"
+        news_title: ACTUALITÉS
+        news_center_text: "Restez informé des dernières actualités et bons plans de Hisense"
+        contact_title: "CONTACTER HISENSE"
+        contact_text: "Pour contacter notre Service Clients"
+      show:
+        support_title: Assistance
+        support_text: "Téléchargez manuels d'utilisation, micrologiciels et trouvez des réponses aux questions les plus fréquemment posées"
+        support_subtitle: "Rechercher<br>une information produit?"
+        select_product: "Choisissez votre produit"
+    where_to_buy:
+      index:
+        where_to_buy: "OÙ ACHETER"
+        buy_now: Acheter
+        stores: Magasins
+  shared:
+    main_menu:
+      register_product: "Enregistrer votre produit"
+      search: Rechercher
+      contents: Contenus
+      popular_search: "Recherches fréquentes"
+    subscribe_block:
+      paragraph: "Restez informé  <br>des dernières actualités et bons plans de Hisense"
+      subscribe: S'abonner
+      placeholder: "Indiquez votre email"
+      successfully_subscribed: "Vous êtes maintenant abonné !"
+      email_invalid: "VEUILLEZ ENTRER UNE ADRESSE EMAIL VALIDE"
+    footer:
+      find_a_store: "Trouver un magasin"
+      hisense_global: "Hisense Global"
+      copyright: "%{year} © Copyright Hisense"
+      follow_us: Suivez-nous
+      sitemap: "Carte du site"
+    discover_title:
+      discover: Découvrez
+    header:
+      back: Retour
+    top_menu:
+      view_all_category: "Voir tout %{category_name}"

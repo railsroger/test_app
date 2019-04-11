@@ -1,0 +1,4 @@
+<ul data-hook="admin_configurations_sidebar_menu" class="collapse nav nav-pills nav-stacked" id="sidebar-home">
+  <%= configurations_sidebar_menu_item(Spree.t(:hero_slider), spree.admin_hero_slides_path) if can? :manage, Spree::HeroSlide %>
+  <%= configurations_sidebar_menu_item(Spree.t(:company_block), spree.admin_company_blocks_url) if can? :manage, Spree::CompanyBlock %>
+</ul>

@@ -1,0 +1,113 @@
+@import "~leaflet/dist/leaflet.css"
+
+.where-to-buy
+  position relative
+  min-height 100vh
+
+  &__map-wrapper
+  &__map
+    height 100vh
+    top 0
+    left 0
+    width 100%
+    z-index 1
+
+    img
+      opacity .4 !important
+      filter grayscale()
+
+  &__title
+    text-big()
+    padding-top 180px
+    margin-bottom 20px
+
+    +mobile()
+      padding-top 80px
+
+  &__mobile-controls
+    position relative
+    z-index 2
+    display flex
+    margin-top 35px
+
+  &__mobile-control-wrapper
+    width 50%
+
+    &:first-child
+      padding-right $baseOffsetMobile
+
+    &:last-child
+      padding-left $baseOffsetMobile
+
+  &__mobile-control
+    underline-link-style(currentColor)
+    font-size 22px
+    display none
+    width 100%
+    text-transform uppercase
+    text-align left
+
+    +mobile()
+      display block
+
+  &__subtitle
+    text-small()
+    text-transform uppercase
+    margin-bottom 46px
+
+    +mobile()
+      display none
+
+  &__content
+    container()
+    margin-top -100vh
+    max-width (100% / 8 * 6)
+    padding-bottom 100px
+
+    +tablet()
+      max-width 100%
+
+  &__head
+    position relative
+    z-index 2
+    max-width 500px
+
+  &__list
+    margin-top 92px
+    position relative
+    z-index 2
+    max-width 300px
+
+    +mobile()
+      margin-top 50px
+
+  &__item
+    margin-bottom 9px
+
+  &__link
+    underline-link-style($black)
+    text-transform uppercase
+    padding-bottom 8px
+
+  &__item-icon
+    margin-right 8px
+    width 10px
+    height auto
+
+  &__marker
+    opacity 1
+    transition opacity .3s ease
+
+  &__marker-icon
+    width 100%
+    height 100%
+    border-radius 100%
+    background $blue
+
+  &__marker-title
+    position absolute
+    left 30px
+    top -3px
+    text-transform uppercase
+    min-width 150px
+    line-height 2

@@ -1,0 +1,99 @@
+.image-comparison
+  position relative
+  overflow hidden
+  -webkit-user-select none
+
+  &__title
+    container()
+    text-big-2()
+    position absolute
+    top 22%
+    z-index 2
+    color $white
+    width 50%
+    white-space nowrap
+
+    +tablet()
+      top 15%
+      padding-left 0
+      padding-right 0
+
+    +mobile()
+      text-small-2()
+      top $baseOffsetMobile
+
+  &__title-inner
+    container()
+    max-width (500px + $baseOffset * 2)
+    margin auto
+
+  &__image
+    display block
+    width 100%
+
+  &__overlay
+    position absolute
+    left 0
+    top 0
+    width 100%
+    height 100%
+    overflow hidden
+
+  &__slider
+    width 40px
+    height 40px
+    position absolute
+    top 50%
+    margin-top -20px
+    left 50%
+    background $white
+    opacity .8
+    z-index 3
+    cursor -webkit-grab
+
+    &:active
+      cursor -webkit-grabbing
+
+    &:hover
+      opacity 1
+
+    &:before
+    &:after
+      content ''
+      display block
+      margin-top -4px
+      position absolute
+      top 50%
+
+    &:before
+      triangle(6px, 9px, 'left', #000)
+      left 6px
+
+    &:after
+      triangle(6px, 9px, 'right', #000)
+      right 6px
+
+  &__label
+    font-avalon()
+    position absolute
+    bottom 30px
+    font-size 16px
+    color $white
+    z-index 1
+    white-space nowrap
+
+    +mobile()
+      font-size 14px
+      bottom $baseOffsetMobile
+
+    &_left
+      left 30px
+
+      +mobile()
+        left $baseOffsetMobile
+
+    &_right
+      right 30px
+
+      +mobile()
+        right $baseOffsetMobile

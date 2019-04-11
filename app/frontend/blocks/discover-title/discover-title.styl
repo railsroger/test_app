@@ -1,0 +1,57 @@
+.discover-title
+  container()
+  position absolute
+  text-align center
+  bottom 180px
+  left 0
+  right 0
+  overflow hidden
+  z-index 2
+
+  +tablet()
+    bottom 140px
+
+  +mobile()
+    bottom 100px
+
+  &_horizontal-align
+    &_left
+      text-align left
+
+    &_right
+      text-align right
+
+  &_vertical-align
+    &_center
+      bottom 50%
+      transform translateY(50%)
+
+  &__link
+    text-bigger()
+    text-transform none
+    line-height 1
+    padding-top em(10, 80)
+    padding-bottom em(20, 80)
+    text-decoration none
+    color currentColor
+    display inline-block
+    vertical-align top
+    position relative
+    transform translateY(0)
+    transition transform .3s
+
+    &:hover
+      transform translateY(-.7em)
+
+      +mobile()
+        transform translateY(0)
+
+  &__text
+    display block
+
+  &__text-hover
+    text-medium()
+    position absolute
+    width 100%
+    top 100%
+    left 0

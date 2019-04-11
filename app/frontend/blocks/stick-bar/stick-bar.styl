@@ -1,0 +1,152 @@
+.stick-bar
+  position relative
+  z-index 2
+
+  &__inner
+    text-smaller()
+    display flex
+    align-items center
+    flex-wrap wrap
+    background #151515
+    color $white
+    position relative
+
+    .stick-bar_ui_black &
+      background $white
+      color $black
+
+    .stick-bar_ui_white &
+      background #d5d5d5
+      color $black
+
+  &__column
+    width 25%
+    display flex
+    border-right 1px solid $grayLightest
+    border-left 1px solid $grayLightest
+
+    +mobile()
+      width 50%
+
+    &:first-child
+      border-left 0
+
+    &:last-child
+      border-right 0
+      border-left 0
+      margin-left auto
+
+    &:nth-child(2n)
+      +mobile()
+        border 0
+
+    .stick-bar_ui_white &
+      border-color #c8c8c8
+
+  &__text
+    container()
+    padding-top 15px
+    padding-bottom 15px
+    margin-left 0
+
+  &__input-wrapper
+    container()
+    align-self stretch
+    margin-left 0
+    display flex
+    flex-grow 1
+
+    +mobile()
+      // width 100%
+      padding-right 20px
+
+  &__input-label
+    align-self center
+    height 14px
+
+    .icon
+      font-size 14px
+      margin-right 16px
+
+  &__input
+    reset-autofill($white)
+    color $white
+    min-height 60px
+    flex-grow 1
+
+    +placeholder-color(currentColor)
+      text-transform uppercase
+      opacity 1
+      transition opacity .3s ease
+
+    +mobile()
+      min-height 50px
+      width 80px
+
+    &:focus
+      +placeholder-color(currentColor)
+        opacity 0
+
+  &__list
+    margin-left auto
+    display flex
+
+    +mobile-small()
+      flex-grow 1
+
+  &__link
+    container()
+    display inline-block
+    vertical-align top
+    text-transform uppercase
+    text-decoration none
+    color currentColor
+    transition all .3s ease
+    min-height 60px
+    padding-top 18px
+    text-align center
+    cursor pointer
+
+    +mobile()
+      min-height 50px
+
+    &:empty
+      &:not(input)
+        display none
+
+    &_primary
+      background $blue
+      color $blackLight
+      padding-bottom 18px
+
+      +mobile()
+        padding-top 16px
+        padding-bottom 15px
+        margin 0
+
+      &:hover
+        color $white
+        background $blue
+
+    &:hover:not([disabled])
+    &:focus:not([disabled])
+    &.active
+      .stick-bar__link-inner
+        &:after
+          transform translateX(100%) translateZ(0)
+
+    &.active
+      color $blue
+
+    .stick-bar__column &
+      margin 0
+      flex-grow 1
+      flex-shrink 0
+      flex-basis 50%
+      padding-left 5px
+      padding-right 5px
+
+  &__link-inner
+    underline-link-style()
+    margin-top .2em
+

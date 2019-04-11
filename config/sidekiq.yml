@@ -1,0 +1,6 @@
+---
+:concurrency: 7
+:queues:
+  - [high, 7]
+  - [default, 5]
+  - [paperclip, 5]

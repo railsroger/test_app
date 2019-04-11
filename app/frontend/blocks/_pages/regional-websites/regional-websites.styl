@@ -1,0 +1,56 @@
+.regional-websites
+  background-size cover
+  background-position 50%
+  background-color $white
+
+  &__title
+    text-bigger()
+
+  &__list
+    width 50%
+    margin-left auto
+    margin-right auto
+    margin-top 92px
+    display flex
+    flex-wrap wrap
+
+    +tablet()
+      width 100%
+
+    +mobile()
+      max-width 220px
+
+  &__item
+    text-small()
+    line-height 1
+    position relative
+    text-transform uppercase
+    margin-bottom 26px
+    width 50%
+    margin-left 0
+    white-space nowrap
+
+    +mobile()
+      width 100%
+
+    &:nth-child(2n)
+      padding-left $baseOffset
+
+      +mobile()
+        padding-left 0
+
+  &__link
+    underline-link-style($black)
+    padding-bottom 8px
+
+  &__flag-image
+    display inline-block
+    vertical-align top
+    margin-top 5px
+    margin-right 20px
+    width 24px
+    height auto
+
+    +mobile()
+      position relative
+      right 0

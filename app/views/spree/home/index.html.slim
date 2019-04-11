@@ -1,0 +1,7 @@
+= render partial: 'main_slider', locals: {slides: @hero_slides}
+
+= render partial: 'promoted', locals: {products: @promoted_products} if @promoted_products.present?
+
+= render partial: 'about', locals: {company_block: @company_block}
+
+= render partial: 'promo_block', locals: {company_block: @company_block}

@@ -1,0 +1,15 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @sponsorship } %>
+
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:sponsorships), admin_sponsorships_url %> /
+  <%= Spree.t(:new_slide) %>
+<% end %>
+
+<%= form_for [:admin, @sponsorship] do |f| %>
+  <fieldset data-hook="new_sponsorship">
+    <%= render partial: 'form', locals: { f: f } %>
+    <div class="form-actions">
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
+    </div>
+  </fieldset>
+<% end %>

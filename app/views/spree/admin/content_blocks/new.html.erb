@@ -1,0 +1,15 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @content_block } %>
+
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:content_blocks), admin_product_content_blocks_url %> /
+  <%= Spree.t(:new_block) %>
+<% end %>
+
+<%= form_for [:admin, @product, @content_block], html: { multipart: true } do |f| %>
+  <fieldset data-hook="new_content_block">
+    <%= render partial: 'form', locals: { f: f } %>
+    <div class="form-actions">
+      <%= render partial: 'spree/admin/shared/new_resource_links', locals: { collection_url: admin_product_content_blocks_url } %>
+    </div>
+  </fieldset>
+<% end %>

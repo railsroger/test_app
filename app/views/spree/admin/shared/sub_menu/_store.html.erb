@@ -1,0 +1,4 @@
+<ul data-hook="admin_configurations_sidebar_menu" class="collapse nav nav-pills nav-stacked" id="sidebar-store">
+  <%= configurations_sidebar_menu_item(Spree.t(:online_stores), spree.admin_online_stores_path) if can? :manage, Spree::OnlineStore %>
+  <%= configurations_sidebar_menu_item(Spree.t(:offline_stores), spree.admin_offline_stores_path) if can? :manage, Spree::OfflineStore %>
+</ul>

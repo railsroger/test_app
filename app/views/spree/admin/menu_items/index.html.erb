@@ -1,0 +1,104 @@
+<% content_for :page_title do %>
+  <%== t('.menu_items') %>
+<% end %>
+
+
+<div class="panel-body">
+  <div class="panel-heading">
+    <div class="row">
+      <h1 class="panel-title col-xs-6">
+        <%= Spree.t(:left_menu) %>
+      </h1>
+      <div class="page-actions col-xs-6" style="text-align: right">
+        <span id="new_add_option_value">
+          <%= button_link_to Spree.t(:add_menu_item), new_admin_left_menu_item_url, { icon: 'add', class: 'btn-success spree_add_fields' } if can?(:create, Spree::LeftMenuItem) %>
+        </span>
+      </div>
+    </div>
+    <% if @left_menu_items.any? %>
+    <table class="table sortable" id="listing_left_menu_items" data-hook data-sortable-link="<%= update_positions_admin_left_menu_items_url %>">
+      <thead>
+        <tr data-hook="option_header">
+          <th class="no-border"></th>
+          <th><%== t('.is_active') %></th>
+          <th><%== t('.name') %></th>
+          <th><%== t('.url') %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @left_menu_items.each do |menu_item| %>
+          <tr class="spree_menu_item <%= cycle('odd', 'even')%>" id="<%= spree_dom_id menu_item %>" data-hook="option_row">
+            <td class="move-handle text-center">
+              <span class="icon icon-move handle"></span>
+            </td>
+            <td><%= menu_item.is_active? ? 'Yes' : 'No' %></td>
+            <td><%= menu_item.name %></td>
+            <td><%= menu_item.url %></td>
+            <td class="actions actions-2 text-right">
+              <%= link_to_edit(menu_item, url: edit_admin_left_menu_item_url(menu_item), class: 'admin_edit_menu_item', no_text: true) if can?(:edit, menu_item) %>
+              <%= link_to_delete(menu_item, url: admin_left_menu_item_url(menu_item), no_text: true) if can?(:delete, menu_item) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <div class="alert alert-info no-objects-found">
+        <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::LeftMenuItem)) %>,
+        <%= link_to Spree.t(:add_one), new_admin_left_menu_item_url if can?(:create, Spree::LeftMenuItem) %>!
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="panel-body">
+  <div class="panel-heading">
+    <div class="row">
+      <h1 class="panel-title col-xs-6">
+        <%= Spree.t(:right_menu) %>
+      </h1>
+      <div class="page-actions col-xs-6" style="text-align: right">
+        <span id="new_add_option_value">
+          <%= button_link_to Spree.t(:add_menu_item), new_admin_right_menu_item_url, { icon: 'add', class: 'btn-success spree_add_fields' } if can?(:create, Spree::LeftMenuItem) %>
+        </span>
+      </div>
+    </div>
+
+    <% if @right_menu_items.any? %>
+    <table class="table sortable" id="listing_right_menu_items" data-hook data-sortable-link="<%= update_positions_admin_right_menu_items_url %>">
+      <thead>
+        <tr data-hook="option_header">
+          <th class="no-border"></th>
+          <th><%== t('.is_active') %></th>
+          <th><%== t('.name') %></th>
+          <th><%== t('.url') %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @right_menu_items.each do |menu_item| %>
+          <tr class="spree_menu_item <%= cycle('odd', 'even')%>" id="<%= spree_dom_id menu_item %>" data-hook="option_row">
+            <td class="move-handle text-center">
+              <span class="icon icon-move handle"></span>
+            </td>
+            <td><%= menu_item.is_active? ? 'Yes' : 'No' %></td>
+            <td><%= menu_item.name %></td>
+            <td><%= menu_item.url %></td>
+            <td class="actions actions-2 text-right">
+              <%= link_to_edit(menu_item, url: edit_admin_right_menu_item_url(menu_item), class: 'admin_edit_menu_item', no_text: true) if can?(:edit, menu_item) %>
+              <%= link_to_delete(menu_item, url: admin_right_menu_item_url(menu_item), no_text: true) if can?(:delete, menu_item) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <div class="alert alert-info no-objects-found">
+        <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::RightMenuItem)) %>,
+        <%= link_to Spree.t(:add_one), new_admin_right_menu_item_url if can?(:create, Spree::RightMenuItem) %>!
+      </div>
+    <% end %>
+  </div>
+</div>

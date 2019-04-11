@@ -1,0 +1,209 @@
+---
+ru:
+  date:
+    formats:
+      month_short: "%b"
+  spree:
+    products:
+      show:
+        overview: "Краткое описание"
+        specifications: ХАРАКТЕРИСТИКИ
+        support: ПОДДЕРЖКА
+        where_to_buy: "ГДЕ КУПИТЬ"
+        watch_video: ВИДЕО
+      filter:
+        reset: Сбросить
+        results:
+          zero: нет результатов
+          one: "%{count} результат"
+          few: "%{count} результата"
+          many: "%{count} результатов"
+        all: "Все"
+      product_card:
+        model_no: "модель №"
+        rrp: Цена
+        learn_more: Посмотреть
+      specs:
+        full_specs: "Все характеристики"
+        hide_specs: "Скрыть характеристики"
+      support:
+        support_title: Поддержка
+        support_paragraph: "Хочешь узнать больше об использовании своего TV? Переходи на страницу после информации."
+        manuals_title: "Руководство пользователя и загрузки"
+        manuals_paragraph: "Ознакомьтесь с обновленным руководством пользователя и загрузками для вашего телевизора Hisense"
+        register_title: "Зарегистрировать продукт"
+        register_paragraph: "Зарегистрируйте свой продукт, чтобы получить гарантийное обслуживание в случае возникновения проблем"
+        contact_title: Контакты
+        contact_paragraph: "Чтобы позвонить или написать email в нашу техническую поддержку кликни по ссылке"
+    search:
+      index:
+        search: Поиск
+        enter_search_request: "Введите свой запрос <br>в верхнем поле, чтобы увидеть результат"
+        no_results: "К сожалению, <br>по вашему запросу <br>ничего не найдено"
+        products_related_to_keywords: "Результаты поиска по %{keywords}"
+        documentation: Документация
+        news: Новости
+    contact:
+      index:
+        contact: Контакты
+        send_us_a_message: "НАПИСАТЬ СООБЩЕНИЕ"
+        call_us: "ПОЗВОНИТЬ НАМ"
+      banner:
+        details_and_contacts: Контакты
+        contact_title_1: "ОТДЕЛ ПРОДАЖ"
+        contact_title_2: МЕДИА
+        points_title: "Почему вы должны стать<br>дистрибьютором Hisense"
+      call:
+        back: Назад
+        opening_hours: "ВРЕМЯ РАБОТЫ"
+        weekdays_line_1: ПОНЕДЕЛЬНИК-СУББОТА
+        weekdays_line_2: ВОСКРЕСЕНЬЕ
+      form:
+        return_to_homepage: "Вернуться на главную страницу"
+        success_title: "Спасибо, что связались с нами!"
+        success_message: "Мы благодарим вас за обращение. Представитель службы поддержки клиентов свяжется с вами в течение нескольких часов."
+        select_a_reason: "Выберите тип вашего обращения"
+        general: Общее
+        customer_service: "Поддержка клиентов"
+        product_consult: "Информация о продукте"
+        partnership: Сотрудничество
+        email_placeholder: Email
+        email_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ EMAIL"
+        address_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ АДРЕС"
+        name_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШЕ ИМЯ"
+        phone_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ НОМЕР ТЕЛЕФОНА"
+        phone_placeholder: Телефон
+        address_placeholder: Адрес
+        name_placeholder: Имя
+        message_placeholder: "КАК МЫ МОЖЕМ ВАМ ПОМОЧЬ?"
+        message_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШЕ ОБРАЩЕНИЕ"
+        send: Отправить
+    downloads:
+      index:
+        downloads: ЗАГРУЗКИ
+        downloads_paragraph: "Скачать руководства, драйверы, а также найти ответы на наиболее распространенные вопросы о вашем продукте"
+        desktop_only: "К сожалению, эта страница не доступна на мобильных устройствах."
+        return_to_homepage: "Вернуться на главную страницу"
+        search: Поиск
+        no_results: "К сожалению, <br>по вашему запросу <br>ничего не найдено"
+        name: НАИМЕНОВАНИЕ
+        type: КАТЕГОРИЯ
+        description: ОПИСАНИЕ
+        version: ВЕРСИЯ
+        file_size: "РАЗМЕР ФАЙЛА"
+        date: "ДАТА СОЗДАНИЯ"
+        download: Скачать
+        all: ВСЕ
+    error:
+      not_found:
+        not_found_text: "Хьюстон, у нас проблема!<br>Запрашиваемая страница не найдена."
+        return_to_homepage: "ВЕРНУТЬСЯ НА ГЛАВНУЮ СТРАНИЦУ"
+        or: ИЛИ
+        report_an_error: "СООБЩИТЬ ОБ ОШИБКЕ"
+    knowledge_centers:
+      need_more_help:
+        need_help: "Можем чем-нибудь помочь?"
+        block_1_title: НОВОСТИ
+        block_1_text: "Будьте в курсе последних новостей и постов в блоге от Hisense"
+        click_here: "НАЖМИТЕ ЗДЕСЬ"
+        block_2_title: "СВЯЗАТЬСЯ С HISENSE"
+        block_2_text: "Позвонить или написать email в нашу техническую поддержку"
+      show:
+        knowledge_center: "ИНФОРМАЦИОННЫЙ ЦЕНТР"
+        knowledge_paragraph: "Ответы на часто задаваемые вопросы (FAQ)"
+        search: поиск
+        all: Все
+        no_results: "К сожалению, <br>по вашему запросу <br>ничего не найдено"
+    news:
+      index:
+        news: Новости
+        search: поиск
+        all: Все
+        no_results: "К сожалению, <br>по вашему запросу <br>ничего не найдено"
+    regional_websites:
+      index:
+        regional_websites: "Региональные сайты"
+    register_product:
+      index:
+        register_product: "Регистрация продукта"
+        success_title: "Спасибо за регистрацию вашего hisense продукта!"
+        success_text: "Заверяем, что вы получите гарантированное обслуживание после обработки вашего запроса."
+        return_to_homepage: "Вернуться на главную страницу"
+        name_placeholder: ФИО
+        email_placeholder: Email
+        phone_placeholder: Телефон
+        country_placeholder: Страна
+        region_placeholder: Регион
+        city_placeholder: Город
+        post_code_placeholder: "Почтовый индекс"
+        purchase_date_placeholder: "Дата покупки"
+        retailer_placeholder: Продавец
+        model_number_placeholder: "Номер модели"
+        serial_number_placeholder: "Серийный номер"
+        email_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ АКТУАЛЬНЫЙ EMAIL"
+        phone_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ НОМЕР ТЕЛЕФОНА"
+        country_error: "ДОБАВЬТЕ СТРАНУ"
+        region_error: "ПОЖАЛУЙСТА, УКАЖИТЕ ВАШ РЕГИОН"
+        city_error: "ПОЖАЛУЙСТА, УКАЖИТЕ ВАШ ГОРОД"
+        post_code_error: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ ПОЧТОВЫЙ ИНДЕКС"
+        purchase_date_error: "ПОЖАЛУСТА, УКАЖИТЕ ДАТУ ИЛИ ПРИМЕРНУЮ ДАТУ ПОКУПКИ"
+        retailer_error: "НАМ НЕОБХОДИМО ЗНАТЬ ГДЕ ВЫ ПРИОБРЕЛИ ТОВАР"
+        model_number_error: "ПОЖАЛУЙСТА, УКАЖИТЕ НОМЕР МОДЕЛИ ( НАЖМИТЕ FAQ, ЕСЛИ НЕ ЗНАЕТЕ ГДЕ ИСКАТЬ)"
+        serial_number_error: "НАМ НЕОБХОДИМ СЕРИЙНЫЙ НОМЕР ТОВАРА"
+        sign_up: "Подпишитесь, чтобы получать новости от Hisense"
+        register: Зарегистрировать
+    sitemaps:
+      show:
+        site_map: "КАРТА САЙТА"
+        about: "О нас"
+        products: Продукты
+        information: ИНФОРМАЦИЯ
+    sponsorships:
+      index:
+        sponsorships: Спонсорство
+      show:
+        read_the_news: "ЧИТАТЬ НОВОСТИ"
+    supports:
+      need_more_help:
+        need_more_help: "Можем чем-нибудь помочь?"
+        knowledge_center_title: "ИНФОРМАЦИОННЫЙ ЦЕНТР"
+        knowledge_center_text: "Ответы на часто задаваемые вопросы (FAQ)"
+        click_here: "НАЖМИТЕ ЗДЕСЬ"
+        news_title: "НОВОСТИ & БЛОГ"
+        news_center_text: "Будьте в курсе последних новостей и постов в блоге от Hisense"
+        contact_title: "СВЯЗАТЬСЯ С HISENSE"
+        contact_text: "Позвонить или отправить email в службу поддержки"
+      show:
+        support_title: Поддержка
+        support_text: "Скачать руководства, драйверы, а также найти ответы на наиболее распространенные вопросы о вашем продукте"
+        support_subtitle: "Ищете<br>информацию о продукте?"
+        select_product: "Выберите ваш продукт"
+    where_to_buy:
+      index:
+        where_to_buy: "Где купить"
+        buy_now: "Купить сейчас"
+        stores: Магазины
+  shared:
+    main_menu:
+      register_product: "Зарегистрировать продукт"
+      search: Поиск
+      contents: Содержание
+      popular_search: "Популярный запрос"
+    subscribe_block:
+      paragraph: "Подпишитесь на email рассылку Hisense<br> о новых продуктах и других новостях компании"
+      subscribe: Подписаться
+      placeholder: "Введите ваш email"
+      successfully_subscribed: "Вы успешно подписались на нашу рассылку!"
+      email_invalid: "ПОЖАЛУЙСТА, ВВЕДИТЕ ВАШ АКТУАЛЬНЫЙ EMAIL"
+    footer:
+      find_a_store: "Найти магазин"
+      hisense_global: "Hisense global"
+      copyright: "%{year}© Copyright Hisense"
+      follow_us: "Мы в соцсетях"
+      sitemap: "Карта сайта"
+    discover_title:
+      discover: Открыть
+    header:
+      back: Назад
+    top_menu:
+      view_all_category: "Посмотреть все %{category_name}"

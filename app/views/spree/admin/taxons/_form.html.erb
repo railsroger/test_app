@@ -1,0 +1,299 @@
+<div data-hook="admin_inside_taxon_form">
+  <div class="row">
+    <div class="col-xs-12 col-md-5">
+      <div class="form-group">
+        <%= f.label :ui_black, t('.theme') %>
+        <%= f.select(:ui_black, [[t('.dark'), true], [t('.white'), false]], {}, { class: 'select2' }) %>
+      </div>
+
+      <%= f.field_container :name, class: ['form-group'] do %>
+        <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+        <%= text_field :taxon, :name, class: 'form-control' %>
+        <%= f.error_message_on :name, class: 'error-message' %>
+      <% end %>
+
+      <%= f.field_container :permalink, class: ['form-group'] do %>
+        <%= label_tag :permalink_part, Spree.t(:permalink) %>
+        <span class="required">*</span>
+        <%= text_field_tag :permalink_part, @permalink_part, class: 'form-control', required: true %>
+        <p class="help-block" id="permalink_part_display">
+          <%= @taxon.permalink.split('/')[0...-1].join('/') + '/' %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="col-xs-12 col-md-7">
+      <%= f.field_container :description, class: ['form-group'] do %>
+        <%= f.label :description, Spree.t(:description) %>
+        <%= f.text_area :description, class: 'form-control', rows: 6 %>
+      <% end %>
+
+      <%= f.label :hide_from_sitemap do %>
+        <%= f.check_box :hide_from_sitemap %>
+        <%= Spree.t(:hide_from_sitemap) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-5">
+      <%= f.field_container :image, class: ['form-group'] do %>
+        <%= f.label :image, Spree.t(:image) %>
+        <br>
+        <%= image_tag(@taxon.image.url(:admin)) if @taxon.image? %>
+        <br>
+        <%= f.label :delete_image do %>
+          <%= f.check_box :delete_image %>
+          <%= Spree.t(:delete) %>
+        <% end if @taxon.image? %>
+        <%= f.file_field :image %>
+        <p class="help-block">fit in 500x500, PNG with transparency</p>
+      <% end %>
+    </div>
+
+    <div class="col-xs-12 col-md-7">
+      <%= f.field_container :bg_image, class: ['form-group'] do %>
+        <%= f.label :bg_image, Spree.t(:bg_image) %>
+        <br>
+        <%= image_tag(@taxon.bg_image.url(:admin)) if @taxon.bg_image? %>
+        <br>
+        <%= f.label :delete_bg_image do %>
+          <%= f.check_box :delete_bg_image %>
+          <%= Spree.t(:delete) %>
+        <% end if @taxon.bg_image? %>
+        <%= f.file_field :bg_bg_image %>
+        <p class="help-block">1600x800</p>
+      <% end %>
+
+      <%= f.field_container :bg_color, class: ['form-group'] do %>
+        <%= f.label :bg_color, Spree.t(:bg_color) %>
+        <%= f.text_field :bg_color, class: 'form-control' %>
+        <%= f.error_message_on :bg_color, class: 'error-message' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title"><%= Spree.t(:seo) %></h1>
+        </div>
+
+        <div class="panel-body">
+          <%= f.field_container :meta_title, class: ['form-group'] do %>
+            <%= f.label :meta_title, Spree.t(:meta_title) %>
+            <%= f.text_field :meta_title, class: 'form-control', rows: 6 %>
+          <% end %>
+
+          <%= f.field_container :meta_description, class: ['form-group'] do %>
+            <%= f.label :meta_description, Spree.t(:meta_description) %>
+            <%= f.text_field :meta_description, class: 'form-control', rows: 6 %>
+          <% end %>
+
+          <%= f.field_container :meta_keywords, class: ['form-group'] do %>
+            <%= f.label :meta_keywords, Spree.t(:meta_keywords) %>
+            <%= f.text_field :meta_keywords, class: 'form-control', rows: 6 %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title"><%= Spree.t(:support) %></h1>
+        </div>
+
+        <div class="panel-body">
+          <%= f.field_container :support_icon, class: ['form-group'] do %>
+            <%= f.label :support_icon, Spree.t(:support_icon) %>
+            <br>
+            <%= link_to(@taxon.support_icon_file_name, @taxon.support_icon.url) if @taxon.support_icon? %>
+            <br>
+            <%= f.label :delete_support_icon do %>
+              <%= f.check_box :delete_support_icon %>
+              <%= Spree.t(:delete) %>
+            <% end if @taxon.support_icon? %>
+            <%= f.file_field :support_icon %>
+            <p class="help-block">300x300, SVG file</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title"><%= Spree.t(:filters) %></h1>
+        </div>
+
+        <div class="panel-body">
+          <div class="col-xs-12 col-md-6">
+            <%= f.field_container :filter1_id, class: ['form-group'] do %>
+              <%= f.label :filter1_id, t('.filter_1') %>
+              <%= f.select(:filter1_id, Spree::Property.all.collect {|c| [c.presentation, c.id]}, { include_blank: t('.none') }, { class: 'select2' }) %>
+              <%= f.error_message_on :filter1_id %>
+            <% end %>
+
+            <%= f.field_container :filter3_id, class: ['form-group'] do %>
+              <%= f.label :filter3_id, t('.filter_3') %>
+              <%= f.select(:filter3_id, Spree::Property.all.collect {|c| [c.presentation, c.id]}, { include_blank: t('.none') }, { class: 'select2' }) %>
+              <%= f.error_message_on :filter3_id %>
+            <% end %>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <%= f.field_container :filter2_id, class: ['form-group'] do %>
+              <%= f.label :filter2_id, t('.filter_2') %>
+              <%= f.select(:filter2_id, Spree::Property.all.collect {|c| [c.presentation, c.id]}, { include_blank: t('.none') }, { class: 'select2' }) %>
+              <%= f.error_message_on :filter2_id %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title"><%= Spree.t(:category_favorites) %></h1>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <%= f.field_container :favorites_title, class: ['form-group'] do %>
+                <%= f.label :favorites_title, Spree.t(:section_title) %>
+                <%= f.text_field :favorites_title, class: 'form-control' %>
+              <% end %>
+            </div>
+            <div class="col-xs-12 col-md-6">
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <%= f.field_container :left_banner_title, class: ['form-group'] do %>
+                <%= f.label :left_banner_title, Spree.t(:left_banner_title) %>
+                <%= f.text_field :left_banner_title, class: 'form-control' %>
+              <% end %>
+              <%= f.field_container :left_banner_link, class: ['form-group'] do %>
+                <%= f.label :left_banner_link, Spree.t(:left_banner_link) %>
+                <%= f.text_field :left_banner_link, class: 'form-control' %>
+              <% end %>
+              <%= f.field_container :left_banner_image, class: ['form-group'] do %>
+                <%= f.label :left_banner_image, Spree.t(:left_banner_image) %>
+                <br>
+                <%= image_tag(@taxon.left_banner_image.url) if @taxon.left_banner_image? %>
+                <br>
+                <%= f.label :delete_left_banner_image do %>
+                  <%= f.check_box :delete_left_banner_image %>
+                  <%= Spree.t(:delete) %>
+                <% end if @taxon.left_banner_image? %>
+                <%= f.file_field :left_banner_image %>
+                <p class="help-block">430x430</p>
+              <% end %>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <%= f.field_container :right_banner_title, class: ['form-group'] do %>
+                <%= f.label :right_banner_title, Spree.t(:right_banner_title) %>
+                <%= f.text_field :right_banner_title, class: 'form-control' %>
+              <% end %>
+              <%= f.field_container :right_banner_link, class: ['form-group'] do %>
+                <%= f.label :right_banner_link, Spree.t(:right_banner_link) %>
+                <%= f.text_field :right_banner_link, class: 'form-control' %>
+              <% end %>
+              <%= f.field_container :right_banner_image, class: ['form-group'] do %>
+                <%= f.label :right_banner_image, Spree.t(:right_banner_image) %>
+                <br>
+                <%= image_tag(@taxon.right_banner_image.url) if @taxon.right_banner_image? %>
+                <br>
+                <%= f.label :delete_right_banner_image do %>
+                  <%= f.check_box :delete_right_banner_image %>
+                  <%= Spree.t(:delete) %>
+                <% end if @taxon.right_banner_image? %>
+                <%= f.file_field :right_banner_image %>
+                <p class="help-block">430x430</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-heading">
+          <div class="row">
+            <h1 class="panel-title col-xs-6">
+              <%= Spree.t(:category_favorites_left_menu) %>
+            </h1>
+            <div class="page-actions col-xs-6" style="text-align: right">
+              <span id="new_add_option_value">
+                <%= button_link_to Spree.t(:add_menu_item), "javascript:;", { icon: 'add', :'data-target' => 'tbody#left_menu_items', class: 'btn-success spree_add_fields' } %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <table class="table table-condensed table-bordered sortable" data-hook data-sortable-link="<%= update_left_menu_items_positions_admin_taxons_url %>">
+          <thead data-hook="section_header">
+          <tr>
+            <th colspan="2"><%= Spree.t(:name) %> <span class="required">*</span>
+            </th>
+            <th><%= Spree.t(:link) %> <span class="required">*</span></th>
+            <th class="actions"></th>
+          </tr>
+          </thead>
+          <tbody id="left_menu_items">
+          <% if @taxon.left_menu_items.empty? %>
+            <tr id="none" data-hook="left_menu_item_none">
+              <td colspan="2"><%= Spree.t(:none) %></td>
+              <td class="actions text-center"></td>
+            </tr>
+          <% else %>
+            <%= f.fields_for :left_menu_items do |left_menu_item_form| %>
+              <%= render partial: 'menu_item_fields', locals: { f: left_menu_item_form } %>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+        <div class="panel-heading">
+          <div class="row">
+            <h1 class="panel-title col-xs-6">
+              <%= Spree.t(:category_favorites_right_menu) %>
+            </h1>
+            <div class="page-actions col-xs-6" style="text-align: right">
+              <span id="new_add_option_value">
+                <%= button_link_to Spree.t(:add_menu_item), "javascript:;", { icon: 'add', :'data-target' => 'tbody#right_menu_items', class: 'btn-success spree_add_fields' } %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <table class="table table-condensed table-bordered sortable" data-hook data-sortable-link="<%= update_right_menu_items_positions_admin_taxons_url %>">
+          <thead data-hook="section_header">
+          <tr>
+            <th colspan="2"><%= Spree.t(:name) %> <span class="required">*</span>
+            </th>
+            <th><%= Spree.t(:link) %> <span class="required">*</span></th>
+            <th class="actions"></th>
+          </tr>
+          </thead>
+          <tbody id="right_menu_items">
+          <% if @taxon.right_menu_items.empty? %>
+            <tr id="none" data-hook="right_menu_item_none">
+              <td colspan="2"><%= Spree.t(:none) %></td>
+              <td class="actions text-center"></td>
+            </tr>
+          <% else %>
+            <%= f.fields_for :right_menu_items do |right_menu_item_form| %>
+              <%= render partial: 'menu_item_fields', locals: { f: right_menu_item_form } %>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

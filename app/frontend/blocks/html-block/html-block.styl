@@ -1,0 +1,122 @@
+.html-block
+  background-size cover
+  background-position 50%
+  padding-top 85px
+  padding-bottom 80px
+
+  +mobile()
+    padding-top 50px
+    padding-bottom 50px
+
+  &_ui
+    &_black
+      color $blackLight
+      background-color $white
+
+    &_white
+      color $white
+      background-color $blackDark
+
+  &_mobile-bg
+    &_black
+      +mobile()
+        background rgba($black, .6)
+
+    &_white
+      +mobile()
+        background rgba($white, .6)
+
+  p
+    &:not(:last-child)
+      margin-bottom 18px
+
+  img
+    margin-bottom 20px
+    max-width 100%
+
+  td
+    padding-right $baseOffset
+    line-height 1.6
+    padding-bottom 20px
+
+    strong
+      display block
+      margin-bottom 4px
+
+  strong
+    font-avalon()
+    font-size 16px
+
+  &__container
+    container()
+    max-width (800px + $baseOffset * 2)
+    margin-left auto
+    margin-right auto
+
+    &_align
+      &_center
+        text-align center
+
+    &_size
+      &_small
+        max-width (500px + $baseOffset * 2)
+
+      &_large
+        max-width (1300px + $baseOffset * 2)
+
+  &__row
+    display flex
+    align-items center
+
+    +mobile()
+      display block
+
+    &_height
+      &_large
+        min-height 600px
+
+        +mobile()
+          min-height auto
+
+  &__column
+    container()
+    width 50%
+    margin-left 0
+    margin-right 0
+
+    +tablet()
+      padding-left 0
+      padding-right 0
+
+    +mobile()
+      width 100%
+
+    &:not(:last-child)
+      +mobile()
+        margin-bottom $baseOffset
+
+  &__title
+    text-big-2()
+    margin-bottom 28px
+
+  &__text
+    text-smaller()
+    opacity .75
+
+    &:not(:last-child)
+      margin-bottom 46px
+
+  &__button
+    font-size 13px
+    padding 16px 20px
+    display inline-block
+    vertical-align top
+    text-decoration none
+    background $white
+    color $blackLight
+    text-transform uppercase
+    transition all .3s ease
+
+    &:hover
+      background $blue
+      color $blackLight

@@ -1,0 +1,6 @@
+.page__cover.page__section.page__section_size_full(style="background-image: url('#{page.image.url}')" data-ui-white)
+  .page__container
+    h1.page__title
+      == simple_format page.header
+
+  = render partial: 'menu', locals: { menu: menu }

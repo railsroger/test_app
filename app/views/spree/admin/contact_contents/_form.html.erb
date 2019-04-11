@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <%= f.field_container :headoffice_address, class: ['form-group'] do %>
+      <%= f.label :headoffice_address, t('.headoffice_address') %>
+      <%= f.text_area :headoffice_address, class: 'form-control editable', rows: 10, 'data-redactor' => true %>
+      <%= f.error_message_on :headoffice_address %>
+    <% end %>
+    <%= f.field_container :sales_and_roduct, class: ['form-group'] do %>
+      <%= f.label :sales_and_roduct, t('.sales_and_product') %>
+      <%= f.text_area :sales_and_roduct, class: 'form-control editable', rows: 10, 'data-redactor' => true %>
+      <%= f.error_message_on :sales_and_roduct %>
+    <% end %>
+    <%= f.field_container :media, class: ['form-group'] do %>
+      <%= f.label :media, t('.media') %>
+      <%= f.text_area :media, class: 'form-control editable', rows: 10, 'data-redactor' => true %>
+      <%= f.error_message_on :media %>
+    <% end %>
+    <%= f.field_container :retailers_benefits, class: ['form-group'] do %>
+      <%= f.label :retailers_benefits, t('.retailers_benefits') %>
+      <%= f.text_area :retailers_benefits, class: 'form-control editable', rows: 10, 'data-redactor' => true %>
+      <%= f.error_message_on :retailers_benefits %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :head do %>
+  <script>
+      $.fn.redactor_init = function () {
+          var el = this;
+          $(el).redactor({
+              //lang: '<%= I18n.locale %>',
+              formattingTags: ['p'],
+              iframe: true,
+              css: <%== [asset_path('application.css')].to_json %>,
+              minHeight: 150,
+              imageGetJson: false,
+              convertDivs: false,
+              pastePlainText: true,
+          });
+      };
+      $(function () {
+          $('textarea[data-redactor]').redactor_init();
+      });
+  </script>
+<% end %>

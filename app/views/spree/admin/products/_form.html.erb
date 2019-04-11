@@ -1,0 +1,453 @@
+<div data-hook="admin_product_form_fields">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-8" data-hook="admin_product_form_left">
+      <div data-hook="admin_product_form_name">
+        <%= f.field_container :name, class: ['form-group'] do %>
+          <%= f.label :name, raw(Spree.t(:name) + content_tag(:span, ' *', class: 'required')) %>
+          <%= f.text_field :name, class: 'form-control title' %>
+          <%= f.error_message_on :name %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_slug">
+        <%= f.field_container :slug, class: ['form-group'] do %>
+          <%= f.label :slug, raw(Spree.t(:slug) + content_tag(:span, ' *', class: "required")) %>
+          <%= f.text_field :slug, class: 'form-control title' %>
+          <%= f.error_message_on :slug %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= f.field_container :model_number, class: ['form-group'] do %>
+          <%= f.label :model_number, Spree.t(:model_number) %>
+          <%= f.error_message_on :model_number %>
+          <%= f.text_field :model_number, class: 'form-control title' %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= f.field_container :model_year, class: ['form-group'] do %>
+          <%= f.label :model_year, Spree.t(:model_year) %>
+          <%= f.error_message_on :model_year %>
+          <%= f.text_field :model_year, class: 'form-control title' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4" data-hook="admin_product_form_right">
+      <div class="form-group">
+        <%= f.label :is_new do %>
+          <%= f.check_box :is_new %>
+          <%= Spree.t(:new) %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_price">
+        <%= f.field_container :price, class: ['form-group'] do %>
+          <%= f.label :price, raw(Spree.t(:price) + content_tag(:span, ' *', class: "required")) %>
+          <%= f.text_field :price, value: number_to_currency(@product.price, unit: ''), class: 'form-control', disabled: (cannot? :update, @product.price) %>
+          <%= f.error_message_on :price %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_available_on">
+        <%= f.field_container :available_on, class: ['form-group'] do %>
+          <%= f.label :available_on, Spree.t(:available_on) %>
+          <%= f.error_message_on :available_on %>
+          <%= f.text_field :available_on, value: datepicker_field_value(@product.available_on), class: 'datepicker form-control' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_discontinue_on">
+        <%= f.field_container :discontinue_on, class: ['form-group'] do %>
+          <%= f.label :discontinue_on, Spree.t(:discontinue_on) %>
+          <%= f.error_message_on :discontinue_on %>
+          <%= f.text_field :discontinue_on, value: datepicker_field_value(@product.discontinue_on), class: 'datepicker form-control' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title"><%= Spree.t(:video_block) %></h1>
+    </div>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :video, class: ['form-group'] do %>
+            <%= f.label :video, Spree.t(:video) %>
+            <br/>
+            <%= link_to @product.video_file_name, @product.video.url(:mp4) if @product.video? %>
+            <br/>
+            <%= f.label :delete_video do %>
+              <%= f.check_box :delete_video %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.video? %>
+            <%= f.file_field :video %>
+            <p class="help-block">16:9 video</p>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :video_cover, class: ['form-group'] do %>
+            <%= f.label :video_cover, raw(Spree.t(:video_cover) + content_tag(:span, ' *', class: 'required')) %>
+            <br/>
+            <%= link_to image_tag(@product.video_cover.url(:admin)), @product.video_cover.url(:normal) if @product.video_cover? %>
+            <br/>
+            <%= f.file_field :video_cover %>
+            <p class="help-block">16:9 like video</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title"><%= Spree.t(:preview_in_list) %></h1>
+    </div>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <%= f.label :big_preview do %>
+              <%= f.check_box :big_preview %>
+              <%== t('.big_preview') %>
+            <% end %>
+          </div>
+
+          <%= f.field_container :preview_image, class: ['form-group'] do %>
+            <%= f.label :preview_image, raw(Spree.t(:image) + content_tag(:span, ' *', class: 'required')) %>
+            <br/>
+            <%= link_to image_tag(@product.preview_image.url(:admin)), @product.preview_image.url(:normal) if @product.preview_image? %>
+            <br/>
+            <%= f.file_field :preview_image %>
+            <p class="help-block">fit in 450x450, PNG with transparency</p>
+          <% end %>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :preview_features, class: ['form-group'] do %>
+            <%= f.label :preview_features, Spree.t(:features) %>
+            <%= f.text_area :preview_features, { rows: 4, class: 'form-control' } %>
+            <%= f.error_message_on :preview_features %>
+          <% end %>
+          <p class="help-block">
+            <%= Spree.t(:one_feature_per_line_4_max) %>
+          </p>
+
+          <div>
+            <%= f.field_container :preview_description, class: ['form-group'] do %>
+              <%= f.error_message_on :preview_description %>
+              <%= f.label :preview_description, t('.preview_description') %>
+              <%= f.text_field :preview_description, class: 'form-control' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :list_feature_left, class: ['form-group'] do %>
+            <%= f.error_message_on :list_feature_left %>
+            <%= f.label :list_feature_left, Spree.t(:feature_left) %>
+            <%= f.text_field :list_feature_left, size: 15, class: 'form-control' %>
+          <% end %>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :list_feature_right, class: ['form-group'] do %>
+            <%= f.error_message_on :list_feature_right %>
+            <%= f.label :list_feature_right, Spree.t(:feature_right) %>
+            <%= f.text_field :list_feature_right, size: 15, class: 'form-control' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title"><%= Spree.t(:hero_block) %></h1>
+    </div>
+
+    <div class="panel-body">
+      <div class="col-xs-12 col-md-6">
+        <div class="form-group">
+          <%= f.label :hero_alignment_right, Spree.t(:alignment) %>
+          <%= f.select(:hero_alignment_right, [[Spree.t(:right), true], [Spree.t(:left), false]], {}, { class: 'select2' }) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :hero_ui_black, Spree.t(:ui_color) %>
+          <%= f.select(:hero_ui_black, [[Spree.t(:dark), true], [Spree.t(:white), false]], {}, { class: 'select2' }) %>
+        </div>
+
+        <div>
+          <%= f.field_container :hero_super_title, class: ['form-group'] do %>
+            <%= f.error_message_on :hero_alignment_right %>
+            <%= f.label :hero_super_title, Spree.t(:super_title) %>
+            <%= f.text_field :hero_super_title, class: 'form-control' %>
+          <% end %>
+        </div>
+
+        <div>
+          <%= f.field_container :hero_title, class: ['form-group'] do %>
+            <%= f.error_message_on :hero_alignment_right %>
+            <%= f.label :hero_title, Spree.t(:title) %>
+            <%= f.text_field :hero_title, class: 'form-control' %>
+          <% end %>
+        </div>
+
+        <div>
+          <%= f.field_container :hero_bg_color, class: ['form-group'] do %>
+            <%= f.error_message_on :hero_bg_color %>
+            <%= f.label :hero_bg_color, Spree.t(:bg_color) %>
+            <%= f.text_field :hero_bg_color, size: 7, class: 'form-control' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div>
+          <%= f.field_container :hero_image, class: ['form-group'] do %>
+            <%= f.label :hero_image, raw(Spree.t(:image) + content_tag(:span, ' *', class: 'required')) %>
+            <br/>
+            <%= link_to image_tag(@product.hero_image.url(:admin)), @product.hero_image.url(:normal) if @product.hero_image? %>
+            <%= f.file_field :hero_image %>
+            <p class="help-block">fit in 1000x550, PNG with transparency</p>
+          <% end %>
+        </div>
+        <div>
+          <%= f.field_container :hero_bg_image, class: ['form-group'] do %>
+            <%= f.label :hero_bg_image, Spree.t(:background_image) %>
+            <br/>
+            <%= link_to image_tag(@product.hero_bg_image.url(:admin)), @product.hero_bg_image.url(:normal) if @product.hero_bg_image? %>
+            <br/>
+            <%= f.label :delete_hero_bg_image do %>
+              <%= f.check_box :delete_hero_bg_image %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.hero_bg_image? %>
+            <%= f.file_field :hero_bg_image %>
+            <p class="help-block">1600x800</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title"><%= Spree.t(:icons) %></h1>
+    </div>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_white1, class: ['form-group'] do %>
+            <%= f.label :icon_white1, Spree.t(:icon_white_1) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_white1.url(:admin)), @product.icon_white1.url(:normal) if @product.icon_white1? %>
+            <br/>
+            <%= f.label :delete_icon_white1 do %>
+              <%= f.check_box :delete_icon_white1 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_white1? %>
+            <%= f.file_field :icon_white1 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_dark1, class: ['form-group'] do %>
+            <%= f.label :icon_dark1, Spree.t(:icon_dark_1) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_dark1.url(:admin)), @product.icon_dark1.url(:normal) if @product.icon_dark1? %>
+            <br/>
+            <%= f.label :delete_icon_dark1 do %>
+              <%= f.check_box :delete_icon_dark1 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_dark1? %>
+            <%= f.file_field :icon_dark1 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_white2, class: ['form-group'] do %>
+            <%= f.label :icon_white2, Spree.t(:icon_white_2) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_white2.url(:admin)), @product.icon_white2.url(:normal) if @product.icon_white2? %>
+            <br/>
+            <%= f.label :delete_icon_white2 do %>
+              <%= f.check_box :delete_icon_white2 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_white2? %>
+            <%= f.file_field :icon_white2 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_dark2, class: ['form-group'] do %>
+            <%= f.label :icon_dark2, Spree.t(:icon_dark_2) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_dark2.url(:admin)), @product.icon_dark2.url(:normal) if @product.icon_dark2? %>
+            <br/>
+            <%= f.label :delete_icon_dark2 do %>
+              <%= f.check_box :delete_icon_dark2 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_dark2? %>
+            <%= f.file_field :icon_dark2 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_white3, class: ['form-group'] do %>
+            <%= f.label :icon_white3, Spree.t(:icon_white_3) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_white3.url(:admin)), @product.icon_white3.url(:normal) if @product.icon_white3? %>
+            <br/>
+            <%= f.label :delete_icon_white3 do %>
+              <%= f.check_box :delete_icon_white3 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_white3? %>
+            <%= f.file_field :icon_white3 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_dark3, class: ['form-group'] do %>
+            <%= f.label :icon_dark3, Spree.t(:icon_dark_3) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_dark3.url(:admin)), @product.icon_dark3.url(:normal) if @product.icon_dark3? %>
+            <br/>
+            <%= f.label :delete_icon_dark3 do %>
+              <%= f.check_box :delete_icon_dark3 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_dark3? %>
+            <%= f.file_field :icon_dark3 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_white4, class: ['form-group'] do %>
+            <%= f.label :icon_white4, Spree.t(:icon_white_4) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_white4.url(:admin)), @product.icon_white4.url(:normal) if @product.icon_white4? %>
+            <br/>
+            <%= f.label :delete_icon_white4 do %>
+              <%= f.check_box :delete_icon_white4 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_white4? %>
+            <%= f.file_field :icon_white4 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_dark4, class: ['form-group'] do %>
+            <%= f.label :icon_dark4, Spree.t(:icon_dark_4) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_dark4.url(:admin)), @product.icon_dark4.url(:normal) if @product.icon_dark4? %>
+            <br/>
+            <%= f.label :delete_icon_dark4 do %>
+              <%= f.check_box :delete_icon_dark4 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_dark4? %>
+            <%= f.file_field :icon_dark4 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_white5, class: ['form-group'] do %>
+            <%= f.label :icon_white5, Spree.t(:icon_white_5) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_white5.url(:admin)), @product.icon_white5.url(:normal) if @product.icon_white5? %>
+            <br/>
+            <%= f.label :delete_icon_white5 do %>
+              <%= f.check_box :delete_icon_white5 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_white5? %>
+            <%= f.file_field :icon_white5 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= f.field_container :icon_dark5, class: ['form-group'] do %>
+            <%= f.label :icon_dark5, Spree.t(:icon_dark_5) %>
+            <br/>
+            <%= link_to image_tag(@product.icon_dark5.url(:admin)), @product.icon_dark5.url(:normal) if @product.icon_dark5? %>
+            <br/>
+            <%= f.label :delete_icon_dark5 do %>
+              <%= f.check_box :delete_icon_dark5 %>
+              <%= Spree.t(:delete) %>
+            <% end if @product.icon_dark5? %>
+            <%= f.file_field :icon_dark5 %>
+            <p class="help-block">35x35</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-hook="admin_product_form_taxons">
+    <%= f.field_container :taxons, class: ['form-group'] do %>
+      <%= f.label :taxon_ids, Spree.t(:taxons) %>
+
+      <% if can? :modify, Spree::Classification %>
+        <%= f.hidden_field :taxon_ids, value: @product.taxon_ids.join(',') %>
+      <% elsif @product.taxons.any? %>
+        <ul class="text_list">
+          <% @product.taxons.each do |taxon| %>
+            <li><%= taxon.name %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="alert alert-info"><%= Spree.t(:no_resource_found, resource: :taxons) %></div>
+      <% end %>
+
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.field_container :disclaimer, class: ['form-group'] do %>
+      <%= f.label :disclaimer, Spree.t(:disclaimer) %>
+      <%= f.text_area :disclaimer, rows: 3, class: 'form-control' %>
+    <% end %>
+  </div>
+
+  <div data-hook="admin_product_form_meta">
+    <div data-hook="admin_product_form_meta_title">
+      <%= f.field_container :meta_title, class: ['form-group'] do %>
+        <%= f.label :meta_title, Spree.t(:meta_title) %>
+        <%= f.text_field :meta_title, class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div data-hook="admin_product_form_meta_keywords">
+      <%= f.field_container :meta_keywords, class: ['form-group'] do %>
+        <%= f.label :meta_keywords, Spree.t(:meta_keywords) %>
+        <%= f.text_field :meta_keywords, class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div data-hook="admin_product_form_meta_description">
+      <%= f.field_container :meta_description, class: ['form-group'] do %>
+        <%= f.label :meta_description, Spree.t(:meta_description) %>
+        <%= f.text_field :meta_description, class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div data-hook="admin_product_form_additional_fields"></div>
+
+  </div>
+</div>

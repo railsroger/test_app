@@ -1,0 +1,88 @@
+.specs-block
+  background #141414
+  color $white
+  text-align center
+  padding-top 88px
+  padding-bottom 100px
+
+  +mobile()
+    padding-top 40px
+    padding-bottom 40px
+
+  &__title
+    text-big-2()
+    container()
+    margin-bottom 28px
+
+    strong
+      color $blue
+
+  &__text
+    text-smaller()
+    container()
+    color $grayLight
+    margin-bottom 46px
+
+  &__list
+    margin-top 110px
+
+    +mobile()
+      margin-top 40px
+
+  &__line
+    display flex
+    justify-content center
+
+    +mobile()
+      display block
+
+    &:not(:last-child)
+      border-bottom 1px solid #222222
+
+      +mobile()
+        border 0
+
+  &__item
+    container()
+    padding-top 50px
+    padding-bottom 55px
+    margin 0
+    width 100%
+    max-width 430px
+
+    +mobile()
+      padding-top 0
+      padding-bottom 20px
+      margin-bottom 20px
+      border-bottom 1px solid #222222
+      margin-right auto
+      margin-left auto
+
+    &:not(:last-child)
+      border-right 1px solid #222222
+
+      +mobile()
+        border-right 0
+
+    .specs-block__line:first-child &
+      padding-top 0
+
+    .specs-block__line:last-child &
+      padding-bottom 0
+
+      +mobile()
+        padding-bottom 20px
+
+  &__item-title
+    font-avalon()
+    text-medium-2()
+    color $blue
+    margin-bottom 3px
+
+    sup
+      font-size .6em
+      top -.7em
+
+  &__item-text
+    text-smaller()
+    color $grayLight

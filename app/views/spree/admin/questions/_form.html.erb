@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="form-group">
+      <%= f.label :category_id, Spree.t(:category) %>
+      <%= f.collection_select(:category_id, Spree::QuestionsCategory.all, :id, :name, {}, {class: 'select2'}) %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :question, class: ['form-group'] do %>
+      <%= f.label :question, Spree.t(:question) %> <span class="required">*</span>
+      <%= f.text_area :question, class: "form-control", rows: 3 %>
+      <%= f.error_message_on :question %>
+    <% end %>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :answer, class: ['form-group'] do %>
+      <%= f.label :answer, Spree.t(:answer) %> <span class="required">*</span>
+      <%= f.text_area :answer, class: "form-control", rows: 3 %>
+      <%= f.error_message_on :answer %>
+    <% end %>
+  </div>
+</div>

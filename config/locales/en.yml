@@ -1,0 +1,208 @@
+---
+en:
+  date:
+    formats:
+      month_short: "%b"
+  spree:
+    products:
+      show:
+        overview: "Overview"
+        specifications: "SPECIFICATIONS"
+        support: "SUPPORT"
+        where_to_buy: "WHERE TO BUY"
+        watch_video: "WATCH VIDEO"
+      filter:
+        reset: "Reset"
+        results:
+          zero: "no results"
+          one: "1 result"
+          other: "%{count} results"
+        all: "All"
+      product_card:
+        model_no: "model NO."
+        rrp: "RRP"
+        learn_more: "Learn More"
+      specs:
+        full_specs: "Full Specs"
+        hide_specs: "Hide Specs"
+      support:
+        support_title: "Product Support"
+        support_paragraph: "Need to know more about supporting your TV? See the pages below for the information"
+        manuals_title: "Manuals & Downloads"
+        manuals_paragraph: "Discover the latest user manuals and downloads for your Hisense TV"
+        register_title: "Register your product"
+        register_paragraph: "Register your product in order to get a refund if something went wrong"
+        contact_title: "Contact"
+        contact_paragraph: "To call or email our customer team, click the link below"
+    search:
+      index:
+        search: "Search"
+        enter_search_request: "Enter your search request<br>in the top field to see result"
+        no_results: "Oops,<br>We couldn't find<br>anything on your search"
+        products_related_to_keywords: "Products Related to %{keywords}"
+        documentation: "Documentation"
+        news: "News"
+    contact:
+      index:
+        contact: "Contact"
+        send_us_a_message: "SEND US A MESSAGE"
+        call_us: "CALL US"
+      banner:
+        details_and_contacts: "Details<br>& CONTACTS"
+        contact_title_1: "SALES & PRODUCT"
+        contact_title_2: "MEDIA"
+        points_title: "Why you should become<br>a Hisense retailer"
+      call:
+        back: "Back"
+        opening_hours: "OPENING HOURS"
+        weekdays_line_1: "MONDAY - SATURDAY"
+        weekdays_line_2: "SUNDAY"
+      form:
+        return_to_homepage: "Return to homepage"
+        success_title: "Thank you for getting in touch!"
+        success_message: "We appreciate you contacting us AND WANT TO ASSURE YOU THAT One of our customer happiness members will be getting back to you within a few hours."
+        select_a_reason: "Select a reason for your inquiry"
+        general: "General"
+        customer_service: "Customer Service"
+        product_consult: "Product Consult"
+        partnership: "Partnership"
+        email_placeholder: "Email"
+        email_error: "PLEASE, ENTER VALID EMAIL ADDRESS"
+        address_error: "PLEASE, ENTER YOUR ADDRESS"
+        name_error: "PLEASE, ENTER YOUR NAME"
+        phone_error: "PLEASE, LIST YOUR PHONE NUMBER"
+        phone_placeholder: "Phone"
+        address_placeholder: "Address"
+        name_placeholder: "Name"
+        message_placeholder: "HOW CAN WE HELP YOU?"
+        message_error: "PLEASE, ENTER YOUR MESSAGE"
+        send: "Send"
+    downloads:
+      index:
+        downloads: "DOWNLOADS"
+        downloads_paragraph: "Download Manuals & Drivers and find answers to the most common questions about your product"
+        desktop_only: "Unfortunately this page is only available on desktop devices."
+        return_to_homepage: "Return to homepage"
+        search: "Search"
+        no_results: "Oops,<br>We couldn't find<br>anything on your search"
+        name: "NAME"
+        type: "TYPE"
+        description: "DESCRIPTION"
+        version: "VERSION"
+        file_size: "FILE SIZE"
+        date: "DATE CREATED"
+        download: "Download"
+        all: "ALL"
+    error:
+      not_found:
+        not_found_text: "Houston, We Have a Problem!<br>The requested page could not be found."
+        return_to_homepage: "RETURN TO HOMEPAGE"
+        or: "OR"
+        report_an_error: "REPORT AN ERROR"
+    knowledge_centers:
+      need_more_help:
+        need_help: "Need more help?"
+        block_1_title: "NEWS & BLOG"
+        block_1_text: "Stay up to date with the latest news and blogs from Hisense"
+        click_here: "CLICK HERE"
+        block_2_title: "CONTACT HISENSE"
+        block_2_text: "To call or email our customer service team"
+      show:
+        knowledge_center: "KNOWLEDGE CENTER"
+        knowledge_paragraph: "Answers to all your Frequently Asked Questions"
+        search: "search"
+        all: "All"
+        no_results: "Oops,<br>We couldn't find<br>anything on your search"
+    news:
+      index:
+        news: "News"
+        search: "search"
+        all: "All"
+        no_results: "Oops,<br>We couldn't find<br>anything on your search"
+    regional_websites:
+      index:
+        regional_websites: "Regional websites"
+    register_product:
+      index:
+        register_product: "Register product"
+        success_title: "Thank you for registering your hisense product!"
+        success_text: "we want to assure you we will process your request and you will benefit from guarantee services we deliver."
+        return_to_homepage: "Return to homepage"
+        name_placeholder: "Full Name"
+        email_placeholder: "Email"
+        phone_placeholder: "Phone"
+        country_placeholder: "Country"
+        region_placeholder: "Region"
+        city_placeholder: "City"
+        post_code_placeholder: "Post code"
+        purchase_date_placeholder: "Date of purchase"
+        retailer_placeholder: "Retailer"
+        model_number_placeholder: "Model number"
+        serial_number_placeholder: "Serial number"
+        email_error: "PLEASE, ENTER VALID EMAIL ADDRESS"
+        phone_error: "PLEASE, LIST YOUR PHONE NUMBER"
+        country_error: "WE NEED YOUR COUNTRY INFORMATION"
+        region_error: "PLEASE, ENTER YOUR REGION"
+        city_error: "WE NEED YOUR CITY INFORMATION"
+        post_code_error: "PLEASE, ENTER YOUR POST CODE"
+        purchase_date_error: "PLEASE, LIST THE DATE OF PURCHASE OR APPROXIMATE DATE"
+        retailer_error: "WE NEED TO KNOW WHERE YOU'VE PURCHASED YOUR PRODUCT"
+        model_number_error: "PLEASE, LIST THE MODEL NUMBER (CHECK FAQ IF YOU DON'T KNOW THIS INFORMATION)"
+        serial_number_error: "WE NEED YOUR PRODUCT'S SERIAL NUMBER"
+        sign_up: "Sign up to future email news from hisense"
+        register: "Register"
+    sitemaps:
+      show:
+        site_map: "SITE MAP"
+        about: "About"
+        products: "Products"
+        information: "INFORMATION"
+    sponsorships:
+      index:
+        sponsorships: "Sponsorships"
+      show:
+        read_the_news: "READ THE NEWS"
+    supports:
+      need_more_help:
+        need_more_help: "Need more help?"
+        knowledge_center_title: "KNOWLEDGE CENTER"
+        knowledge_center_text: "For answers to all our Frequently Asked Questions"
+        click_here: "CLICK HERE"
+        news_title: "NEWS & BLOG"
+        news_center_text: "Stay up to date with the latest news and blogs from Hisense"
+        contact_title: "CONTACT HISENSE"
+        contact_text: "To call or email our customer service team"
+      show:
+        support_title: "Support"
+        support_text: "Download Manuals & Drivers and find answers to the most common questions about your product"
+        support_subtitle: "Looking for<br>product information?"
+        select_product: "Select your product"
+    where_to_buy:
+      index:
+        where_to_buy: "Where to buy"
+        buy_now: "Buy now"
+        stores: "Stores"
+  shared:
+    main_menu:
+      register_product: "Register product"
+      search: "Search"
+      contents: "Contents"
+      popular_search: "Popular search"
+    subscribe_block:
+      paragraph: "Stay up to date with Hisense<br>emails about new products & other news"
+      subscribe: "Subscribe"
+      placeholder: "Enter your email here"
+      successfully_subscribed: "You have successfully subscribed!"
+      email_invalid: "PLEASE, ENTER VALID EMAIL ADDRESS"
+    footer:
+      find_a_store: "Find a store"
+      hisense_global: "Hisense global"
+      copyright: "%{year} © Copyright Hisense"
+      follow_us: "Follow us"
+      sitemap: "Sitemap"
+    discover_title:
+      discover: "Discover"
+    header:
+      back: "Back"
+    top_menu:
+      view_all_category: "View All %{category_name}"

@@ -1,0 +1,50 @@
+section.main-slider(data-ui-white)
+  .main-slider__container.swiper-container
+    .swiper-wrapper
+      - slides.each_with_index do |item, index|
+        - if item.video?
+          .main-slider__slide.swiper-slide
+            .video
+              video.video__element.video__element_limited_size(
+                poster="#{item.image.url}"
+                muted
+                loop
+                autoplay
+              )
+                source(
+                  src= item.video.url(:mp4)
+                  type="video/mp4"
+                )
+                source(
+                  src= item.video.url(:webm)
+                  type="video/webm"
+                )
+                source(
+                  src= item.video.url(:ogv)
+                  type="video/ogg"
+                )
+
+              .video__content
+                = render partial: 'shared/discover_title', locals: {link: item.link, title: item.title, verticalAlign: item.title_vertical_align, horizontalAlign: item.title_horizontal_align}
+
+                - if slides.length > 1
+                  .main-slider__nav.main-slider__nav_side_left
+                    .main-slider__description
+                      = slides[(index > 0 ? index - 1 : -1)].try(:title)
+
+                  .main-slider__nav.main-slider__nav_side_right
+                    .main-slider__description
+                      = slides[(index == slides.count - 1 ? 0 : index + 1)].try(:title)
+
+        - else
+          .main-slider__slide.swiper-slide(style="background-image: url('#{item.image.url}')")
+            = render partial: 'shared/discover_title', locals: {link: item.link, title: item.title, verticalAlign: item.title_vertical_align, horizontalAlign: item.title_horizontal_align}
+
+            - if slides.length > 1
+              .main-slider__nav.main-slider__nav_side_left
+                .main-slider__description
+                  = slides[(index > 0 ? index - 1 : -1)].try(:title)
+
+              .main-slider__nav.main-slider__nav_side_right
+                .main-slider__description
+                  = slides[(index == slides.count - 1 ? 0 : index + 1)].try(:title)

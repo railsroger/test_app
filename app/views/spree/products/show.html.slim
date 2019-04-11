@@ -1,0 +1,103 @@
+= render partial: 'spree/shared/trackers/segment/product_viewed.js', formats: :js, locals: {product: @product}
+
+- cache cache_key_for_product do
+  .product
+    .product__head(
+      data-ui-white=!@product.hero_ui_black?
+      class="product__head_ui_#{@product.hero_ui_black? ? 'black' : 'white'}"
+      style="background-color: #{@product.hero_bg_color}; background-image: url('#{@product.hero_bg_image? ? @product.hero_bg_image.url : nil}')"
+    )
+
+      - unless @product.hero_alignment_right?
+        .product__head-image-column
+          img.product__head-image(
+            src="#{@product.hero_image? ? @product.hero_image.url : nil}"
+            alt=@product.hero_title
+          )
+
+      .product__head-text-column
+        .product__head-description = @product.hero_super_title
+        - if @product.hero_title.present?
+          .product__head-title = @product.hero_title
+          .product__head-name = @product.name
+        - else
+          .product__head-title = @product.name
+        .product__head-features
+          - (1..5).each do |i|
+            - next unless @product.send("icon_#{@product.hero_ui_black? ? 'dark' : 'white'}#{i}?")
+            img.product__head-feature(
+              src=@product.send("icon_#{@product.hero_ui_black? ? 'dark' : 'white'}#{i}").url
+            )
+
+        .product__head-buttons
+          a.product__head-button(href="/where-to-buy") == t('.where_to_buy')
+          - if @product.video?
+            a.product__head-button(
+              href="#video"
+              data-offset-selector=".stick-bar"
+            ) == t('.watch_video')
+
+      - if @product.hero_alignment_right?
+        .product__head-image-column
+          img.product__head-image(src="#{@product.hero_image? ? @product.hero_image.url : nil}")
+
+    .product__body
+      .stick-bar.product__stick-bar
+        .stick-bar__inner(data-ui-white)
+          .stick-bar__text
+            = @product.name
+
+          .stick-bar__list
+            a.stick-bar__link(
+              href="#overview"
+              data-offset-selector=".stick-bar"
+            )
+              .stick-bar__link-inner == t('.overview')
+
+            a.stick-bar__link(
+              href="#specifications"
+              data-offset-selector=".stick-bar"
+            )
+              .stick-bar__link-inner == t('.specifications')
+
+            - unless current_store.country.iso == 'CN'
+              a.stick-bar__link(
+                href="#support"
+                data-offset-selector=".stick-bar"
+              )
+                .stick-bar__link-inner == t('.support')
+
+            a.stick-bar__link.stick-bar__link_primary(
+              href="#"
+            ) == t('.where_to_buy')
+
+      - @product.content_blocks.active.each do |block|
+        .product__block(
+          style="color: #{block.color}; background-color: #{block.bg_color}; background-image: url('#{block.bg_image? ? block.bg_image.url : nil}')"
+          )
+          - case block.built_in_block
+            - when 'gallery'
+              = render partial: 'image_grid', locals: { images: @product.images }
+            - when 'specs'
+              = render partial: 'specs', locals: { product: @product }
+            - when 'video'
+              = render partial: 'video', locals: { product: @product } if @product.video? && @product.video_cover?
+            - when 'support'
+              - next if current_store.country.iso == 'CN'
+              = render partial: 'support', locals: { product: @product }
+            - when 'disclaimer'
+              = render partial: 'disclaimer', locals: { product: @product }
+            - else
+              - case block.kind
+                - when 'Image'
+                  = render partial: 'image', locals: { block: block }
+                - when 'Text_Block'
+                  = render partial: 'text_block', locals: { block: block }
+                - when 'Overview'
+                  = render partial: 'overview', locals: { block: block }
+                - when 'Slider_Images'
+                  = render partial: 'slider_images', locals: { block: block }
+                - when 'Four_Images'
+                  = render partial: 'four_images', locals: { block: block }
+                - else
+                  == block.html

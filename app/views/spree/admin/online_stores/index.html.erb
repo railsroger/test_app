@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%== t('.online_stores') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_store), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_online_store_link' } %>
+  </span>
+<% end if can?(:create, Spree::OnlineStore) %>
+
+<div id="new_online_store"></div>
+
+<% if @online_stores.any? %>
+<table class="table sortable" id="listing_online_stores" data-hook data-sortable-link="<%= update_positions_admin_online_stores_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:url) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @online_stores.each do |online_store| %>
+      <tr class="spree_online_store <%= cycle('odd', 'even')%>" id="<%= spree_dom_id online_store %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= online_store.name %></td>
+        <td class="presentation"><%= link_to nil, online_store.url, target: '_blank' %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(online_store, class: 'admin_edit_online_store', no_text: true) if can?(:edit, online_store) %>
+          <%= link_to_delete(online_store, no_text: true) if can?(:delete, online_store) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::OnlineStore)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::OnlineStore) %>!
+  </div>
+<% end %>

@@ -1,0 +1,51 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::News) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span>
+    <%= button_link_to t('.news_categories'), spree.admin_news_categories_path, { class: 'btn-primary', icon: 'cog' } %>
+  </span>
+  <span id="new_ot_link">
+    <%= button_link_to t('.new_news'), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_news_link' } %>
+  </span>
+<% end if can?(:create, Spree::News) %>
+
+<div id="new_news"></div>
+
+<% if @collection.any? %>
+  <table class="table" id="listing_newss">
+    <thead>
+    <tr data-hook="admin_newss_index_headers">
+      <th><%== t('.status') %></th>
+      <th><%== t('.date') %></th>
+      <th><%== t('.category') %></th>
+      <th><%== t('.title') %></th>
+      <th><%== t('.sponsorship') %></th>
+      <th data-hook="admin_newss_index_header_actions" class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @collection.each do |news| %>
+      <tr id="<%= spree_dom_id news %>" data-hook="admin_newss_index_rows" class="<%= cycle('odd', 'even') %>">
+        <td><%= news.is_published ? t('.published') : t('.hidden') %></td>
+        <td><%= l news.published_on, format: :long %></td>
+        <td><%= news.category.name rescue '—' %></td>
+        <td><%= news.title %></td>
+        <td><%= news.sponsorship ? news.sponsorship.name : '—' %></td>
+        <td class="actions actions-3 text-right" data-hook="admin_newss_index_row_actions">
+          <%= link_to_edit news, class: 'admin_edit_content_block', no_text: true if can?(:edit, news) %>
+          <%= link_to_delete news, no_text: true if can?(:delete, news) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::News)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::News) %>!
+  </div>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>

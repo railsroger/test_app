@@ -1,0 +1,33 @@
+section.sitemap
+  h1.sitemap__title
+    == t('.site_map')
+
+  .sitemap__list
+    .sitemap__column
+      .sitemap__group-item
+        == t('.about')
+
+      - left_menu_items.each do |item|
+        .sitemap__item
+          = link_to item.first, item.last
+
+    .sitemap__column
+      .sitemap__group-item
+        == t('.products')
+
+      - categories.for_sitemap.each do |item|
+        .sitemap__subgroup-item
+          = link_to item.name, seo_url(item)
+
+        .sitemap__subgroup
+          - item.children.for_sitemap.each do |subitem|
+            .sitemap__item
+              = link_to subitem.name, seo_url(subitem)
+
+    .sitemap__column
+      .sitemap__group-item
+        == t('.information')
+
+      - right_menu_items.each do |item|
+        .sitemap__item
+          = link_to item.first, item.last

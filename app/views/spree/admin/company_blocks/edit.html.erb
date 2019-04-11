@@ -1,0 +1,59 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:company_block) %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @company_block } %>
+
+<% content_for :page_actions do %>
+  <span id="new_add_option_value" data-hook>
+    <%= button_link_to Spree.t(:add_section), "javascript:;", { icon: 'add', :'data-target' => 'tbody#sections', class: 'btn-success spree_add_fields' } %>
+  </span>
+<% end %>
+
+<%= form_for [:admin, @company_block] do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title">
+        <%= Spree.t(:company_block) %>
+      </h1>
+    </div>
+
+    <%= render partial: 'form', locals: { f: f } %>
+
+    <div class="panel-heading">
+      <h1 class="panel-title">
+        <%= Spree.t(:Sections) %>
+      </h1>
+    </div>
+
+    <table class="table table-condensed table-bordered sortable" data-hook data-sortable-link="<%= update_sections_positions_admin_company_blocks_url %>">
+      <thead data-hook="section_header">
+      <tr>
+        <th colspan="2"><%= Spree.t(:name) %> <span class="required">*</span>
+        </th>
+        <th><%= Spree.t(:link) %> <span class="required">*</span></th>
+        <th class="actions"></th>
+      </tr>
+      </thead>
+      <tbody id="sections">
+      <% if @company_block.sections.empty? %>
+        <tr id="none" data-hook="section_none">
+          <td colspan="2"><%= Spree.t(:none) %></td>
+          <td class="actions text-center"></td>
+        </tr>
+      <% else %>
+        <%= f.fields_for :sections do |section_form| %>
+          <%= render partial: 'section_fields', locals: { f: section_form } %>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="panel-footer text-center">
+      <div class="form-actions" data-hook="buttons">
+        <%= button Spree.t('actions.update'), 'save' %>
+        <span class="or"><%= Spree.t(:or) %></span>
+        <%= button_link_to Spree.t('actions.cancel'), edit_admin_company_block_url(@company_block), icon: 'delete' %>
+      </div>
+    </div>
+  </div>
+<% end %>

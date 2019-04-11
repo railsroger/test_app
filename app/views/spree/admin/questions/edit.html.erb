@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:questions), admin_questions_url %> /
+  <%= @question.question %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @question } %>
+
+<%= form_for [:admin, @question] do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

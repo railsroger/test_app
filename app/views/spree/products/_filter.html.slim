@@ -1,0 +1,29 @@
+- filters = @design_taxon ? @design_taxon.applicable_filters : []
+- if filters.any?
+  = form_tag '', method: :get, id: 'sidebar_products_search' do
+    = hidden_field_tag 'per_page', params[:per_page]
+    .stick-bar.catalog__filter(
+      class="#{design_taxon.ui_black ? 'stick-bar_ui_white' : 'stick-bar_ui_black'}"
+    )
+      .stick-bar__inner(data-ui-white)
+        .select__overlay
+
+        - filters.each do |filter|
+          - labels = filter[:labels] || filter[:conds].map { |m,c| [m,m] }
+          - next if labels.empty?
+          .stick-bar__column
+            .select
+              select.select__input name="filter[#{filter[:scope].to_s}]"
+                option(value="") #{filter[:name]} • #{t('.all')}
+                - labels.each do |nm,val|
+                  - label = "#{filter[:name]}_#{nm}".gsub(/\s+/,'_')
+                  - selected = params[:filter].present? && params[:filter][filter[:scope]] && params[:filter][filter[:scope]] == URI.encode(val).to_s
+                  option(selected=selected value=URI.encode(val) id=label) #{filter[:name]} • #{val}
+        - if products_size = @products.try(:size)
+          .stick-bar__column
+            = submit_tag t('.results', count: products_size), id: 'catalog-result-button', name: nil, class: 'stick-bar__link stick-bar__link_primary'
+
+            a.stick-bar__link(
+              href=seo_url(@taxon)
+            )
+              .stick-bar__link-inner == t('.reset')

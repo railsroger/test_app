@@ -1,0 +1,39 @@
+.input-select
+  margin-bottom 15px
+  position relative
+  width 100%
+
+  &:after
+    triangle(9px, 5px, 'bottom', currentColor)
+    content ''
+    display block
+    position absolute
+    right 0
+    top 50%
+    margin-top -3px
+
+  &__input-wrapper
+    overflow hidden
+
+  &__input
+    text-smaller()
+    text-transform uppercase
+    width 103%
+    height 42px
+    -webkit-appearance none
+    border 0
+    background none
+    border-bottom 2px solid currentColor
+    transition border .3s ease
+    border-radius 0
+    font-weight 300
+    font-family inherit
+    outline 0
+    padding 0
+
+    &:hover
+    &:focus
+      border-color $blue
+
+    option[value=""][disabled]
+      display none

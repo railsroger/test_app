@@ -1,0 +1,8 @@
+<ul id="sidebar-categories" class="collapse nav nav-pills nav-stacked" data-hook="admin_categories_sub_tabs">
+  <% categories.each do |category| %>
+    <% selected = controller.controller_name == 'taxons' && @taxon.try(:id) == category.id %>
+    <%= configurations_sidebar_menu_item(category.name,
+                                         "/admin/taxonomies/#{category.taxonomy_id}/taxons/#{category.id}/edit",
+                                         class: (selected ? 'selected' : nil)) %>
+  <% end %>
+</ul>

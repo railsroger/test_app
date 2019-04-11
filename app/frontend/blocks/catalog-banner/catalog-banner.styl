@@ -1,0 +1,51 @@
+.catalog-banner
+  container()
+  background-size cover
+  background-color $white
+  background-position 50% 50%
+  padding-top 140px
+  padding-bottom 85px
+  display flex
+  align-items center
+
+  &_ui_white
+    background-color $blackLight
+    color $white
+
+  +mobile()
+    display block
+
+  &__content
+    width 50%
+    padding-right $baseOffset
+    text-align center
+
+    +mobile()
+      padding 0
+      width 100%
+      margin-bottom $baseOffset
+
+  &__content-inner
+    display inline-block
+    vertical-align top
+    text-align left
+
+  &__image-wrapper
+    width 50%
+    text-align center
+    padding-left $baseOffset
+
+    +mobile()
+      padding 0
+      width 100%
+
+  &__image
+    max-width 100%
+
+  &__title
+    text-big()
+    text-transform none
+    margin-bottom 35px
+
+  &__description
+    text-smaller-2()

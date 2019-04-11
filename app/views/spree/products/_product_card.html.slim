@@ -1,0 +1,65 @@
+.product-card(class="product-card_size_#{size} #{@design_taxon.try(:ui_black) ? 'product-card_ui_white' : nil}")
+  .product-card__body
+    - if size === 'large'
+      .product-card__head
+        - if product.list_feature_left.present?
+          .product-card__description-left
+            = product.list_feature_left
+        - if product.list_feature_right.present?
+          .product-card__description-right
+            = product.list_feature_right
+
+      .product-card__image-wrapper
+        .product-card__image-inner
+          img.product-card__image(
+            src=product.preview_image.url(:big)
+            alt=product.model_number
+          )
+
+      .product-card__description = product.preview_description
+
+      .product-card__icons
+        - (1..5).each do |i|
+          - next unless product.send("icon_#{@design_taxon.try(:ui_black) ? 'white' : 'dark'}#{i}?")
+          img.product-card__icon(
+            src=product.send("icon_#{@design_taxon.try(:ui_black) ? 'white' : 'dark'}#{i}").url
+          )
+
+    - else
+      .product-card__head
+        - if product.list_feature_left.present?
+          .product-card__description-left
+            = product.list_feature_left
+        - if product.list_feature_right.present?
+          .product-card__description-right
+            = product.list_feature_right
+
+      .product-card__image-wrapper
+        .product-card__image-inner
+          img.product-card__image(
+            src=product.preview_image.url
+            alt=product.model_number
+          )
+
+    .product-card__hover
+      .product-card__hover-body
+        a.product-card__hover-title(
+          href=product_url(product)
+        )
+          - if product.is_new
+            strong New
+          = " #{t('.model_no')} #{product.model_number}"
+
+        -if product.preview_features
+          ul.product-card__options-list
+            - product.preview_features.lines.each do |line|
+              li.product-card__option = line
+
+      .product-card__hover-footer
+        .product-card__price
+          -if !product.price.zero?
+            = "#{t('.rrp')} #{display_price(product)}"
+
+        a.product-card__button(
+          href=product_url(product)
+        ) == t('.learn_more')

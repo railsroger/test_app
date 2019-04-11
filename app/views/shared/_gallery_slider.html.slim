@@ -1,0 +1,25 @@
+section.gallery-slider.gallery-slider_hidden(data-ui-white)
+  h1.gallery-slider__title
+    .gallery-slider__title-inner = title
+
+  .gallery-slider__container.swiper-container
+    button.gallery-slider__navigation.gallery-slider__navigation_left(type="button")
+    button.gallery-slider__navigation.gallery-slider__navigation_right(type="button")
+
+    .swiper-wrapper
+      - for item in slides
+        .gallery-slider__slide.swiper-slide
+          .gallery-slider__slide-wrapper
+            .gallery-slider__slide-inner
+              .gallery-slider__slide-cover(style="background-image: url('#{(item.is_a?(Spree::News) ? item.list_image.url(:large) : item.preview_image.url)}')")
+              a.gallery-slider__link(href=(item.is_a?(Spree::News) ? news_url(item) : sponsorship_url(item)))
+                .gallery-slider__content(
+                  class="#{centredContent ? 'gallery-slider__content_centred' : ''}"
+                )
+
+                  - if item.is_a?(Spree::News)
+                    .gallery-slider__date
+                      .gallery-slider__day = item.published_on.strftime('%e')
+                      .gallery-slider__month = l(item.published_on, format: :month_short)
+
+                  .gallery-slider__slide-title = item.name

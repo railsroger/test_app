@@ -1,0 +1,46 @@
+.main-menu
+  button.button-cross.main-menu__button(type="button")
+    span.button-cross__inner
+
+  button.main-menu__button-search(type="button")
+    = render partial: 'shared/icon', locals: {iconName: 'icon-search'}
+    span.visibility-hidden = t('.search')
+
+  .main-menu__modal
+    .main-menu__modal-wrapper
+      .main-menu__modal-inner.main-menu__modal-inner_contents
+        .main-menu__modal-contents-inner
+          ul.main-menu__categories-menu
+            - categories.each do |category|
+              li.main-menu__categories-menu-item
+                a.main-menu__categories-menu-link(href=seo_url(category) data-header-menu-item=category.id) = category.name
+
+          ul.main-menu__submenu
+            - for item in left_menu_items
+              li.main-menu__submenu-item
+                a.main-menu__submenu-link(href=item.last) = item.first
+
+            li.main-menu__submenu-item.main-menu__submenu-item_language
+              a.main-menu__submenu-link(href=regional_websites_url)
+                img.main-menu__submenu-image(
+                  src=current_store.country&.flag&.url
+                  alt=current_store.country&.name
+                )
+                = current_store.country&.name
+
+          ul.main-menu__menu
+            - for item in right_top_menu_items
+              li.main-menu__menu-item
+                a.main-menu__menu-link(href=item.last) = item.first
+
+      .main-menu__modal-inner.main-menu__modal-inner_search
+        .main-menu__search-wrapper
+          = form_tag search_url, method: :get, class: 'main-menu__search-form'
+            = search_field_tag :keywords, params[:keywords], class: 'main-menu__search-input'
+            = submit_tag t('.search'), name: nil, class: 'main-menu__search-submit'
+
+        .main-menu__search-menu-wrapper
+          ul.main-menu__search-menu
+            - for item in popular_searches
+              li.main-menu__search-menu-item
+                a.main-menu__search-menu-link(href=search_url(keywords: item.text)) = item.text

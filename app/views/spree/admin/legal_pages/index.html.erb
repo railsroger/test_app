@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::LegalPage) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_legal_page), new_object_url, { class: "btn-success", icon: 'add', id: 'new_legal_page_url' } %>
+  </span>
+<% end if can?(:create, Spree::LegalPage) %>
+
+<div id="new_legal_page"></div>
+
+<% if @legal_pages.any? %>
+<table class="table sortable" id="listing_legal_pages" data-hook data-sortable-link="<%= update_positions_admin_legal_pages_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%== t('.title') %></th>
+      <th><%== t('.slug') %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @legal_pages.each do |legal_page| %>
+      <tr class="spree_legal_page <%= cycle('odd', 'even')%>" id="<%= spree_dom_id legal_page %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= legal_page.title %></td>
+        <td class="presentation"><%= legal_page.slug %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(legal_page, class: 'admin_edit_legal_page', no_text: true) if can?(:edit, legal_page) %>
+          <%= link_to_delete(legal_page, no_text: true) if can?(:delete, legal_page) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::LegalPage)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::LegalPage) %>!
+  </div>
+<% end %>

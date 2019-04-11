@@ -1,0 +1,106 @@
+.page
+  position relative
+  min-height 100vh
+
+  +mobile()
+    min-height auto
+
+  &__section
+    container()
+    min-height 50vh
+    padding-top 100px
+    padding-bottom 80px
+    position relative
+
+    +mobile()
+      padding-top 60px
+      padding-bottom 40px
+      min-height auto
+
+    &_size_full
+      min-height 100vh
+
+    &_centered
+      display flex
+      align-items center
+      justify-content center
+      text-align center
+      padding-top 80px
+
+  &__cover
+    background-position 50%
+    background-repeat no-repeat
+    background-size cover
+    background-color $blackLight
+    color $white
+    position relative
+    overflow hidden
+
+  &__cover-inner
+    abs()
+    background-position 50%
+    background-repeat no-repeat
+    background-size cover
+
+  &__container
+    container-inner()
+    position relative
+    z-index 2
+
+  &__title
+    text-big()
+    padding-top 80px
+
+    +mobile()
+      padding-top 40px
+
+    &:not(:last-child)
+      margin-bottom 40px
+
+    &_centered
+      text-align center
+
+    &_bigger
+      text-bigger()
+
+  &__title-description
+    text-smaller-2()
+    max-width 500px
+    margin-left auto
+    margin-right auto
+
+  &__subtitle
+    text-small()
+    text-transform uppercase
+    margin-bottom 28px
+
+  &__text
+    text-smaller()
+    margin-bottom 48px
+    max-width 610px
+
+    &:last-child
+      +mobile()
+        margin-bottom 0
+
+    p
+      margin-bottom 25px
+
+    h2
+      text-small()
+      text-transform uppercase
+      margin-bottom 28px
+
+    img
+      margin-bottom 2px
+      max-width 100%
+
+  &__image
+    margin 0 0 25px
+
+  &__image-item
+    margin-bottom 2px
+    max-width 100%
+
+  &__image-description
+    opacity .4

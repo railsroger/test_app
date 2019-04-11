@@ -1,0 +1,15 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @career } %>
+
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:career_slider), admin_careers_url %> /
+  <%= Spree.t(:new_slide) %>
+<% end %>
+
+<%= form_for [:admin, @career] do |f| %>
+  <fieldset data-hook="new_career">
+    <%= render partial: 'form', locals: { f: f } %>
+    <div class="form-actions">
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
+    </div>
+  </fieldset>
+<% end %>

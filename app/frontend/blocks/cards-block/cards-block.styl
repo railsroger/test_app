@@ -1,0 +1,55 @@
+.cards-block
+  container()
+  background-position 50%
+  background-repeat no-repeat
+  background-size cover
+  background-color $black
+  color $white
+  padding-top 70px
+  padding-bottom 25px
+
+  &__title
+    text-medium-2()
+    text-align center
+    margin-bottom 45px
+
+  &__items
+    display flex
+    justify-content center
+    flex-wrap wrap
+
+    +mobile()
+      display block
+
+  &__item
+    padding 40px 30px 130px
+    max-width 325px
+    width 100%
+    background $white
+    color $black
+    margin-left 45px
+    margin-right 45px
+    margin-bottom 45px
+    position relative
+
+    +mobile()
+      padding 30px 20px 110px
+      margin-left auto
+      margin-right auto
+
+  &__item-title
+    text-small()
+    text-transform uppercase
+    margin-bottom 20px
+
+  &__item-text
+    text-smaller()
+
+  &__item-button
+    position absolute
+    left 30px
+    bottom 50px
+
+    +mobile()
+      left 20px
+      bottom 30px

@@ -1,0 +1,84 @@
+section.page.catalog#news-page
+  - if @sponsorship
+    = render partial: 'shared/gallery_slider', locals: { slides: @news, centredContent: false, title: t('.news') }
+  - else
+    .page__cover.page__section.page__section_centered(
+      data-ui-white
+    )
+      .page__cover-inner(
+        style="background-image: url('/images/news/bg.jpg')"
+      )
+
+      .page__container
+        h1.page__title
+          == t('.news')
+
+    .catalog__body
+      .stick-bar
+        form.stick-bar__inner(data-ui-white)
+          .select__overlay
+
+          .stick-bar__input-wrapper
+            label.stick-bar__input-label(
+              for="knowledge-center-search"
+            )
+              = render partial: 'shared/icon', locals: {iconName: 'icon-search'}
+              .visibility-hidden == t('.search')
+
+            = search_field_tag :s, params[:s], class: 'stick-bar__input', id: 'catalog-search', placeholder: t('.search')
+
+            input(
+              id="catalog-category-id"
+              type="hidden"
+              name="category_id"
+              value=""
+            )
+
+          .stick-bar__list
+            .catalog__search-select
+              .select
+                select.select__input
+                  option(value="") ==t('.all')
+                  - @categories.each do |category|
+                    - label = "#{category}".gsub(/\s+/, '_')
+                    - selected = params['category_id'] == category.id.to_s
+                    option(selected=selected value="?category_id=#{category.id}" id=label) #{category.name}
+
+            a.stick-bar__link.catalog__search-link(
+              class="#{params[:category_id].blank? ? 'active' : nil}"
+              href="?category_id="
+            )
+              .stick-bar__link-inner ==t('.all')
+
+            - @categories.each do |category|
+              a.stick-bar__link.catalog__search-link(
+                class="#{category.id.to_s === params[:category_id] || category.name .blank? && params[:category_id].blank? ? 'active' : nil}"
+                href="?category_id=#{category.id}"
+              )
+                .stick-bar__link-inner = category.name
+
+            button.stick-bar__link.stick-bar__link_primary(
+              href="#"
+            ) == t('.search')
+
+      - if @news.empty?
+        .search-message
+          .search-message__message-icon
+            = render partial: 'shared/icon', locals: {iconName: 'search'}
+          .search-message__message-text
+            == t('.no_results')
+
+      - else
+        .catalog__list
+          - while @news.any?
+            .catalog__line
+              .catalog__group
+                .catalog__item
+                  = render partial: 'news_card', locals: { size: 'large', news: @news.shift }
+
+              - if @news.any?
+                .catalog__group
+                  - 4.times
+                    - if @news.any?
+                      .catalog__item.catalog__item_grouped
+                        = render partial: 'news_card', locals: {size: 'small', news: @news.shift}

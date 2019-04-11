@@ -1,0 +1,111 @@
+$blackDarker = #000000
+$blackDark = #101010
+$black = #161616
+$blackLight = #202020
+
+$grayDarker = #454545
+$gray = #999999
+$grayLight = #b4b4b4
+$grayLighter = #efefef
+$grayLightest = #f9f9f9
+
+$white = #fff
+
+$blue = #00cccc
+$green = #45dd95
+
+$red = #e11432
+
+$baseOffset = 40px
+$baseOffsetMobile = 20px
+
+$baseFontSize = 14px
+
+font-avalon()
+  font-family 'Avalon', Helvetica, sans-serif
+  font-weight 600
+
+font-futura()
+  font-family 'Futura', Helvetica, sans-serif
+  font-weight 300
+
+text-smallest()
+  font-size $baseFontSize
+
+text-smaller()
+  font-size 15px
+  line-height (21 / 13)
+
+  +mobile()
+    font-size 14px
+
+text-smaller-2()
+  font-size 20px
+  line-height (30 / 18)
+
+  +mobile()
+    font-size 16px
+
+text-small-2()
+  font-avalon()
+  font-size 20px
+  line-height (40 / 24)
+
+  +mobile()
+    font-size 16px
+
+text-small()
+  font-size 26px
+  line-height (40 / 24)
+
+  +mobile()
+    font-size 20px
+
+text-medium()
+  font-size 32px
+
+  +mobile()
+    font-size 18px
+
+text-medium-2()
+  font-size 38px
+
+  +mobile()
+    font-size 32px
+
+text-big-2()
+  font-avalon()
+  font-size 50px
+  line-height (72 / 60)
+
+  +mobile()
+    font-size 40px
+
+text-big()
+  font-avalon()
+  font-size 60px
+  line-height (72 / 60)
+  text-transform uppercase
+
+  +mobile()
+    font-size 40px
+
+text-bigger()
+  font-avalon()
+  font-size 80px
+  line-height (90 / 80)
+  text-transform uppercase
+
+  +tablet()
+    font-size 60px
+
+  +mobile()
+    font-size 50px
+
+text-biggest()
+  font-avalon()
+  font-size 120px
+  line-height (120 / 92)
+
+  +mobile()
+    font-size 50px

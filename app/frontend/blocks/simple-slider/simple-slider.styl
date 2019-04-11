@@ -1,0 +1,72 @@
+@import '~swiper/dist/css/swiper.css'
+
+.simple-slider
+  text-smallest()
+  position relative
+
+  &__container
+    padding-bottom 45px
+
+  &__slide
+    position relative
+
+  &__description
+    position absolute
+    top 100%
+    left 0
+    text-transform uppercase
+    padding-top 8px
+    width 100%
+    padding-right 60px
+    opacity .4
+
+  &__image
+    width 100%
+    display block
+
+  &__pagination
+    .simple-slider &
+      position absolute
+      bottom 19px
+      right 0
+      width auto
+      left auto
+      opacity .4
+
+  &__navigation
+    position absolute
+    width 40px
+    height 40px
+    border-radius 100%
+    background $white
+    bottom 50%
+    z-index 2
+    transition color .3s ease
+
+    &.swiper-button-disabled
+      cursor default
+      opacity .4
+
+    &:hover:not(.swiper-button-disabled)
+      color $blue
+
+    &:after
+      content ''
+      position absolute
+      left 50%
+      top 50%
+      transform translate(-50%, -50%)
+
+    &_left
+      left 12px
+
+      &:after
+        triangle(6px, 9px, 'left', currentColor)
+        margin-left -1px
+
+    &_right
+      right 12px
+
+      &:after
+        triangle(6px, 9px, 'right', currentColor)
+        margin-left 1px

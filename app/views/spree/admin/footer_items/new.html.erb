@@ -1,0 +1,15 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @footer_item } %>
+
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:footer_items), admin_footer_items_url %> /
+  <%= Spree.t(:new_footer_item) %>
+<% end %>
+
+<%= form_for [:admin, @footer_item] do |f| %>
+  <fieldset data-hook="new_footer_item">
+    <%= render partial: 'form', locals: { f: f } %>
+    <div class="form-actions">
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
+    </div>
+  </fieldset>
+<% end %>

@@ -1,0 +1,13 @@
+section.page
+  .page__cover.page__section.page__section_centered(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('/images/downloads/1.jpg')"
+    )
+
+    .page__container
+      h1.page__title = @page[:title]
+
+  .page__section
+    .page__container.raw-html = raw(@page[:html])

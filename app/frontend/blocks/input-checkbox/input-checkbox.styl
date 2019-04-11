@@ -1,0 +1,55 @@
+.input-checkbox
+  position relative
+
+  input[type="checkbox"]
+    opacity 0
+    width 0
+    height 0
+    position absolute
+
+    &:checked
+      & ~ label
+        &:after
+          opacity 1
+
+    &:focus
+      & ~ label
+        &:before
+          border-color $blue
+
+  label
+    display inline-block
+    vertical-align top
+    position relative
+    padding-left 36px
+    padding-top 5px
+    cursor pointer
+    text-transform uppercase
+
+    &:hover
+      &:before
+        border-color $blue
+
+    &:before
+    &:after
+      content ''
+      display block
+      box-sizing border-box
+      position absolute
+
+    &:before
+      left 0
+      top 0
+      height 26px
+      width 26px
+      border 2px solid currentColor
+      transition border .3s ease
+
+    &:after
+      left 10px
+      top 10px
+      width 6px
+      height 6px
+      background currentColor
+      opacity 0
+      transition opacity .3s ease

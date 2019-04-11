@@ -1,0 +1,25 @@
+.input-text
+  margin-bottom 15px
+
+  &__input
+    reset-autofill($black)
+    text-smaller()
+    width 100%
+    height 42px
+    border-bottom 2px solid currentColor
+    transition border .3s ease
+    border-radius 0
+
+    +placeholder-color(currentColor)
+      text-transform uppercase
+      color currentColor
+      opacity 1
+      transition opacity .3s ease
+
+    &:hover
+    &:focus
+      border-color $blue
+
+    &:focus
+      +placeholder-color(currentColor)
+        opacity 0

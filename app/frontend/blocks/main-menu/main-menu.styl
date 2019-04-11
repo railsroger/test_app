@@ -1,0 +1,227 @@
+.main-menu
+  &__modal
+    position fixed
+    left 0
+    top 0
+    bottom 0
+    right 0
+    z-index 20
+    background alpha($blackDarker, .8)
+    color $white
+    display none
+
+  &__modal-wrapper
+    position relative
+    height 100%
+    z-index 2
+
+  &__modal-inner
+    abs()
+    container()
+    display none
+    height 100%
+    padding-top $baseOffset
+    padding-bottom $baseOffset
+
+    +mobile()
+      scroll()
+      padding-top $baseOffsetMobile
+      padding-bottom $baseOffsetMobile
+
+  &__modal-contents-inner
+    display flex
+    flex-wrap wrap
+    align-items center
+    height 100%
+    padding-top 80px
+    position relative
+
+    +mobile()
+      height auto
+      min-height 100%
+      display block
+      padding-top 70px
+      padding-bottom 140px
+
+  &__categories-menu
+    display none
+
+    +mobile()
+      display flex
+      flex-wrap wrap
+      margin-bottom 45px
+
+  &__categories-menu-item
+    text-transform uppercase
+    margin-bottom 30px
+    width 50%
+
+    +mobile()
+      margin-bottom 10px
+
+    &:nth-child(2n)
+      text-align right
+
+  &__categories-menu-link
+    underline-link-style()
+    color $gray
+    font-size 16px
+
+    &:hover
+      color $white
+
+  &__submenu
+    width 50%
+    padding-left 25%
+    padding-top 3px
+    position relative
+    padding-right $baseOffset
+
+    +mobile()
+      width 100%
+      padding-left 0
+      padding-right $baseOffsetMobile
+      position absolute
+      bottom -12px
+      left 0
+      right 0
+
+  &__submenu-item
+    text-transform uppercase
+    margin-bottom 30px
+
+    +mobile()
+      margin-bottom 10px
+
+    &_language
+      +mobile()
+        text-align right
+        position absolute
+        max-width 70%
+        right 0
+        bottom 0
+
+  &__submenu-image
+    display inline-block
+    vertical-align top
+    margin-top 3px
+    margin-right 10px
+
+  &__submenu-link
+    underline-link-style()
+    color $gray
+    font-size 16px
+
+    &:hover
+      color $white
+
+  &__menu
+    width 50%
+    padding-left $baseOffset
+
+    +mobile()
+      width 100%
+      padding-left 0
+
+  &__menu-item
+    margin-bottom 28px
+
+    +mobile()
+      margin-bottom 10px
+
+  &__menu-link
+    font-avalon()
+    underline-link-style()
+    font-size 40px
+    color $gray
+
+    +mobile()
+      text-transform uppercase
+      font-size 26px
+
+    &:hover
+      color $white
+
+  &__button
+    position absolute
+    top $baseOffset
+    right $baseOffset
+    z-index 30
+
+    +mobile()
+      top $baseOffsetMobile
+      right $baseOffsetMobile
+
+  &__button-search
+    add-area(80, 80)
+    position absolute
+    margin-right ($baseOffset * 2)
+    font-size 22px
+    color currentColor
+    top $baseOffset
+    right $baseOffset
+    z-index 30
+    transition color .3s ease
+
+    +mobile()
+      top $baseOffsetMobile
+      right $baseOffsetMobile
+      margin-right 60px
+
+    &:hover
+      color $blue
+
+  &__search-wrapper
+    margin-left 280px
+    margin-right 175px
+    overflow hidden
+
+    +mobile()
+      margin-left 0
+      margin-right 0
+      margin-top 80px
+      margin-bottom 20px
+
+  &__search-form
+    position relative
+
+  &__search-input
+    reset-autofill($white)
+    text-smaller()
+    width 100%
+    color currentColor
+    height 40px
+    padding-bottom 16px
+    border-bottom 1px solid currentColor
+    padding-left 40px
+    border-radius 0
+
+    +mobile()
+      padding-left 0
+
+  &__search-submit
+    text-smaller()
+    underline-link-style()
+    position absolute
+    right 0
+    top 5px
+
+  &__search-menu-wrapper
+    margin-top 40px
+    display flex
+    padding-left 280px
+    padding-right 175px
+
+    +mobile()
+      padding-left 0
+      padding-right 0
+
+  &__search-menu
+    color $gray
+
+  &__search-menu-item
+    margin-bottom 22px
+
+  &__search-menu-link
+    text-smaller()
+    underline-link-style()

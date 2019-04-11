@@ -1,0 +1,81 @@
+.search-page
+  container()
+  padding-top 180px
+  min-height 100vh
+  padding-bottom 100px
+
+  +mobile()
+    padding-top 120px
+
+  &__container
+    padding-left 280px
+    padding-right 170px
+
+    +tablet()
+      padding 0
+
+  &__form
+    position relative
+    margin-bottom 40px
+
+    .icon
+      position absolute
+      font-size 22px
+      color currentColor
+      top 0
+      left 0
+
+  &__input
+    reset-autofill($black)
+    text-smaller()
+    width 100%
+    color currentColor
+    height 40px
+    padding-bottom 16px
+    border-bottom 1px solid #cccccc
+    padding-left 40px
+
+  &__submit
+    text-smaller()
+    underline-link-style($black)
+    position absolute
+    right 0
+    top 5px
+
+  &__subtitle
+    text-smaller()
+    margin-bottom 14px
+
+  &__carousel
+    padding-bottom 16px
+    border-bottom 1px solid #e5e5e5
+    margin-bottom 28px
+
+  &__tabs
+    margin-top 28px
+
+  &__result-list-item
+    background $grayLightest
+    padding 16px 16px 10px
+
+    &:not(:last-child)
+      margin-bottom 1px
+
+  &__result-list-link
+    text-smaller()
+    underline-link-style($black)
+    color #606060
+
+  &__search-menu-wrapper
+    margin-top 40px
+    margin-bottom 36px
+
+  &__search-menu
+    color $gray
+
+  &__search-menu-item
+    margin-bottom 22px
+
+  &__search-menu-link
+    text-smaller()
+    underline-link-style(currentColor)

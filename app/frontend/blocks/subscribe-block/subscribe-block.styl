@@ -1,0 +1,87 @@
+.subscribe-block
+  background $black
+  color $white
+  padding-top 120px
+  padding-bottom 100px
+
+  +mobile()
+    padding-top 40px
+    padding-bottom 40px
+
+  &__inner
+    container()
+    max-width (1170px + $baseOffset * 2)
+    display flex
+    align-items flex-start
+
+    +mobile()
+      display block
+
+  &__title
+    font-avalon()
+    text-small()
+    width 50%
+    padding-right $baseOffset
+    line-height (32 / 24)
+    margin-bottom $baseOffset
+    margin-top -9px
+
+    +mobile()
+      margin-top 0
+      width 100%
+
+  &__form-wrapper
+    min-width 40%
+    margin-left auto
+
+  &__message
+    text-small-2()
+    margin-top -8px
+
+  &__form
+    display flex
+    align-items flex-start
+    margin-top -1px
+    border-bottom 1px solid $grayDarker
+    padding 0
+    min-height auto
+
+    +mobile()
+      width 100%
+
+  &__input-wrapper
+    flex-grow 1
+    margin-right $baseOffset
+
+  &__input
+    reset-autofill($white)
+    text-small-2()
+    padding 0
+    color currentColor
+    line-height 1
+    margin-top -3px
+    padding-bottom 15px
+    width 100%
+
+    +placeholder-color(currentColor)
+      opacity .5
+      transition opacity .3s ease
+
+    +mobile()
+      margin-right $baseOffsetMobile
+
+    &:focus
+      +placeholder-color(currentColor)
+        opacity 0
+
+  &__input-error
+    text-align left
+    left 0
+
+  &__submit
+    text-small-2()
+    underline-link-style()
+    text-align right
+    color currentColor
+    margin-left auto
+    flex-shrink 0

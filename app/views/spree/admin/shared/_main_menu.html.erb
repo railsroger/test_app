@@ -1,0 +1,108 @@
+<% if can?(:admin, Spree::HeroSlide) || can?(:admin, Spree::CompanyBlock) %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.home'), icon: "home", sub_menu: "home", url: "#sidebar-home" %>
+  </ul>
+<% end %>
+
+<% if can? :admin, Spree::Product %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.products'), icon: "th-large", sub_menu: "product", url: "#sidebar-product" %>
+  </ul>
+<% end %>
+
+<% if can? :admin, Spree::Product %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.product_categories'), icon: "th-large", sub_menu: "categories", url: "#sidebar-categories" %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::CompanyPage) %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.pages'), icon: "file", sub_menu: "pages", url: "#sidebar-pages" %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::News) %>
+  <ul class="nav nav-sidebar">
+    <%= tab t('.news'), url: spree.admin_news_index_path, icon: 'bullhorn' %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::Question) %>
+  <ul class="nav nav-sidebar">
+    <%= tab t('.knowledge_center'), url: spree.admin_questions_path, icon: 'question-sign' %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::Message) %>
+  <ul class="nav nav-sidebar">
+    <%= tab t('.messages'), url: spree.admin_messages_path, icon: 'inbox' %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::Subscriber) %>
+  <ul class="nav nav-sidebar">
+    <%= tab t('.subscribers'), url: spree.admin_subscribers_path, icon: 'envelope' %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::File) %>
+  <ul class="nav nav-sidebar">
+    <%= tab t('.files'), url: spree.admin_files_path, icon: 'file' %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::Download) %>
+  <ul class="nav nav-sidebar">
+    <%= tab t('.downloads'), url: spree.admin_downloads_path, icon: 'cloud-download' %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::CompanyPage) %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.store'), icon: "shopping-cart", sub_menu: "store", url: "#sidebar-store" %>
+  </ul>
+<% end %>
+
+<% if can?(:admin, Spree::Contact) %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.contacts'), icon: "th-large", sub_menu: "contacts", url: "#sidebar-contacts" %>
+  </ul>
+<% end %>
+
+<% if Spree.user_class && can?(:admin, Spree.user_class) %>
+  <ul class="nav nav-sidebar">
+    <%= tab *Spree::BackendConfiguration::USER_TABS, url: spree.admin_users_path, icon: 'user' %>
+  </ul>
+<% end %>
+
+<% if can? :admin, current_store %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree t('.configurations'), icon: "cog", sub_menu: "configuration", url: "#sidebar-configuration" %>
+  </ul>
+<% end %>
+
+
+<% if false && can?(:admin, Spree::Admin::ReportsController) %>
+  <ul class="nav nav-sidebar">
+    <%= tab *Spree::BackendConfiguration::REPORT_TABS, icon: 'file'  %>
+  </ul>
+<% end %>
+
+<% if false && can?(:admin, Spree::Promotion) %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree Spree.t(:promotions), icon: "gift", sub_menu: "promotion", url: "#sidebar-promotions" %>
+  </ul>
+<% end %>
+
+<% if false && can?(:admin, Spree::Order) %>
+  <ul class="nav nav-sidebar">
+    <%= tab *Spree::BackendConfiguration::ORDER_TABS, icon: 'shopping-cart' %>
+  </ul>
+<% end %>
+
+<% if false && (can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn)) %>
+  <ul class="nav nav-sidebar">
+    <%= main_menu_tree Spree.t(:returns), icon: "transfer", sub_menu: "returns", url: "#sidebar-returns" %>
+  </ul>
+<% end %>

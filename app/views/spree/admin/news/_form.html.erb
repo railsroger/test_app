@@ -1,0 +1,87 @@
+<div data-hook="admin_footer_item_form_fields" class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :is_published, class: ['form-group'] do %>
+      <%= f.label :is_published do %>
+        <%= f.check_box :is_published %>
+        <%= Spree.t(:is_published) %>
+      <% end %>
+    <% end %>
+
+    <%= f.field_container :published_on, class: ['form-group'] do %>
+      <%= f.label :published_on, t('.published_on') %>
+      <%= f.text_field :published_on, value: datepicker_field_value(@news.published_on || Date.today), class: 'datepicker form-control' %>
+      <%= f.error_message_on :published_on %>
+    <% end %>
+
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title, t('.title') %> <span class="required">*</span>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+
+    <%= f.field_container :category_id, class: ['form-group'] do %>
+      <%= f.label :category_id, t('.category') %>
+      <%= f.select(:category_id, Spree::NewsCategory.all.collect {|c| [c.name, c.id]}, {}, { class: 'select2' }) %>
+      <%= f.error_message_on :category_id %>
+    <% end %>
+
+    <%= f.field_container :sponsorship_id, class: ['form-group'] do %>
+      <%= f.label :sponsorship_id, t('.sponsorship') %>
+      <%= f.select(:sponsorship_id, Spree::Sponsorship.all.collect {|c| [c.name, c.id]}, { include_blank: 'None'  }, { class: 'select2' }) %>
+      <%= f.error_message_on :sponsorship_id %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :list_image, class: ['form-group'] do %>
+      <%= f.label :list_image, Spree.t(:list_image) %>
+      <br/>
+      <%= link_to image_tag(@news.list_image.url(:admin)), @news.list_image.url(:normal) if @news.list_image? %>
+      <br/>
+      <%= f.file_field :list_image %>
+      <p class="help-block">800x900</p>
+    <% end %>
+
+    <%= f.field_container :main_image, class: ['form-group'] do %>
+      <%= f.label :main_image, Spree.t(:main_image) %>
+      <br/>
+      <%= link_to image_tag(@news.main_image.url(:admin)), @news.main_image.url(:normal) if @news.main_image? %>
+      <br/>
+      <%= f.file_field :main_image %>
+      <p class="help-block">1600x900</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <%= f.field_container :text_raw, class: ['form-group'] do %>
+      <%= f.label :text_raw, t('.text') %>
+      <%= f.text_area :text_raw, class: 'form-control editable', rows: 30, 'data-redactor' => true %>
+      <%= f.error_message_on :text_raw %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :head do %>
+  <script>
+      $.fn.redactor_init = function () {
+          var el = this;
+          $(el).redactor({
+              //lang: '<%= I18n.locale %>',
+              formattingTags: ['p', 'blockquote', 'pre', 'h2', 'h3', 'h4', 'div'],
+              iframe: true,
+              css: <%== [asset_path('application.css')].to_json %>,
+              minHeight: 650,
+              imageFloatMargin: '30px',
+              imageGetJson: false,
+              convertDivs: false,
+              pastePlainText: true,
+              imageUpload: '<%= admin_image_files_path %>',
+              plugins: ['gallery']
+          });
+      };
+      $(function () {
+          $('textarea[data-redactor]').redactor_init();
+      });
+  </script>
+<% end %>

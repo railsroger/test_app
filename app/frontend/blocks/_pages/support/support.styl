@@ -1,0 +1,137 @@
+.support
+  &__subtitle
+    container()
+    text-big-2()
+    text-align center
+    padding-top 60px
+    padding-bottom 55px
+
+  &__buttons
+    display flex
+
+    +mobile()
+      flex-wrap wrap
+
+  &__button-input
+    opacity 0
+    width 0
+    height 0
+
+    &:checked + .support__button-label
+      background #f7f7f7
+      color $blackDarker
+
+  &__button-label
+    container()
+    text-smaller()
+    width 25%
+    text-align center
+    padding-top 100px
+    padding-bottom 100px
+    background $white
+    transition all .3s ease
+    color #8b8b8b
+    cursor pointer
+
+    +mobile()
+      width 50%
+      padding-top 40px
+      padding-bottom 40px
+
+    &:hover
+      color $blackDarker
+
+  &__button-icon
+    display block
+    margin-left auto
+    margin-right auto
+    height 64px
+    max-width 64px
+    margin-bottom 90px
+    opacity .4
+    transition opacity .3s
+    transform translateZ(0)
+
+    .support__button-label:hover &
+    .support__button-input:checked + .support__button-label &
+      opacity 1
+
+    +mobile()
+      height 40px
+      max-width 40px
+      margin-bottom 20px
+
+  &__select-wrapper
+    container()
+    margin-top 80px
+    margin-bottom 80px
+    max-width 460px
+
+  &__select
+    .support &
+      border-color #c6c6c6
+
+  &__product
+    container()
+    padding-top 200px
+    padding-bottom 200px
+
+    +mobile()
+      padding-top 20px
+      padding-bottom 80px
+
+  &__product-inner
+    display flex
+
+    +mobile()
+      display block
+
+  &__preview-wrapper
+    width 50%
+    padding-right $baseOffset
+
+    +mobile()
+      width 100%
+      margin-bottom 60px
+      padding-right 0
+
+  &__preview-inner
+    margin-left auto
+    margin-right auto
+    max-width 420px
+    width 100%
+
+  &__product-content
+    width 50%
+
+    +mobile()
+      width 100%
+
+  &__product-name
+    text-smaller()
+    text-transform uppercase
+    margin-bottom 45px
+
+  &__product-image
+    max-width 100%
+
+  &__tab-button
+    text-transform uppercase
+
+  &__document
+    padding-top 15px
+    padding-bottom 15px
+    border-bottom 1px solid #e6e6e6
+    display flex
+    align-items center
+
+  &__document-title
+    text-transform uppercase
+    display flex
+    align-items center
+    margin-right auto
+
+    .icon
+      font-size 24px
+      margin-right 12px
+      color #bfbfbf

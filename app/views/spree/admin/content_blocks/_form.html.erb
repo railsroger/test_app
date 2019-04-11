@@ -1,0 +1,371 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="form-group">
+      <%= f.label :is_active do %>
+        <%= f.check_box :is_active %>
+        <%= Spree.t(:active) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="form-group">
+      <%= f.label :kind, Spree.t(:kind) %>
+      <%= f.collection_select(:kind, Spree::ContentBlock.kinds_for_list, :last, :first, {}, { class: 'select2' }) %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.error_message_on :name %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="Image">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image, class: ['form-group'] do %>
+      <%= f.label :image, Spree.t(:image) %>
+      <br>
+      <%= link_to image_tag(@content_block.image.url(:admin)), @content_block.image.url(:normal) if @content_block.image? %>
+      <br>
+      <%= f.file_field :image %>
+      <p class="help-block">1600xANY SIZE</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="HTML">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :color, class: ['form-group'] do %>
+      <%= f.label :color, Spree.t(:font_color) %>
+      <%= f.text_field :color, class: 'form-control' %>
+      <%= f.error_message_on :color %>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :hero_ui_black, Spree.t(:ui_color) %>
+      <%= f.select(:hero_ui_black, [[Spree.t(:dark), true], [Spree.t(:white), false]], {}, { class: 'select2' }) %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :bg_color, class: ['form-group'] do %>
+      <%= f.label :bg_color, Spree.t(:bg_color) %>
+      <%= f.text_field :bg_color, class: 'form-control' %>
+      <%= f.error_message_on :bg_color %>
+    <% end %>
+
+    <%= f.field_container :bg_image, class: ['form-group'] do %>
+      <%= f.label :bg_image, Spree.t(:bg_image) %>
+      <br>
+      <%= link_to image_tag(@content_block.bg_image.url(:admin)), @content_block.bg_image.url(:normal) if @content_block.bg_image? %>
+      <br>
+      <%= f.file_field :bg_image %>
+      <p class="help-block">1600xANY SIZE</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="HTML">
+  <div class="col-xs-12 col-md-12">
+  <%= f.field_container :html, class: ['form-group'] do %>
+    <%= f.label :html, Spree.t(:html) %>
+    <%= f.text_area :html, class: 'form-control editable', rows: 15, 'data-editor' => 'html' %>
+    <%= f.error_message_on :html %>
+  <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="Text_Block">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :color, class: ['form-group'] do %>
+      <%= f.label :color, Spree.t(:font_color) %>
+      <%= f.text_field :color, class: 'form-control' %>
+      <%= f.error_message_on :color %>
+    <% end %>
+
+    <%= f.field_container :hero_ui_black, class: ['form-group'] do %>
+      <%= f.label :hero_ui_black, Spree.t(:ui_color) %>
+      <%= f.select(:hero_ui_black, [[Spree.t(:dark), true], [Spree.t(:white), false]], {}, { class: 'select2' }) %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :bg_color, class: ['form-group'] do %>
+      <%= f.label :bg_color, Spree.t(:bg_color) %>
+      <%= f.text_field :bg_color, class: 'form-control' %>
+      <%= f.error_message_on :bg_color %>
+    <% end %>
+
+    <%= f.field_container :bg_image, class: ['form-group'] do %>
+      <%= f.label :bg_image, Spree.t(:bg_image) %>
+      <br>
+      <%= link_to image_tag(@content_block.bg_image.url(:admin)), @content_block.bg_image.url(:normal) if @content_block.bg_image? %>
+      <br>
+      <%= f.file_field :bg_image %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-12">
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title, Spree.t(:title) %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+
+    <%= f.field_container :text, class: ['form-group'] do %>
+      <%= f.label :text, Spree.t(:text) %>
+      <%= f.text_area :text, class: 'form-control', rows: 15 %>
+      <%= f.error_message_on :text %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="Overview">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :color, class: ['form-group'] do %>
+      <%= f.label :color, Spree.t(:font_color) %>
+      <%= f.text_field :color, class: 'form-control' %>
+      <%= f.error_message_on :color %>
+    <% end %>
+
+    <%= f.field_container :hero_ui_black, class: ['form-group'] do %>
+      <%= f.label :hero_ui_black, Spree.t(:ui_color) %>
+      <%= f.select(:hero_ui_black, [[Spree.t(:dark), true], [Spree.t(:white), false]], {}, { class: 'select2' }) %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :bg_color, class: ['form-group'] do %>
+      <%= f.label :bg_color, Spree.t(:bg_color) %>
+      <%= f.text_field :bg_color, class: 'form-control' %>
+      <%= f.error_message_on :bg_color %>
+    <% end %>
+
+    <%= f.field_container :bg_image, class: ['form-group'] do %>
+      <%= f.label :bg_image, Spree.t(:bg_image) %>
+      <br>
+      <%= link_to image_tag(@content_block.bg_image.url(:admin)), @content_block.bg_image.url(:normal) if @content_block.bg_image? %>
+      <br>
+      <%= f.file_field :bg_image %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Overview">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image, class: ['form-group'] do %>
+      <%= f.label :image, Spree.t(:image) %>
+      <br>
+      <%= link_to image_tag(@content_block.image.url(:admin)), @content_block.image.url(:normal) if @content_block.image? %>
+      <br>
+      <%= f.file_field :image %>
+      <p class="help-block">fit in 500x500, PNG with transparency</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :logo, class: ['form-group'] do %>
+      <%= f.label :logo, Spree.t(:logo) %>
+      <br>
+      <%= link_to image_tag(@content_block.logo.url(:admin)), @content_block.logo.url if @content_block.logo? %>
+      <br>
+      <%= f.file_field :logo %>
+      <p class="help-block">fit in 150x100, PNG with transparency</p>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Overview">
+  <div class="col-xs-12 col-md-12">
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title, Spree.t(:title) %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+
+    <%= f.field_container :text, class: ['form-group'] do %>
+      <%= f.label :text, Spree.t(:text) %>
+      <%= f.text_area :text, class: 'form-control', rows: 15 %>
+      <%= f.error_message_on :text %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="Slider_Images">
+  <div class="col-xs-12 col-md-12">
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title, Spree.t(:title) %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Slider_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image, class: ['form-group'] do %>
+      <%= f.label :image, Spree.t(:left_image) %>
+      <br>
+      <%= link_to image_tag(@content_block.image.url(:admin)), @content_block.image.url(:normal) if @content_block.image? %>
+      <br>
+      <%= f.file_field :image %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image2, class: ['form-group'] do %>
+      <%= f.label :image2, Spree.t(:right_image) %>
+      <br>
+      <%= link_to image_tag(@content_block.image2.url(:admin)), @content_block.image2.url(:normal) if @content_block.image2? %>
+      <br>
+      <%= f.file_field :image2 %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Slider_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :html, class: ['form-group'] do %>
+      <%= f.label :html, Spree.t(:parameter_left) %>
+      <%= f.text_area :html, class: 'form-control editable', rows: 5, 'data-editor' => 'html' %>
+      <%= f.error_message_on :html %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :html2, class: ['form-group'] do %>
+      <%= f.label :html2, Spree.t(:parameter_right) %>
+      <%= f.text_area :html2, class: 'form-control editable', rows: 5, 'data-editor' => 'html' %>
+      <%= f.error_message_on :html2 %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" data-kinds="Four_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image, class: ['form-group'] do %>
+      <%= f.label :image, Spree.t(:image_1) %>
+      <br>
+      <%= link_to image_tag(@content_block.image.url(:admin)), @content_block.image.url(:normal) if @content_block.image? %>
+      <br>
+      <%= f.file_field :image %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title, Spree.t(:title_1) %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+
+    <%= f.field_container :text, class: ['form-group'] do %>
+      <%= f.label :text, Spree.t(:text_1) %>
+      <%= f.text_area :text, class: 'form-control', rows: 1 %>
+      <%= f.error_message_on :text %>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Four_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image2, class: ['form-group'] do %>
+      <%= f.label :image2, Spree.t(:image_2) %>
+      <br>
+      <%= link_to image_tag(@content_block.image2.url(:admin)), @content_block.image2.url(:normal) if @content_block.image2? %>
+      <br>
+      <%= f.file_field :image2 %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :title2, class: ['form-group'] do %>
+      <%= f.label :title2, Spree.t(:title_2) %>
+      <%= f.text_field :title2, class: 'form-control' %>
+      <%= f.error_message_on :title2 %>
+    <% end %>
+
+    <%= f.field_container :text2, class: ['form-group'] do %>
+      <%= f.label :text2, Spree.t(:text_2) %>
+      <%= f.text_area :text2, class: 'form-control', rows: 1 %>
+      <%= f.error_message_on :text2 %>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Four_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image3, class: ['form-group'] do %>
+      <%= f.label :image3, Spree.t(:image_3) %>
+      <br>
+      <%= link_to image_tag(@content_block.image3.url(:admin)), @content_block.image3.url(:normal) if @content_block.image3? %>
+      <br>
+      <%= f.file_field :image3 %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :title3, class: ['form-group'] do %>
+      <%= f.label :title3, Spree.t(:title_3) %>
+      <%= f.text_field :title3, class: 'form-control' %>
+      <%= f.error_message_on :title3 %>
+    <% end %>
+
+    <%= f.field_container :text3, class: ['form-group'] do %>
+      <%= f.label :text3, Spree.t(:text_3) %>
+      <%= f.text_area :text3, class: 'form-control', rows: 1 %>
+      <%= f.error_message_on :text3 %>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Four_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :image4, class: ['form-group'] do %>
+      <%= f.label :image4, Spree.t(:image_4) %>
+      <br>
+      <%= link_to image_tag(@content_block.image4.url(:admin)), @content_block.image4.url(:normal) if @content_block.image4? %>
+      <br>
+      <%= f.file_field :image4 %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :title4, class: ['form-group'] do %>
+      <%= f.label :title4, Spree.t(:title_4) %>
+      <%= f.text_field :title4, class: 'form-control' %>
+      <%= f.error_message_on :title4 %>
+    <% end %>
+
+    <%= f.field_container :text4, class: ['form-group'] do %>
+      <%= f.label :text4, Spree.t(:text_4) %>
+      <%= f.text_area :text4, class: 'form-control', rows: 1 %>
+      <%= f.error_message_on :text4 %>
+    <% end %>
+  </div>
+</div>
+<div class="row" data-kinds="Four_Images">
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :color, class: ['form-group'] do %>
+      <%= f.label :color, Spree.t(:font_color) %>
+      <%= f.text_field :color, class: 'form-control' %>
+      <%= f.error_message_on :color %>
+    <% end %>
+
+    <%= f.field_container :hero_ui_black, class: ['form-group'] do %>
+      <%= f.label :hero_ui_black, Spree.t(:ui_color) %>
+      <%= f.select(:hero_ui_black, [[Spree.t(:dark), true], [Spree.t(:white), false]], {}, { class: 'select2' }) %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.field_container :bg_color, class: ['form-group'] do %>
+      <%= f.label :bg_color, Spree.t(:bg_color) %>
+      <%= f.text_field :bg_color, class: 'form-control' %>
+      <%= f.error_message_on :bg_color %>
+    <% end %>
+
+    <%= f.field_container :bg_image, class: ['form-group'] do %>
+      <%= f.label :bg_image, Spree.t(:bg_image) %>
+      <br>
+      <%= link_to image_tag(@content_block.bg_image.url(:admin)), @content_block.bg_image.url(:normal) if @content_block.bg_image? %>
+      <br>
+      <%= f.file_field :bg_image %>
+      <p class="help-block">1600x800</p>
+    <% end %>
+  </div>
+</div>

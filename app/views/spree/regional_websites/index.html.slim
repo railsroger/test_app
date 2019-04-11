@@ -1,0 +1,20 @@
+section.page.regional-websites(
+  style="background-image: url('/images/regional-websites/map.jpg')"
+)
+  .page__section
+    .page__title.page__title_centered.page__title_bigger
+      == t('.regional_websites')
+
+    .regional-websites__list
+      - for country in @countries
+        .regional-websites__item
+          a.regional-websites__link(
+            href=country.link
+          )
+            - if country.flag?
+              img.regional-websites__flag-image(
+                src=country.flag.url
+                alt=country.name
+              )
+
+            = country.name

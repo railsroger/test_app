@@ -1,0 +1,17 @@
+div(
+  class="catalog-banner #{'catalog-banner_ui_white' if design_taxon.ui_black}"
+  style="background-image: url('#{design_taxon.bg_image? ? design_taxon.bg_image.url : nil}'); background-color: #{design_taxon.bg_color};"
+  data-ui-white=design_taxon.ui_black?
+)
+  .catalog-banner__content
+    .catalog-banner__content-inner
+      h1.catalog-banner__title = taxon.name
+      .catalog-banner__description
+        == simple_format taxon.description
+
+  - if design_taxon.image?
+    .catalog-banner__image-wrapper
+      img.catalog-banner__image(
+        src=design_taxon.image.url
+        alt=taxon.name
+      )

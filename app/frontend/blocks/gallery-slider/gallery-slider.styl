@@ -1,0 +1,162 @@
+@import '~swiper/dist/css/swiper.css'
+
+.gallery-slider
+  height 100vh
+  background-color $blackDarker
+  color $white
+  overflow hidden
+  position relative
+
+  &__title
+    text-bigger()
+    position absolute
+    top 180px
+    z-index 2
+    text-align center
+    color $white
+    left 50%
+    transform translateX(-50%)
+    overflow hidden
+
+  &__title-inner
+    transform translateY(0%) translateZ(0)
+    transition transform .3s ease
+    transition-delay .8s
+
+    .gallery-slider_hidden &
+      transform translateY(-100%) translateZ(0)
+
+  &__container
+    height 100%
+    transform translateX(0%) translateZ(0)
+    transition transform .8s ease
+
+    .gallery-slider_hidden &
+      transform translateX(100%) translateZ(0)
+
+  &__slide
+    height 100%
+    width (100% / 3)
+
+    +mobile()
+      width 100%
+
+  &__slide-wrapper
+    position absolute
+    top 0
+    background-color $blackDarker
+    background-size cover
+    background-position 50%
+    height 100%
+    width 100%
+    transition width .5s ease, left .5s ease, transform .5s ease
+    will-change width, left
+    transform translateX(-50%) translateZ(0)
+    left 50%
+    overflow hidden
+
+    .swiper-slide-active &
+      width 151% !important
+
+      +mobile()
+        width 100% !important
+
+    .swiper-slide-prev &
+      width 76% !important
+      left 37%
+      // transform translateX(-66.6666%) translateZ(0)
+
+      +mobile()
+        width 100% !important
+        left 50%
+
+    .swiper-slide-next &
+      width 76% !important
+      left 63%
+      // transform translateX(-33.3333%) translateZ(0)
+
+      +mobile()
+        width 100% !important
+        left 50%
+
+  &__slide-inner
+    height 100%
+    width 100%
+    opacity .4
+    transition opacity .5s ease
+
+    .swiper-slide-active &
+      opacity 1
+
+    .swiper-slide-prev &
+      ~ .swiper-wrapper &
+        .gallery-slider__navigation_left:hover &
+          opacity .8
+
+    .swiper-slide-next &
+      ~ .swiper-wrapper &
+        .gallery-slider__navigation_right:hover &
+          opacity .8
+
+  &__slide-cover
+    position absolute
+    left 50%
+    top 0
+    height 100%
+    width 100%
+    min-width 50vw
+    transform translateX(-50%)
+    background-size cover
+    background-position 50%
+
+  &__content
+    container()
+    position absolute
+    bottom $baseOffset
+    left 0
+    right 0
+
+    &_centred
+      text-align center
+
+  &__date
+    display flex
+    margin-bottom 14px
+
+  &__day
+    text-big()
+
+  &__month
+    text-small()
+    text-transform uppercase
+    margin-top 4px
+    margin-left 24px
+
+  &__slide-title
+    text-smaller()
+    text-transform uppercase
+
+  &__link
+    position absolute
+    left 0
+    top 0
+    height 100%
+    width 100%
+    color currentColor
+    text-decoration none
+
+  &__navigation
+    position absolute
+    width 25%
+    top 0
+    bottom 0
+    z-index 2
+
+    +mobile()
+      display none
+
+    &_left
+      left 0
+
+    &_right
+      right 0

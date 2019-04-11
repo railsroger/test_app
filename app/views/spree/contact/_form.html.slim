@@ -1,0 +1,110 @@
+transition(
+  @enter="fadeIn"
+  @leave="fadeOut"
+  mode="out-in"
+)
+  template(
+    v-if="formIsSuccess"
+  )
+    div
+      .form__message
+        p
+          == t('.success_title')
+
+        p
+          == t('.success_message')
+
+      .form__footer
+        a.form__button(
+          href=root_url
+        ) == t('.return_to_homepage')
+
+  form.contact__form(
+    v-else
+    @submit.prevent="validateBeforeSubmit"
+    target="#"
+    method="POST"
+  )
+    = token_tag
+    .form__input.input-select
+      .input-select__input-wrapper
+        select.input-select__input(
+          name="reason"
+          type="text"
+          v-validate="'required'"
+        )
+          option(value="" disabled selected) == t('.select_a_reason')
+          option(value="General") == t('.general')
+          option(value="Customer Service") == t('.customer_service')
+          option(value="Product Consult") == t('.product_consult')
+          option(value="Partnership") == t('.partnership')
+
+        template(v-if="errors.has('reason')")
+          .form__input-error
+            | {{ errors.first('reason') }}
+
+    .form__row
+      .form__column
+        .form__input.input-text
+          input.input-text__input(
+            name="email"
+            placeholder="#{t('.email_placeholder')}"
+            type="text"
+            v-validate="'required|email'"
+          )
+          template(v-if="errors.has('email')")
+            .form__input-error
+              == t('.email_error')
+
+      .form__column
+        .form__input.input-text
+          input.input-text__input(
+            name="address"
+            placeholder="#{t('.address_placeholder')}"
+            type="text"
+            v-validate="'required'"
+          )
+          template(v-if="errors.has('address')")
+            .form__input-error
+              == t('.address_error')
+
+    .form__row
+      .form__column
+        .form__input.input-text
+          input.input-text__input(
+            name="name"
+            placeholder="#{t('.name_placeholder')}"
+            type="text"
+            v-validate="'required'"
+          )
+          template(v-if="errors.has('name')")
+            .form__input-error
+              == t('.name_error')
+
+      .form__column
+        .form__input.input-text
+          input.input-text__input(
+            name="phone"
+            placeholder="#{t('.phone_placeholder')}"
+            type="text"
+            v-validate="{required: true, max: 40, regex: /^([+—()0-9- ]+)$/}"
+          )
+          template(v-if="errors.has('phone')")
+            .form__input-error
+              == t('.phone_error')
+
+    .form__input.input-textarea
+      textarea.input-textarea__input(
+        name="message"
+        placeholder="#{t('.message_placeholder')}"
+        type="text"
+        v-validate="'required'"
+      )
+      template(v-if="errors.has('message')")
+        .form__input-error
+          == t('.message_error')
+
+    .form__footer
+      button.form__submit(
+        type="submit"
+      ) == t('.send')

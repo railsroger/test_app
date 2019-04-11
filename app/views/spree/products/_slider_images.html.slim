@@ -1,0 +1,6 @@
+.image-comparison
+  = image_tag block.image.url, 'data-label' => block.html
+  = image_tag block.image2.url, 'data-label' => block.html2
+  .image-comparison__title
+    .image-comparison__title-inner
+      = raw block.title

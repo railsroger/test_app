@@ -1,0 +1,24 @@
+- unless image_grids[images.count].nil?
+  - ims = images.to_a
+  - grid = image_grids[ims.count]
+  .image-grid
+    - if grid.is_a?(String)
+      - img = ims.shift.attachment.url(:large)
+      div(
+        class="image-grid__item #{grid}"
+        data-gallery="gallery"
+        data-src="#{img}"
+        style="background-image: url('#{img}')"
+      )
+    - elsif grid.is_a?(Array)
+      - grid.each_with_index do |item, column|
+        - if item.is_a?(Array)
+          .image-grid__column
+            - item.each_with_index do |item, index|
+              - img = ims.shift.attachment.url(:large)
+              div(
+                class="image-grid__item #{item}"
+                data-gallery="gallery"
+                data-src="#{img}"
+                style="background-image: url('#{img}')"
+              )

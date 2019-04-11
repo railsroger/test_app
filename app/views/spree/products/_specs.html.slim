@@ -1,0 +1,20 @@
+.specs-list
+  .specs-list__more
+    .specs-list__more-inner
+      - @product.product_properties.group_by { |pp| pp.property.group }.each do |group|
+        .specs-list__more-group
+          .specs-list__more-title
+            = group[0]
+
+          - group[1].each do |prop|
+            .specs-list__more-item
+              .specs-list__more-item-name
+                = prop.property.presentation
+              .specs-list__more-item-value
+                = prop.value
+
+  button.specs-list__button(type="button")
+    .specs-list__button-text-wrapper
+      .specs-list__button-text == t('.full_specs')
+      .specs-list__button-text == t('.hide_specs')
+    = render partial: 'shared/icon', locals: { iconName: 'arrow-bottom' }

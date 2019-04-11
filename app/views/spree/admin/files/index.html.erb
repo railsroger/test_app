@@ -1,0 +1,46 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::File) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_file), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_file_link' } %>
+  </span>
+<% end if can?(:create, Spree::File) %>
+
+<div id="new_file"></div>
+
+<% if @collection.any? %>
+  <table class="table" id="listing_files">
+    <thead>
+    <tr data-hook="admin_files_index_headers">
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:file_name) %></th>
+      <th><%= Spree.t(:file_size) %></th>
+      <th><%= Spree.t(:content_type) %></th>
+      <th data-hook="admin_files_index_header_actions" class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @collection.each do |file| %>
+      <tr id="<%= spree_dom_id file %>" data-hook="admin_files_index_rows" class="<%= cycle('odd', 'even') %>">
+        <td><%= file.name %></td>
+        <td><%= file.attachment_file_name %></td>
+        <td><%= number_to_human_size file.attachment_file_size %></td>
+        <td><%= file.attachment_content_type %></td>
+        <td class="actions actions-3 text-right" data-hook="admin_files_index_row_actions">
+          <%= link_to_with_icon('link', nil, '#', class: 'btn btn-sm copy-url', 'data-clipboard-snippet' => '', 'data-clipboard-text' => file.attachment.url, 'data-original-title' => 'Copy URL', no_text: true) %>
+          <%= link_to_edit(file, class: 'admin_edit_downloads_category', no_text: true) if can?(:edit, file) %>
+          <%= link_to_delete file, no_text: true if can?(:delete, file) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::File)) %>
+  </div>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>

@@ -1,0 +1,80 @@
+section.page.knowledge-center#knowledge-center
+  .page__cover.page__section.page__section_centered(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('/images/knowledge-center/bg.jpg')"
+    )
+
+    .page__container
+      h1.page__title
+        == t('.knowledge_center')
+
+      .page__title-description
+        == t('.knowledge_paragraph')
+
+  .knowledge-center__body
+    .stick-bar
+      form.stick-bar__inner(data-ui-white)
+        .select__overlay
+
+        .stick-bar__input-wrapper
+          label.stick-bar__input-label(
+            for="knowledge-center-search"
+          )
+            = render partial: 'shared/icon', locals: {iconName: 'icon-search'}
+            .visibility-hidden == t('.search')
+
+          = search_field_tag :s, params[:s], class: 'stick-bar__input', id: 'knowledge-center-search', placeholder: t('.search')
+
+          - if params[:kind]
+            input(
+              id="knowledge-center-kind"
+              type="hidden"
+              name="kind"
+              value=params[:kind]
+            )
+
+        .stick-bar__list
+          .knowledge-center__search-select
+            .select
+              select.select__input
+                option(value="") == t('.all')
+                - Spree::QuestionsCategory.all.each do |kind|
+                  - selected = params['kind'].to_i == kind.id
+                  option(selected=selected value="?kind=#{kind.id}" id=kind.id) #{kind.name}
+
+          a.stick-bar__link.knowledge-center__search-link(
+            class="#{params[:kind].blank? ? 'active' : nil}"
+            href="?kind=#{"&s=#{params[:s]}" if params[:s]}"
+          )
+            .stick-bar__link-inner == t('.all')
+          - Spree::QuestionsCategory.all.each do |kind|
+            a.stick-bar__link.knowledge-center__search-link(
+              class="#{kind.id == params[:kind].to_i ? 'active' : nil}"
+              href="?kind=#{kind.id}#{"&s=#{params[:s]}" if params[:s]}"
+            )
+              .stick-bar__link-inner = kind.name
+
+          button.stick-bar__link.stick-bar__link_primary(
+            href="#"
+          ) == t('.search')
+
+    - if @questions.empty?
+      .search-message
+        .search-message__message-icon
+          = render partial: 'shared/icon', locals: {iconName: 'search'}
+        .search-message__message-text
+          == t('.no_results')
+    - else
+      .collapse-list
+        - @questions.each do |question|
+          .collapse-list__item
+            button.collapse-list__head
+              == question.question
+
+            .collapse-list__body
+              .collapse-list__body-inner
+                == simple_format question.answer
+
+  = render partial: 'need_more_help'

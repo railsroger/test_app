@@ -1,0 +1,59 @@
+.button-cross
+  add-area(40, 40)
+  width 40px
+  height 40px
+  color currentColor
+  cursor pointer
+  transition transform .3s ease, opacity .3s ease, color .3s ease
+  transform rotate(0) translateZ(0)
+  cursor pointer
+
+  +mobile()
+    width 30px
+    height 30px
+
+  &:hover
+    .button-cross__inner
+      &:before
+        transform translateY(-4px) rotate(0deg) translateZ(0)
+
+      &:after
+        transform translateY(4px) rotate(0deg) translateZ(0)
+
+  &_state_cross
+    .button-cross__inner
+      &:before
+        transform rotate(45deg) translateY(0px) translateZ(0) !important
+
+      &:after
+        transform rotate(-45deg) translateY(0px) translateZ(0) !important
+
+  &_color
+    &_black
+      color $blackLight
+
+  &_disabled
+    cursor default
+    opacity .4
+
+  &__inner
+    display block
+    position absolute
+    height 3px
+    top 8px
+    width 100%
+
+    &:before
+    &:after
+      abs()
+      content ''
+      transform-origin 50%
+      width 100%
+      background currentColor
+      transition transform .3s ease
+
+    &:before
+      transform rotate(0) translateY(-6px) translateZ(0)
+
+    &:after
+      transform rotate(0) translateY(6px) translateZ(0)

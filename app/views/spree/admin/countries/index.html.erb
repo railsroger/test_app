@@ -1,0 +1,35 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::Country) %>
+<% end %>
+
+<% %w(active inactive).each do |scope| %>
+  <% if @countries.send(scope).any? %>
+    <h4><%= scope.humanize %></h4>
+    <table class="table sortable" id="listing_<%= scope %> %>_countries" data-hook data-sortable-link="<%= update_positions_admin_countries_url %>">
+      <thead>
+        <tr data-hook="option_header">
+          <th class="no-border"></th>
+          <th><%== t('.flag') %></th>
+          <th><%== t('.name') %></th>
+          <th><%== t('.iso3') %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @countries.send(scope).each do |country| %>
+          <tr class="spree_country <%= cycle('odd', 'even')%>" id="<%= spree_dom_id country %>" data-hook="option_row">
+            <td class="move-handle text-center">
+              <span class="icon icon-move handle"></span>
+            </td>
+            <td><%= country.flag? ? image_tag(country.flag.url) : '—' %></td>
+            <td><%= country.name %></td>
+            <td class="presentation"><%= country.iso3 %></td>
+            <td class="actions actions-2 text-right">
+              <%= link_to_edit(country, class: 'admin_edit_country', no_text: true) if can?(:edit, country) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

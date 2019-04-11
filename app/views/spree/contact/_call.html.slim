@@ -1,0 +1,58 @@
+.contact__call-block(
+  :class="{'contact__call-block_opened': openCallBlockIndex !== null}"
+)
+  .contact__call-buttons
+    - @contacts.each_with_index do |contact, i|
+      button.contact__call-item(
+        @click="openCallWindow(#{i})"
+        type="button"
+      )
+        .contact__call-item-inner
+          - if contact.icon?
+            img.contact__call-item-icon(
+              src=contact.icon.url
+            )
+          .contact__call-title = contact.title
+
+  - @contacts.each_with_index do |contact, i|
+
+    transition(
+      @enter="hookWindowEnter"
+      @leave="hookWindowLeave"
+    )
+      .contact__call-window(
+        v-if="openCallBlockIndex === #{i}"
+      )
+        button.contact__window-close(
+          @click="closeCallWindow"
+          type= "button"
+        ) == t('.back')
+
+        .contact__window-head
+          a(href="tel:#{contact.phone}")
+            = render partial: 'shared/icon', locals: {iconName: 'phone'}
+            = contact.phone
+
+        .contact__window-column-wrap
+          .contact__window-column
+            .contact__window-title
+              == t('.opening_hours')
+
+            .contact__window-list
+              .contact__window-item
+                .contact__window-subtitle
+                  == t('.weekdays_line_1')
+                .contact__window-value = contact.working_hours_mon_sat
+
+              .contact__window-item
+                .contact__window-subtitle
+                  == t('.weekdays_line_2')
+                .contact__window-value = contact.working_hours_sun
+
+          .contact__window-column
+            .contact__window-text
+              == simple_format contact.text
+
+              - if contact.faq_link.present? && contact.faq_text.present?
+                p
+                  a(href=contact.faq_link) = contact.faq_text

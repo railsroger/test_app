@@ -1,0 +1,32 @@
+section.catalog#catalog-page
+  - if @taxon.present? && @design_taxon.present?
+    = render partial: 'spree/products/banner', locals: { taxon: @taxon, design_taxon: @design_taxon }
+  .catalog__body(class="#{@design_taxon.try(:ui_black) ? 'catalog__body_ui_white' : nil}")
+
+    = render partial: 'spree/products/filter', locals: { taxon: @taxon, design_taxon: @design_taxon }
+    .catalog__list
+      - if @big_products.any?
+        - while @small_products.any? || @big_products.any?
+          .catalog__line
+            - left = cycle(true, false)
+            - if left && @big_products.any?
+              .catalog__group
+                div(class="catalog__item catalog__item_bordered #{@design_taxon.try(:ui_black) ? 'catalog__item_ui_white' : nil}")
+                  = render partial: 'spree/products/product_card', locals: { size: 'large', product: @big_products.shift }
+            - if @small_products.any?
+              .catalog__group
+                - 4.times
+                  div(class="catalog__item catalog__item_grouped catalog__item_bordered #{@design_taxon.try(:ui_black) ? 'catalog__item_ui_white' : nil}")
+                    = render partial: 'spree/products/product_card', locals: { size: 'small', product: @small_products.shift } if @small_products.any?
+            - elsif @big_products.any?
+              .catalog__group
+                div(class="catalog__item catalog__item_bordered #{@design_taxon.try(:ui_black) ? 'catalog__item_ui_white' : nil}")
+                  = render partial: 'spree/products/product_card', locals: { size: 'large', product: @big_products.shift }
+            - if !left && @big_products.any?
+              .catalog__group
+                div(class="catalog__item catalog__item_bordered #{@design_taxon.try(:ui_black) ? 'catalog__item_ui_white' : nil}")
+                  = render partial: 'spree/products/product_card', locals: { size: 'large', product: @big_products.shift }
+      - else
+        - while @small_products.any?
+          div(class="catalog__item catalog__item_simple catalog__item_bordered #{@design_taxon.try(:ui_black) ? 'catalog__item_ui_white' : nil}")
+            = render partial: 'spree/products/product_card', locals: { size: 'small', product: @small_products.shift }

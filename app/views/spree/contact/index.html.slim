@@ -1,0 +1,41 @@
+.contact
+  .contact__form.form(
+    @submit.prevent="validateBeforeSubmit"
+    target="#"
+    method="POST"
+  )
+    .contact__inner.form__inner
+      h1.form__title == t('.contact')
+
+      .tabs
+        .contact__controls.tabs__head.tabs__head_centered
+          button.tabs__button.tabs__button_big(
+            type="button"
+            @click="activeTabIndex = 1"
+            :class="{'active': activeTabIndex === 1}"
+          ) == t('.send_us_a_message')
+
+          button.tabs__button.tabs__button_big(
+            type="button"
+            @click="activeTabIndex = 2"
+            :class="{'active': activeTabIndex === 2}"
+          ) == t('.call_us')
+
+        transition-group.tabs__body(
+          @enter="hookTabEnter"
+          @leave="hookTabLeave"
+          tag="div"
+        )
+          .tabs__content(
+            v-show="activeTabIndex === 1"
+            key="1"
+          )
+            = render partial: 'form'
+
+          .tabs__content(
+            v-show="activeTabIndex === 2"
+            key="2"
+          )
+            = render partial: 'call'
+
+  = render partial: 'banner'

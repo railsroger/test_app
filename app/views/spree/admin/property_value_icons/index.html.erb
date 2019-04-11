@@ -1,0 +1,46 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:property_value_icons) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_icon), new_object_url, { class: "btn-success", icon: 'add', id: 'new_property_value_icon_link' } %>
+  </span>
+<% end if can?(:create, Spree::PropertyValueIcon) %>
+
+<div id="new_property_value_icon"></div>
+
+<% if @property_value_icons.any? %>
+<table class="table sortable" id="listing_property_value_icons" data-hook data-sortable-link="<%= update_positions_admin_property_value_icons_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%= Spree.t(:icon) %></th>
+      <th><%= Spree.t(:property) %></th>
+      <th><%= Spree.t(:value) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @property_value_icons.each do |property_value_icon| %>
+      <tr class="spree_property_value_icon <%= cycle('odd', 'even')%>" id="<%= spree_dom_id property_value_icon %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= image_tag(property_value_icon.icon_dark.url(:admin)) if property_value_icon.icon_dark? %></td>
+        <td><%= property_value_icon.property.try(:name) || '—' %></td>
+        <td><%= property_value_icon.value rescue '—' %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(property_value_icon, class: 'admin_edit_property_value_icon', no_text: true) if can?(:edit, property_value_icon) %>
+          <%= link_to_delete(property_value_icon, no_text: true) if can?(:delete, property_value_icon) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::PropertyValueIcon)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::PropertyValueIcon) %>!
+  </div>
+<% end %>

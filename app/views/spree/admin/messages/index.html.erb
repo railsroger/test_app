@@ -1,0 +1,43 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::Message) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:download), download_admin_messages_url(format: :xls), { class: 'btn-success', icon: 'download' } %>
+  </span>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
+
+<% if @collection.any? %>
+  <table class="table" id="listing_messages">
+    <thead>
+    <tr data-hook="admin_messages_index_headers">
+      <th><%= Spree.t(:date) %></th>
+      <th><%= Spree.t(:subject) %></th>
+      <th><%= Spree.t(:text) %></th>
+
+      <th data-hook="admin_messages_index_header_actions" class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @collection.each do |message| %>
+      <tr id="<%= spree_dom_id message %>" data-hook="admin_messages_index_rows" class="<%= cycle('odd', 'even') %>">
+        <td><%= l message.created_at, format: :short %></td>
+        <td class="subject"><%= message.subject rescue '' %></td>
+        <td class="name"><%== simple_format message.full_message %> </td>
+        <td class="actions actions-3 text-right" data-hook="admin_messages_index_row_actions">
+          <%= link_to_delete message, no_text: true if can?(:delete, message) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Message)) %>.
+  </div>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>

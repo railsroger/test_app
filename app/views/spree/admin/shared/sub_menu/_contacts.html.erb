@@ -1,0 +1,4 @@
+<ul class="collapse nav nav-pills nav-stacked" id="sidebar-contacts">
+  <%= configurations_sidebar_menu_item(Spree.t(:call_us_blocks), spree.admin_contacts_path) if can? :manage, Spree::Contact %>
+  <%= configurations_sidebar_menu_item(Spree.t(:details_and_contacts), spree.admin_contact_contents_path) if can? :manage, Spree::ContactContent %>
+</ul>

@@ -1,0 +1,89 @@
+section.page.downloads
+  .page__cover.page__section.page__section_centered(
+    data-ui-white
+  )
+    .page__cover-inner(
+      style="background-image: url('/images/downloads/1.jpg')"
+    )
+
+    .page__container
+      h1.page__title == t('.downloads')
+
+      .page__title-description
+        == t('.downloads_paragraph')
+
+  .downloads__body-mobile
+    .downloads__body-mobile-text
+      == t('.desktop_only')
+
+    a.button.button_size_big.button_color_blue(
+      href=root_url
+    ) == t('.return_to_homepage')
+
+  .downloads__body
+    .stick-bar
+      form.stick-bar__inner(data-ui-white)
+        .stick-bar__input-wrapper
+          label.stick-bar__input-label(
+            for="downloads-search"
+          )
+            = render partial: 'shared/icon', locals: {iconName: 'icon-search'}
+            .visibility-hidden
+              == t('.search')
+          = search_field_tag :s, params[:s], class: 'stick-bar__input', id: 'downloads-search', placeholder: t('.search')
+
+          input(
+            id="downloads-kind"
+            type="hidden"
+            name="kind"
+            value=""
+          )
+
+        .stick-bar__list
+          - Spree::DownloadsCategory.all.map{ |c| [c.name, c.id] }.unshift([t('.all'), nil]).each do |kind|
+            a.stick-bar__link.downloads__search-link(
+              class="#{kind.last == params[:kind].to_i || kind.last.blank? && params[:kind].blank? ? 'active' : nil}"
+              href="?kind=#{kind.last}"
+            )
+              .stick-bar__link-inner = kind.first
+
+          button.stick-bar__link.stick-bar__link_primary(
+            href="#"
+          ) == t('.search')
+
+
+    - if params[:s].blank?
+      .search-message
+        .search-message__message-icon
+          = image_tag current_store.downloads_blank_icon.url
+        .search-message__message-text
+          == current_store.downloads_blank_text
+    - else
+      - if @downloads.empty?
+        .search-message
+          .search-message__message-icon
+            = render partial: 'shared/icon', locals: {iconName: 'search'}
+          .search-message__message-text
+            == t('.no_results')
+      - else
+        .downloads__result
+          .downloads__table-wrapper
+            table.downloads__table
+              tr
+                th == t('.name')
+                th == t('.type')
+                th == t('.description')
+                th == t('.version')
+                th == t('.date')
+                th == t('.file_size')
+                th
+              - @downloads.each do |download|
+                tr
+                  td = download.name
+                  td = download.category.try(:name)
+                  td = download.description
+                  td = download.version
+                  td = download.date
+                  td = number_to_human_size download.file_file_size
+                  td
+                    = link_to t('.download'), download.file.url, target: '_blank'

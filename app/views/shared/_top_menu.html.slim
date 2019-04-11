@@ -1,0 +1,46 @@
+.top-menu__menu(data-top-menu="#{category.id}")
+  .top-menu__inner
+    .top-menu__info-column
+      .top-menu__title
+        = category.favorites_title
+
+      ul.top-menu__list-wrapper
+        ul.top-menu__list
+          - category.left_menu_items.each do |menu_item|
+            li.top-menu__list-item
+              a.top-menu__list-link(href=menu_item.link)
+                .top-menu__list-link-text
+                  = menu_item.name
+
+        ul.top-menu__list
+          - category.right_menu_items.each do |menu_item|
+            li.top-menu__list-item
+              a.top-menu__list-link(href=menu_item.link)
+                .top-menu__list-link-text
+                  = menu_item.name
+
+    .top-menu__cards-column
+      .top-menu__cards
+        .top-menu__card-wrapper
+          - if category.left_banner_image?
+            a.top-menu__card(href=category.left_banner_link)
+              img.top-menu__card-image(
+                src=category.left_banner_image.url()
+                alt=category.left_banner_title
+              )
+              .top-menu__card-title
+                = category.left_banner_title
+
+        .top-menu__card-wrapper
+          - if category.right_banner_image?
+            a.top-menu__card(href=category.right_banner_link)
+              img.top-menu__card-image(
+                src=category.right_banner_image.url()
+                alt=category.right_banner_title
+              )
+              .top-menu__card-title
+                = category.right_banner_title
+
+      .top-menu__bottom-link-wrapper
+        a.top-menu__bottom-link(href=seo_url(category))
+          = t('.view_all_category', category_name: category.name)

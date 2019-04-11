@@ -1,0 +1,42 @@
+<% content_for :page_title do %>
+  <%== t('.questions_categories') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_ot_link">
+    <%= button_link_to Spree.t(:new_category), new_object_url, { class: 'btn-success', icon: 'add', id: 'new_questions_category_link' } %>
+  </span>
+<% end if can?(:create, Spree::QuestionsCategory) %>
+
+<div id="new_questions_category"></div>
+
+<% if @questions_categories.any? %>
+<table class="table sortable" id="listing_questions_categories" data-hook data-sortable-link="<%= update_positions_admin_questions_categories_url %>">
+  <thead>
+    <tr data-hook="option_header">
+      <th class="no-border"></th>
+      <th><%== t('.name') %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions_categories.each do |questions_category| %>
+      <tr class="spree_questions_category <%= cycle('odd', 'even')%>" id="<%= spree_dom_id questions_category %>" data-hook="option_row">
+        <td class="move-handle text-center">
+          <span class="icon icon-move handle"></span>
+        </td>
+        <td><%= questions_category.name %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(questions_category, class: 'admin_edit_questions_category', no_text: true) if can?(:edit, questions_category) %>
+          <%= link_to_delete(questions_category, no_text: true) if can?(:delete, questions_category) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::QuestionsCategory)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::QuestionsCategory) %>!
+  </div>
+<% end %>

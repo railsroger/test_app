@@ -1,0 +1,82 @@
+.header
+  container()
+  padding-top $baseOffset
+  padding-bottom $baseOffset
+  position absolute
+  left 0
+  right 0
+  top 0
+  z-index 10
+  color $white
+  justify-content space-between
+
+  +mobile()
+    padding-top $baseOffsetMobile
+    padding-bottom $baseOffsetMobile
+
+  &_ui
+    &_white
+      color $white
+
+    &_black
+      color $blackLight
+
+  &__back-link
+    underline-link-style()
+    position absolute
+    top 0
+    right ($baseOffset + 175px)
+    z-index 2
+    text-transform uppercase
+    line-height 1
+    margin-top 2px
+
+    &:hover
+      .header &
+        color currentColor
+
+  &__container
+    position relative
+
+  &__logo
+    display flex
+    align-items flex-start
+    color currentColor
+    text-decoration none
+    font-size 22px
+    transition color .2s
+    z-index 31
+    position absolute
+    left 0
+    top 0
+
+  &__menu-wrapper
+    position relative
+    z-index 30
+
+  &__menu
+    white-space nowrap
+    display flex
+    justify-content center
+    padding-top 2px
+
+    +mobile()
+      display none
+
+  &__menu-item
+    text-transform uppercase
+    margin-left 38px
+    margin-right 38px
+
+    +tablet()
+      margin-left 28px
+      margin-right 28px
+
+    +mobile-large()
+      margin-left 18px
+      margin-right 18px
+
+  &__menu-link
+    underline-link-style()
+    font-size 13px
+    letter-spacing .1em

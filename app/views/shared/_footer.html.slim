@@ -1,0 +1,94 @@
+footer.footer(data-ui-white)
+  = render partial: 'shared/subscribe_block'
+
+  - if current_store.country.iso == 'RU'
+    = render partial: 'shared/cookies_popup'
+
+  button.scroll-top(
+    type="button"
+  )
+    span.visibility-hidden Scroll to top
+    = render partial: 'shared/icon', locals: {iconName: 'arrow-top'}
+
+  .footer__body
+    .footer__menu-groups
+      .footer__menu-group
+        .footer__menu
+          a.footer__logo(href=root_url)
+            = render partial: 'shared/icon', locals: { iconName: 'logo' }
+            span.visibility-hidden Hisense
+
+        ul.menu-column.footer__menu
+          - for item in left_menu_items
+            li.menu-column__item
+              a.menu-column__link(href= item.last) = item.first
+
+        ul.menu-column.footer__menu
+          - for item in categories
+            li.menu-column__item
+              a.menu-column__link(href=seo_url( item)) = item.name
+
+        ul.menu-column.footer__menu
+          - for item in right_bottom_menu_items
+            li.menu-column__item
+              a.menu-column__link(href= item.last) = item.first
+
+      .footer__menu-group
+        .footer__menu
+          .footer__socials-title = t('.follow_us')
+
+          .footer__socials
+            - if current_store.fb_link.present?
+              a.footer__social-link(href=current_store.fb_link target="_blank")
+                = render partial: 'shared/icon', locals: {iconName: 'facebook'}
+                span.visibility-hidden Facebook
+
+            - if current_store.vk_link.present?
+              a.footer__social-link(href=current_store.vk_link target="_blank")
+                = render partial: 'shared/icon', locals: {iconName: 'vk'}
+                span.visibility-hidden VK
+
+            - if current_store.tw_link.present?
+              a.footer__social-link(href=current_store.tw_link target="_blank")
+                = render partial: 'shared/icon', locals: {iconName: 'twitter'}
+                span.visibility-hidden Twitter
+
+            - if current_store.ig_link.present?
+              a.footer__social-link(href=current_store.ig_link target="_blank")
+                = render partial: 'shared/icon', locals: {iconName: 'instagram'}
+                span.visibility-hidden Instagram
+
+            - if current_store.yt_link.present?
+              a.footer__social-link(href=current_store.yt_link target="_blank")
+                = render partial: 'shared/icon', locals: {iconName: 'youtube'}
+                span.visibility-hidden Youtube
+
+        .footer__menu
+
+        ul.menu-column.footer__menu
+          li.menu-column__item.menu-column__item_normal
+            a.menu-column__link.footer__global-site-link(href=hisense_global_url) = t('.hisense_global')
+
+        ul.menu-column.footer__menu.footer__menu_side_right
+          li.menu-column__item
+            a.menu-column__link(href=regional_websites_url) = current_store.country&.name
+
+        .footer__twitter-widget
+          | <a class="twitter-timeline"
+          |   data-theme="dark"
+          |   data-link-color="#a1a1a1"
+          |   data-tweet-limit="1"
+          |   data-chrome="noheader nofooter noborders"
+          |   href="#{current_store.tw_link}?ref_src=twsrc%5Etfw">
+          |   Tweets</a>
+
+          | <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    ul.footer__submenu
+      - for item in legal_pages_items
+        li.footer__submenu-item
+          a.footer__submenu-link(href=item.last) = item.first
+      li.footer__submenu-item
+        a.footer__submenu-link(href="/sitemap") = t('.sitemap')
+      li.footer__submenu-item = t('.copyright', year: Date.today.year)
+      li.footer__submenu-item 鲁 ICP 备 05027830

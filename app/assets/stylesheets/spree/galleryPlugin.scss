@@ -1,0 +1,160 @@
+/* Toolbar */
+.redactor_toolbar li a.redactor_btn_gallery {
+	background: url(asset-path('admin/redactor/toolbarIcon.png')) no-repeat;
+}
+.redactor_toolbar li a.redactor_btn_gallery:hover {
+	border-color: #98a6ba;
+	border-color: rgba(162, 185, 208, .8);
+	background-color: #d4dce9;
+	background-color: rgba(176, 199, 223, .5);
+}
+
+/* Editor Element */
+.imperaviRedactorGalleryPluginEditorElement {
+  display: block;
+  position: relative;
+
+  cursor: pointer;
+
+  border: 1px dotted #888;
+
+  min-height: 150px;
+  height: 188px;
+  margin: 10px auto;
+  padding: 0px;
+
+  background: #EFF1F9 no-repeat center center;
+
+  text-align: left;
+  line-height: 1;
+  font-size: 12px;
+}
+.imperaviRedactorGalleryPluginEditorElement:after {
+  content: 'Gallery';
+
+  background-color: #000;
+  color: #FFF;
+  opacity: 0.5;
+
+  padding: 7px 10px;
+  display: inline-block;
+}
+.imperaviRedactorGalleryPluginEditorElement:visited:before {
+}
+.imperaviRedactorGalleryPluginEditorElement:hover:before {
+  content: 'Edit';
+  position: absolute;
+
+  background-color: #000;
+  color: #FFF;
+
+  text-align: center;
+  padding: 8px 11px;
+  width: 90px;
+  height: 26px;
+
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  /*opacity: 0.9;*/
+  /*-webkit-box-shadow: 0 0 10px 5px rgba(255,255,255,0.4);*/
+  /*box-shadow: 0 0 10px 5px rgba(255,255,255,0.4);*/
+}
+
+/* Modal Window */
+#redactor_modal_inner .galleryPluginModalBody {
+  margin-top: 10px;
+  padding-top: 0;
+}
+
+/* Modal Window, Drop */
+#redactor_modal_inner .galleryPluginDropArea {
+  margin-bottom: 15px;
+}
+#redactor_modal_inner .galleryPluginDropAreaHover .galleryPluginDropBox {
+  border-color: #aaa;
+  background: #efe3b8;
+}
+/*#redactor_modal_inner .galleryPluginDropAreaError .galleryPluginDropBox {*/
+  /*border-color: #dcc3c3;*/
+  /*background: #f7e5e5;*/
+/*}*/
+#redactor_modal_inner .galleryPluginDropAreaDrop .galleryPluginDropBox {
+  border-color: #e0e5d6;
+  background: #f4f4ee;
+}
+
+#redactor_modal_inner .galleryPluginDropBox {
+  color: #555555;
+  font-size: 12px;
+
+  background-color: #FFFFFF;
+  border: 2px dashed #BBBBBB;
+  padding: 3px ;
+  position: relative;
+  width: 99%;
+  z-index: 1;
+  min-height: 138px;
+}
+
+/* Modal Window, List */
+#redactor_modal_inner .galleryPluginDropPlaceholder {
+  text-align: center;
+  padding: 57px 0;
+}
+
+#redactor_modal_inner ul.galleryPluginDropList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#redactor_modal_inner li.galleryPluginDropItem {
+  margin: 3px;
+  float: left;
+  width: 79px;
+  height: 79px;
+  overflow: hidden;
+  background-color:#EFF1F9;
+  border: 1px solid #CBCCD3;
+  cursor: move;
+  position: relative;
+}
+#redactor_modal_inner li.galleryPluginDropItem img {
+  margin: 0 auto;
+}
+
+#redactor_modal_inner li.galleryPluginDropItem .galleryPluginButton {
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.25;
+}
+#redactor_modal_inner li.galleryPluginDropItem:hover .galleryPluginButton {
+  opacity: 0.85;
+}
+#redactor_modal_inner li.galleryPluginDropItem .galleryPluginDeleteButton {
+  background-image: url(asset-path('admin/redactor/deleteIcon.png'));
+  top: 3px;
+  right: 3px;
+}
+#redactor_modal_inner li.galleryPluginDropItem .galleryPluginOpenButton {
+  background-image: url(asset-path('admin/redactor/openIcon.png'));
+  right: 3px;
+  bottom: 3px;
+}
+
+#redactor_modal_inner .galleryPluginDropItemClear {
+  clear: both;
+}
+
+/* Modal Window, Buttons */
+#redactor_modal_inner .galleryPluginModalFooter .redactor_modal_delete_btn,
+#redactor_modal_inner .galleryPluginModalFooter .redactor_modal_action_btn {
+  text-shadow: none;
+}

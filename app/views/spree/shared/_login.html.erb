@@ -1,0 +1,25 @@
+<div class="login form">
+  <div class="login__inner form__inner">
+    <%= form_for Spree::User.new, as: :spree_user, url: spree.create_new_session_path do |f| %>
+      <h1 class="login__title">Login</h1>
+
+      <fieldset id="password-credentials">
+        <div class="input-text">
+          <%= f.email_field :email, class: 'input-text__input', tabindex: 1, placeholder: Spree.t(:email) %>
+        </div>
+        <div class="input-text">
+          <%= f.password_field :password, class: 'input-text__input', tabindex: 2, placeholder: Spree.t(:password) %>
+        </div>
+        <div class="form__checkbox input-checkbox">
+          <%= f.check_box :remember_me, tabindex: 3 %>
+          <%= f.label :remember_me, Spree.t(:remember_me) %>
+        </div>
+        <div class="form__footer">
+          <button class="form__submit" type="submit" tabindex="4">
+            <%= Spree.t(:login) %>
+          </button>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>

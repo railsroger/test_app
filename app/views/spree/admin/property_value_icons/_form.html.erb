@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <div>
+        <%= f.field_container :property_id, class: ['form-group'] do %>
+          <%= f.label :property_id, Spree.t(:property) %><br>
+          <%= f.select :property_id, Spree::Property.all.map { |p| ["#{p.presentation} (#{p.name})", p.id] }, {}, { class: "select2" } %>
+        <% end %>
+
+        <%= f.field_container :value, class: ['form-group'] do %>
+          <%= f.label :value, Spree.t(:value) %>
+          <%= f.error_message_on :value %>
+          <%= f.text_field :value, class: 'form-control title' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+      <div>
+        <%= f.field_container :icon_white, class: ['form-group'] do %>
+          <%= f.label :icon_white, Spree.t(:icon_white) %>
+          <br />
+          <%= link_to image_tag(@property_value_icon.icon_white.url(:admin)), @property_value_icon.icon_white.url(:normal) if @property_value_icon.icon_white? %>
+          <br />
+          <%= f.file_field :icon_white %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= f.field_container :icon_dark, class: ['form-group'] do %>
+          <%= f.label :icon_dark, Spree.t(:icon_dark) %>
+          <br />
+          <%= link_to image_tag(@property_value_icon.icon_dark.url(:admin)), @property_value_icon.icon_dark.url(:normal) if @property_value_icon.icon_dark? %>
+          <br />
+          <%= f.file_field :icon_dark %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

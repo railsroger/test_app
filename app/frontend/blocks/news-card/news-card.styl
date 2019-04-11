@@ -1,0 +1,86 @@
+.news-card
+  position relative
+  width 100%
+  overflow hidden
+  display block
+  background $blackDarker
+  text-decoration none
+  color $white
+  padding-bottom 100%
+
+  &__image
+    abs()
+    background-size cover
+    background-position 50%
+    z-index 1
+    opacity .8
+    transform scale(1.2)
+    transition opacity .3s ease, transform .3s ease
+
+    .news-card:hover &
+      transform scale(1)
+      opacity .6
+
+  &__content
+    text-smaller()
+    text-transform uppercase
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    z-index 2
+    padding 25px
+
+    .news-card_size_large &
+      +not-mobile()
+        font-size 20px
+        padding 50px
+
+  &__label
+    display inline-block
+    vertical-align top
+    padding 0 8px 1px
+    margin-left -8px
+    margin-bottom 12px
+
+    .news-card_size_large &
+      +not-mobile()
+        padding 3px 15px 4px
+        margin-left -15px
+        margin-bottom 14px
+
+    &_color
+      &_red
+        background #f24841
+
+      &_blue
+        background #686bb1
+
+      &_orange
+        background #f98e3c
+
+  &__date
+    display flex
+    margin-bottom 8px
+
+    .news-card_size_large &
+      +not-mobile()
+        margin-bottom 10px
+
+  &__day
+    font-avalon()
+    font-size 40px
+    line-height 1
+    margin-right 10px
+    margin-left -4px
+
+    .news-card_size_large &
+      +not-mobile()
+        font-size 72px
+        margin-left -8px
+        margin-right 20px
+
+  &__month
+    .news-card_size_large &
+      +not-mobile()
+        padding-top 2px
