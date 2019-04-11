@@ -3,7 +3,6 @@
 
 ## Установка
 
-- `git clone git@github.com:m2hagency/hisense.git`
 - install rbenv
 - `cd hisense`
 - `rbenv install`
